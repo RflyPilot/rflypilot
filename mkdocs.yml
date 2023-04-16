@@ -1,0 +1,7 @@
+site_name: RflyPilot Doc
+site_url: https://rflypilot.github.io/
+nav:
+    - Home: index.md
+    - Getting Started: GettingStartted/about.md
+
+#theme: readthedocs
