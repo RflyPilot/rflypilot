@@ -2,6 +2,7 @@ site_name: RflyPilot Doc
 site_url: https://rflypilot.github.io/
 nav:
     - Quick Start: index.md
+    - Configuration: config.md
     - Contribute: others/help.md
 
 theme: readthedocs
