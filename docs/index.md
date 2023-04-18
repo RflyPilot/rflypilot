@@ -1,5 +1,50 @@
 ## Hardware Prepare
 
+### 修改 /boot/config.txt文件为
+```
+[all] 
+# enable sc16is752 overlay
+dtoverlay=sc16is752-spi1
+# enable I2C-1 and set the frequency to 400KHz
+dtparam=i2c_arm=on,i2c_arm_baudrate=400000
+# enable spidev0.0
+dtparam=spi=on
+# enable RC input
+enable_uart=1
+# enable I2C-0
+dtparam=i2c_vc=on
+# switch Bluetooth to miniuart
+dtoverlay=miniuart-bt
+
+[pi4]
+force_turbo=0
+arm_freq=1800
+arm_freq_min=1500
+```
+使用**navio**的固件时候需要加
+```
+arm_freq=1800
+arm_freq_min=1500
+```
+或者`force_turbo=1`来最大化性能。而**Rpi**官方版本系统经过测试不需要，当然统一加上即可
+
+: [config.txt树莓派官方说明](https://www.raspberrypi.com/documentation/computers/config_txt.html#overclocking-options)
+
+: [树莓派超频](https://zhuanlan.zhihu.com/p/76437760)
+
+: [树莓派配置文档config.txt说明](https://blog.csdn.net/cyuyan112233/article/details/44577033)
+
+### 测试核心频率
+```
+vcgencmd measure_clock arm
+```
+
+### 修改 /boot/cmdline.txt文件为
+```
+console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait isolcpus=2,3
+```
+如果是**Rpi**官方系统`root=/dev/mmcblk0p2`的内容可能每次刷固件都是不一样的，也可能和系统版本有关系，笔者这里没有深入了解
+
 ## DownLoad Code
 
 ## Code Generated
