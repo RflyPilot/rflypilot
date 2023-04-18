@@ -43,6 +43,12 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href=".">Quick Start</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#bootconfigtxt">修改 /boot/config.txt文件为</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">测试核心频率</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bootcmdlinetxt">修改 /boot/cmdline.txt文件为</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -78,6 +84,41 @@
             <div class="section" itemprop="articleBody">
               
                 <h2 id="hardware-prepare">Hardware Prepare</h2>
+<h3 id="bootconfigtxt">修改 /boot/config.txt文件为</h3>
+<pre><code>[all] 
+# enable sc16is752 overlay
+dtoverlay=sc16is752-spi1
+# enable I2C-1 and set the frequency to 400KHz
+dtparam=i2c_arm=on,i2c_arm_baudrate=400000
+# enable spidev0.0
+dtparam=spi=on
+# enable RC input
+enable_uart=1
+# enable I2C-0
+dtparam=i2c_vc=on
+# switch Bluetooth to miniuart
+dtoverlay=miniuart-bt
+
+[pi4]
+force_turbo=0
+arm_freq=1800
+arm_freq_min=1500
+</code></pre>
+<p>使用<strong>navio</strong>的固件时候需要加</p>
+<pre><code>arm_freq=1800
+arm_freq_min=1500
+</code></pre>
+<p>或者<code>force_turbo=1</code>来最大化性能。而<strong>Rpi</strong>官方版本系统经过测试不需要，当然统一加上即可</p>
+<p>: <a href="https://www.raspberrypi.com/documentation/computers/config_txt.html#overclocking-options">config.txt树莓派官方说明</a></p>
+<p>: <a href="https://zhuanlan.zhihu.com/p/76437760">树莓派超频</a></p>
+<p>: <a href="https://blog.csdn.net/cyuyan112233/article/details/44577033">树莓派配置文档config.txt说明</a></p>
+<h3 id="_1">测试核心频率</h3>
+<pre><code>vcgencmd measure_clock arm
+</code></pre>
+<h3 id="bootcmdlinetxt">修改 /boot/cmdline.txt文件为</h3>
+<pre><code>console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait isolcpus=2,3
+</code></pre>
+<p>如果是<strong>Rpi</strong>官方系统<code>root=/dev/mmcblk0p2</code>的内容可能每次刷固件都是不一样的，也可能和系统版本有关系，笔者这里没有深入了解</p>
 <h2 id="download-code">DownLoad Code</h2>
 <h2 id="code-generated">Code Generated</h2>
 <h3 id="usrcontroller-code-gen">usrController Code Gen</h3>
@@ -141,5 +182,5 @@
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-04-17 09:10:17.441211+00:00
+Build Date UTC : 2023-04-18 14:04:16.606649+00:00
 -->
