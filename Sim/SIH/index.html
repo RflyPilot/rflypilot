@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rflypilot.github.io/others/help/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rflypilot.github.io/Sim/SIH/" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Contribute - RflyPilot Doc</title>
+    <title>SIH - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Contribute";
-        var mkdocs_page_input_path = "others/help.md";
-        var mkdocs_page_url = "/others/help/";
+        var mkdocs_page_name = "SIH";
+        var mkdocs_page_input_path = "Sim/SIH.md";
+        var mkdocs_page_url = "/Sim/SIH/";
       </script>
     
     <script src="../../js/jquery-3.6.0.min.js" defer></script>
@@ -48,17 +48,19 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Simulation</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Sim/SIH/">SIH</a>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">SIH</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">注意事项</a>
+    </li>
+    </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Sim/HIL/">HIL</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../HIL/">HIL</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Help</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Contribute</a>
-    <ul class="current">
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/help/">Contribute</a>
                   </li>
               </ul>
       </div>
@@ -75,8 +77,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Help &raquo;</li>
-      <li>Contribute</li>
+          <li>Simulation &raquo;</li>
+      <li>SIH</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -85,36 +87,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="_1">如何贡献代码</h1>
-<p>本文文档使用MkDocs开发，配置简单。建议在WSL下进行开发。</p>
-<ol>
-<li>
-<p>安装文档环境可以参考<a href="https://www.mkdocs.org">mkdocs.org</a></p>
-</li>
-<li>
-<p>修改文档内容</p>
-<p>2.1 运行<code>git clone https://github.com/RflyPilot/rflypilot.github.com.git</code></p>
-<p>2.2 运行<code>git checkout master</code> (注意：默认分支是gh-pages, 所以需要手动切换)</p>
-<p>2.3 运行<code>mkdocs serve</code>可以本地预览效果</p>
-</li>
-<li>
-<p>运行<code>mkdocs build</code>，之后会在根目录下生成/更新<code>site</code>文件夹下的内容</p>
-</li>
-<li>
-<p>运行<code>mkdocs gh-deploy</code>以提交site下的更改</p>
-</li>
-<li>
-<p>如果<code>mkdocs gh-deploy</code>本身没能自动将更改push到远端仓库，那么手动<code>git push origin gh-pages</code> </p>
-</li>
-<li>
-<p>提交master分支的更改</p>
-</li>
-</ol>
+                <h1 id="sih-mode">SIH Mode</h1>
+<p>SIH Mode 通过在控制器上运行被控对象的数学模型和控制器组成闭环来实现仿真验证。
+基于RflyPilot的SIH模式具备一下特点
+- 受益于CM4的计算性能，所采用的仿真模型可以更加复杂和精细化
+- 不需要额外的设备即可进行硬件仿真</p>
+<h2 id="_1">注意事项</h2>
+<ul>
+<li>模型直接提供的传感器数据为无饱和约束的数据，再进行实验的时候需要注意下传感器饱和的问题</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../Sim/HIL/" class="btn btn-neutral float-left" title="HIL"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Basic/config/" class="btn btn-neutral float-left" title="Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../HIL/" class="btn btn-neutral float-right" title="HIL">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -137,8 +124,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../Sim/HIL/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../Basic/config/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../HIL/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
