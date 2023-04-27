@@ -1,3 +1,9 @@
+## TODO配置清单
+- 如何切换电机输出协议
+- 使用前需要在rflypilot.txt文件根据自身需求修改控制器频率
+- 代码生成注意启用long long 类型
+
+
 ## 关键配置
 - `#define USE_RFLYPILOT 1` 表示启用RflyPilot硬件 
 - `#define USE_RFLYPILOT 0` 表示使用PilotPi硬件

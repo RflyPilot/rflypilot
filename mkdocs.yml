@@ -1,8 +1,16 @@
 site_name: RflyPilot Doc
 site_url: https://rflypilot.github.io/
 nav:
-    - Quick Start: index.md
-    - Configuration: config.md
-    - Contribute: others/help.md
+    - Basic Use:
+        - Quick Start: Basic/index.md
+        - Configuration: Basic/config.md
+    - Simulation: 
+        - SIH: Sim/SIH.md
+        - HIL: Sim/HIL.md
+    - Help:
+        - Contribute: others/help.md
 
-theme: readthedocs
+theme: 
+    name: readthedocs
+    # name: mkdocs
+    highlightjs: true
