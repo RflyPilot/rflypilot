@@ -1,7 +1,9 @@
 ## 关键配置
+在`config/configure.h`文件中
 - `#define USE_RFLYPILOT 1` 表示启用RflyPilot硬件 
 - `#define USE_RFLYPILOT 0` 表示使用PilotPi硬件
-
+- `#define USE_ONESHOT_125 1` 表示使用ONESHOT125协议 
+- `#define USE_ONESHOT_125 0` 表示使用400Hz PWM
 ## 基于WSL交叉编译
 在WSL ubuntu 18.04中安装
 
