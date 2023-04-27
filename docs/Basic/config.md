@@ -1,8 +1,9 @@
+# Configuration
+
 ## TODO配置清单
 - 如何切换电机输出协议
 - 使用前需要在rflypilot.txt文件根据自身需求修改控制器频率
 - 代码生成注意启用long long 类型
-
 
 ## 关键配置
 在`config/configure.h`文件中
