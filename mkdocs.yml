@@ -1,6 +1,7 @@
 site_name: RflyPilot Doc
 site_url: https://rflypilot.github.io/
 nav:
+    - Introduction: index.md
     - Basic Use:
         - Quick Start: Basic/index.md
         - Configuration: Basic/config.md
