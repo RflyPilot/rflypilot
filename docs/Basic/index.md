@@ -29,12 +29,15 @@ dtparam=spi=on
 enable_uart=1
 # switch Bluetooth to miniuart
 dtoverlay=miniuart-bt
-
+# enable usb2.0 with host mode
+dtoverlay=dwc2,dr_mode=host
 [pi4]
 force_turbo=0
 arm_freq=1800
 arm_freq_min=1500
 ```
+注意：启用RflyPilot的TypeC USB口的主机模式，需要短接飞控板上的D1二极管以保障飞控可以为USB设备供电。
+
 使用**navio**的固件时候需要加
 ```
 arm_freq=1800
