@@ -20,14 +20,13 @@
 [all] 
 # enable sc16is752 overlay
 dtoverlay=sc16is752-spi1
-# enable I2C-1 and set the frequency to 400KHz
-dtparam=i2c_arm=on,i2c_arm_baudrate=400000
+# enable I2C-0/1 and set the frequency to 400KHz
+dtparam=i2c_arm=on,i2c_arm_baudrate=1000000
+dtparam=i2c_vc=on,i2c_vc_baudrate=1000000
 # enable spidev0.0
 dtparam=spi=on
 # enable RC input
 enable_uart=1
-# enable I2C-0
-dtparam=i2c_vc=on
 # switch Bluetooth to miniuart
 dtoverlay=miniuart-bt
 
@@ -96,5 +95,4 @@ git clone https://github.com/umview/raspberry_fc_matlab.git
 
 ### 编译构建
 - 将配置文件复制到与可执行文件相同的目录下 -->
-
 

@@ -8,6 +8,7 @@ nav:
     - Simulation: 
         - SIH: Sim/SIH.md
         - HIL: Sim/HIL.md
+        - OFFBOARD: Sim/OFFBOARD.md
     - Help:
         - Contribute: others/help.md
 
