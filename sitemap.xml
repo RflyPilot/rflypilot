@@ -2,32 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://rflypilot.github.io/</loc>
-         <lastmod>2023-04-30</lastmod>
+         <lastmod>2023-12-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rflypilot.github.io/Basic/</loc>
-         <lastmod>2023-04-30</lastmod>
+         <lastmod>2023-12-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rflypilot.github.io/Basic/config/</loc>
-         <lastmod>2023-04-30</lastmod>
+         <lastmod>2023-12-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rflypilot.github.io/Sim/HIL/</loc>
-         <lastmod>2023-04-30</lastmod>
+         <lastmod>2023-12-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rflypilot.github.io/Sim/OFFBOARD/</loc>
+         <lastmod>2023-12-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rflypilot.github.io/Sim/SIH/</loc>
-         <lastmod>2023-04-30</lastmod>
+         <lastmod>2023-12-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rflypilot.github.io/acado/acado/</loc>
+         <lastmod>2023-12-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rflypilot.github.io/introduction/introduction/</loc>
+         <lastmod>2023-12-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rflypilot.github.io/introduction/sys_overview/</loc>
+         <lastmod>2023-12-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://rflypilot.github.io/others/help/</loc>
-         <lastmod>2023-04-30</lastmod>
+         <lastmod>2023-12-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rflypilot.github.io/quick_start/env_install/</loc>
+         <lastmod>2023-12-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rflypilot.github.io/quick_start/quick_start/</loc>
+         <lastmod>2023-12-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://rflypilot.github.io/quick_start/rflypilot_install/</loc>
+         <lastmod>2023-12-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

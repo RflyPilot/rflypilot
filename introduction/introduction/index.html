@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rflypilot.github.io/others/help/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rflypilot.github.io/introduction/introduction/" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Contribute - RflyPilot Doc</title>
+    <title>简介 - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Contribute";
-        var mkdocs_page_input_path = "others/help.md";
-        var mkdocs_page_url = "/others/help/";
+        var mkdocs_page_name = "\u7b80\u4ecb";
+        var mkdocs_page_input_path = "introduction/introduction.md";
+        var mkdocs_page_url = "/introduction/introduction/";
       </script>
     
     <!--[if lt IE 9]>
@@ -40,10 +40,12 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Introduction</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction/">简介</a>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">简介</a>
+    <ul class="current">
+    </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../introduction/sys_overview/">系统拓扑</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../sys_overview/">系统拓扑</a>
                   </li>
               </ul>
               <ul>
@@ -71,10 +73,8 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Help</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Contribute</a>
-    <ul class="current">
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/help/">Contribute</a>
                   </li>
               </ul>
       </div>
@@ -91,8 +91,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Help</li>
-      <li class="breadcrumb-item active">Contribute</li>
+          <li class="breadcrumb-item">Introduction</li>
+      <li class="breadcrumb-item active">简介</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -101,36 +101,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="_1">如何贡献代码</h1>
-<p>本文文档使用MkDocs开发，配置简单。建议在WSL下进行开发。</p>
-<ol>
-<li>
-<p>安装文档环境可以参考<a href="https://www.mkdocs.org">mkdocs.org</a></p>
-</li>
-<li>
-<p>修改文档内容</p>
-<p>2.1 运行<code>git clone https://github.com/RflyPilot/rflypilot.github.com.git</code></p>
-<p>2.2 运行<code>git checkout master</code> (注意：默认分支是gh-pages, 所以需要手动切换)</p>
-<p>2.3 运行<code>mkdocs serve</code>可以本地预览效果</p>
-</li>
-<li>
-<p>运行<code>mkdocs build</code>，之后会在根目录下生成/更新<code>site</code>文件夹下的内容</p>
-</li>
-<li>
-<p>运行<code>mkdocs gh-deploy</code>以提交site下的更改</p>
-</li>
-<li>
-<p>如果<code>mkdocs gh-deploy</code>本身没能自动将更改push到远端仓库，那么手动<code>git push origin gh-pages</code> </p>
-</li>
-<li>
-<p>提交master分支的更改</p>
-</li>
-</ol>
+                <h1 id="rflypilot">RflyPilot 简介</h1>
+<p>RflyPilot是一款有北航可靠飞行控制组开发的多旋翼无人机自驾仪，即飞控。该飞控硬件的核心是采用Raspberry Pi CM4计算板，较传统的基于微处理器（MCU）的飞控硬件，该飞控具有更强的计算能力，可以运行试试运行一些高计算量要求的控制方法，比如非线性模型预测控制（NMPC）。同时RflyPilot采用了极简的拓扑结构，抛弃了常规的多处理方案（一颗处理器主要用于计算，另一个处理器主要用于与传感器、执行器进行通信），而采用单一处理器方案，对信号进行“直接采样”。这样的方案大大简化了飞控的开发，精简了飞控软件架构，也降低了环路延迟，有利于发挥系统的极致性能。飞控软件的开发采用了基于模型设计（Model Based Design, MBD）的思想，可以有效加速开发流程，并有利于做系统级验证。在MBD的思想之下，RflyPilot支持对控制器与状态估计系统的二次开发，同时也提供了丰富的数据记录与调试功能，有利于开发者充分挖掘控制系统的潜能。</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../Sim/OFFBOARD/" class="btn btn-neutral float-left" title="OFFBOARD"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../sys_overview/" class="btn btn-neutral float-right" title="系统拓扑">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -153,8 +130,8 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../Sim/OFFBOARD/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+      <span><a href="../sys_overview/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
