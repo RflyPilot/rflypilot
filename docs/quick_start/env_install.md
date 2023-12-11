@@ -147,6 +147,11 @@ git clone https://github.com/umview/raspberry_fc_matlab.git
 ```
 cd raspberry_fc_matlab
 git submodule update --init --recursive
+cd Estimator
+git checkout master
+cd ../Model
+git checkout master
+cd ..
 ```
 ### 2.3 文件组织结构
 
@@ -223,11 +228,9 @@ git submodule update --init --recursive
 
 ![usrController模型信息](img/usrController.png)
 
-在上述设置完成之后，即可对该控制器模型进行代码生成。进入APP下的Embedded Code工具箱，选择仅进行代码生成选项。
+在上述设置完成之后，即可对该控制器模型进行代码生成。进入APP下的Embedded Code工具箱，选择进行**编译**。
 
-![控制器代码生成](img/codegen_only.png)
-
-注意：代码生成过程中可能会遇到错误，可以尝试将acado_MPC文件夹下的文件进行重新加载。
+注意：代码生成过程中可能会遇到错误，可以尝试将acado_MPC文件夹下的文件进行重新加载，或尝试清除``cache``和``simulink_codegen``文件夹下的内容后重新生成。
 最终可以得到如下界面。
 
 ![控制器代码生成结果](img/codegen_result.png)
