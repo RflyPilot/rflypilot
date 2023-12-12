@@ -1,11 +1,11 @@
 site_name: RflyPilot Doc
 site_url: https://rflypilot.github.io/
 nav:
-    - Introduction: 
+    - 介绍: 
         - 简介: introduction/introduction.md
-        - 系统拓扑:  introduction/sys_overview.md
-    - Quick Start: quick_start/env_install.md
-    - ACADO: acado/acado.md
+        - 软硬件架构:  introduction/sys_overview.md
+    - 快速使用: quick_start/env_install.md
+    - 系统组件/功能: acado/acado.md
     - Basic Use:
         - Quick Start: Basic/index.md
         - Configuration: Basic/config.md
