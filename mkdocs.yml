@@ -5,7 +5,7 @@ nav:
         - 简介: introduction/introduction.md
         - 系统拓扑:  introduction/sys_overview.md
     - Quick Start: quick_start/env_install.md
-    - ACADO: acado/acado.md
+    - 模型预测控制应用案例: mpc/mpc.md
     - Basic Use:
         - Quick Start: Basic/index.md
         - Configuration: Basic/config.md
