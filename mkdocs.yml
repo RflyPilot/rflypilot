@@ -1,17 +1,16 @@
 site_name: RflyPilot Doc
 site_url: https://rflypilot.github.io/
 nav:
-    - Introduction: 
+    - 介绍: 
         - 简介: introduction/introduction.md
-        - 系统拓扑:  introduction/sys_overview.md
-    - Quick Start: quick_start/env_install.md
+        - 软硬件架构:  introduction/sys_overview.md
+    - 快速使用: quick_start/env_install.md
     - 模型预测控制应用案例: mpc/mpc_example.md
         # - 模型预测控制简介: mpc/mpc_introduction.md
         # - 动力学方程的获取: mpc/dyn_generate.md
         # - NMPC求解器: mpc/acado.md
         # - 求解器的调用(脚本形式): mpc/nmpc_script.md
         # - 求解器的调用(Simulink): mpc/nmpc_simulink.md
-
     - Basic Use:
         - Quick Start: Basic/index.md
         - Configuration: Basic/config.md
