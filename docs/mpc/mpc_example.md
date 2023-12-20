@@ -432,6 +432,10 @@ real_t ubValues[ 20 ]; // 控制量约束上届 NU * N， 求解器输入
 
 ![sovler_build](img/sfunction_build.jpg)
 
+最终得到的求解器输入输出接口为
+
+![acado_solver_simlink](img/acado_simulink.jpg)
+
 ## 3.6 MATLAB脚本调用ACADO求解器
 具体实现可以参考如下脚本（该脚本实现了一次在预测时域内的预测）
 
