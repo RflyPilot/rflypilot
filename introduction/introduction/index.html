@@ -8,20 +8,21 @@
     <title>简介 - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
         var mkdocs_page_name = "\u7b80\u4ecb";
-        var mkdocs_page_input_path = "introduction/introduction.md";
+        var mkdocs_page_input_path = "introduction\\introduction.md";
         var mkdocs_page_url = "/introduction/introduction/";
       </script>
     
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -33,7 +34,7 @@
           <a href="../.." class="icon icon-home"> RflyPilot Doc
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -53,7 +54,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../acado/acado/">系统组件/功能</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">Basic Use</span></p>
@@ -90,9 +91,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">介绍</li>
-      <li class="breadcrumb-item active">简介</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>介绍 &raquo;</li>
+      <li>简介</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -102,7 +103,57 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="rflypilot">RflyPilot 简介</h1>
-<p>RflyPilot是一款有北航可靠飞行控制组开发的多旋翼无人机自驾仪，即飞控。该飞控硬件的核心是采用Raspberry Pi CM4计算板，较传统的基于微处理器（MCU）的飞控硬件，该飞控具有更强的计算能力，可以运行试试运行一些高计算量要求的控制方法，比如非线性模型预测控制（NMPC）。同时RflyPilot采用了极简的拓扑结构，抛弃了常规的多处理方案（一颗处理器主要用于计算，另一个处理器主要用于与传感器、执行器进行通信），而采用单一处理器方案，对信号进行“直接采样”。这样的方案大大简化了飞控的开发，精简了飞控软件架构，也降低了环路延迟，有利于发挥系统的极致性能。飞控软件的开发采用了基于模型设计（Model Based Design, MBD）的思想，可以有效加速开发流程，并有利于做系统级验证。在MBD的思想之下，RflyPilot支持对控制器与状态估计系统的二次开发，同时也提供了丰富的数据记录与调试功能，有利于开发者充分挖掘控制系统的潜能。</p>
+<p><img alt="rflypilot" src="../img/rflypilot.jpg" /></p>
+<p>RflyPilot是一款由北航可靠飞行控制组开发的多旋翼无人机自驾仪，即飞控。该飞控硬件的核心是采用Raspberry Pi CM4计算板，较传统的基于微处理器（MCU）的飞控硬件，该飞控具有更强的计算能力，可以运行试试运行一些高计算量要求的控制方法，比如非线性模型预测控制（NMPC）。同时RflyPilot采用了极简的拓扑结构，抛弃了常规的多处理方案（一颗处理器主要用于计算，另一个处理器主要用于与传感器、执行器进行通信），而采用单一处理器方案，对信号进行“直接采样”。这样的方案大大简化了飞控的开发，精简了飞控软件架构，也降低了环路延迟，有利于发挥系统的极致性能。飞控软件的开发采用了基于模型设计（Model Based Design, MBD）的思想，可以有效加速开发流程，并有利于做系统级验证。在MBD的思想之下，RflyPilot支持对控制器与状态估计系统的二次开发，同时也提供了丰富的数据记录与调试功能，有利于开发者充分挖掘控制系统的潜能。
+<img alt="rflypilot_quadcopter" src="../img/quadcopter_with_rflypilot.jpg" /></p>
+<p>为了方便飞控开发，课题组也为RflyPilot编写了一款MATLAB工具箱，叫做RflyPilotTools，该工具箱极大地简化了开发部署流程，如下图所示。</p>
+<p><img alt="rflypilottools" src="../img/rflypilottools.jpg" /></p>
+<h1 id="_1">仿真验证模式</h1>
+<p>RflyPilot支持多种仿真验证模式，主要可以分为</p>
+<table>
+<thead>
+<tr>
+<th>模式代号</th>
+<th>模式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MIL</td>
+<td>模型在环（Model in the Loop）</td>
+<td>完全基于Simulink的数值仿真，用于早期的数值仿真验证</td>
+</tr>
+<tr>
+<td>SIH</td>
+<td>仿真器在环（Simulator in the Loop）</td>
+<td>控制器与模型均运行于RflyPilot飞控中，主要用于验证控制器在硬件系统中的实际表现</td>
+</tr>
+<tr>
+<td>HIL</td>
+<td>硬件在环（Hardware in the Loop）</td>
+<td>RflyPilot连接到虚拟被控对象进行仿真，该模式考虑到系统调度、传感器延时等细节，作为实验前的最后一步验证</td>
+</tr>
+<tr>
+<td>EXP</td>
+<td>实验（Experiment）</td>
+<td>实飞验证</td>
+</tr>
+<tr>
+<td>OFFBOARD</td>
+<td>上位机模式</td>
+<td>用于支持额外计算机自动化指令输入</td>
+</tr>
+</tbody>
+</table>
+<p><strong>得益于MBD思想，上述各个模式间可以进行快速切换</strong></p>
+<h3 id="mil-sih-hil">MIL SIH HIL</h3>
+<p><img alt="MIL_SIH_HIL" src="../img/validation_mode.jpg" /></p>
+<h3 id="_2">实飞实验</h3>
+<p><img alt="EXP" src="../img/real-flight.jpg" /></p>
+<h1 id="rflypilot_1">下一代RflyPilot</h1>
+<p>下一代RflyPilot将在硬件配置上进行更新，增加FPGA芯片以至此更高频的电调协议，如OneShot、Dshot等。下一代RflyPilot还将扩展更多的串口，以支持更多的执行器和传感器，如无刷直驱电机、UWB等。同时在电源芯片上，也会进行革新，提供更加稳健的电源方案，以确保飞控的可靠运行。</p>
+<p>总而言之，下一代RflyPilot将在硬件支持、可靠性等方面进行改进。</p>
               
             </div>
           </div><footer>
@@ -135,15 +186,14 @@
     
   </span>
 </div>
-    <script src="../../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "../..";</script>
-    <script src="../../js/theme_extra.js"></script>
-    <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
-    <script>
-        jQuery(function () {
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
-        });
+        };
     </script>
 
 </body>

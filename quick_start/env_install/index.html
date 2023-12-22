@@ -8,20 +8,21 @@
     <title>快速使用 - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
         var mkdocs_page_name = "\u5feb\u901f\u4f7f\u7528";
-        var mkdocs_page_input_path = "quick_start/env_install.md";
+        var mkdocs_page_input_path = "quick_start\\env_install.md";
         var mkdocs_page_url = "/quick_start/env_install/";
       </script>
     
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -33,7 +34,7 @@
           <a href="../.." class="icon icon-home"> RflyPilot Doc
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -127,7 +128,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../../acado/acado/">系统组件/功能</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">Basic Use</span></p>
@@ -164,8 +165,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">快速使用</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>快速使用</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -225,7 +226,7 @@
 <td>3</td>
 <td>SW</td>
 <td>SBUS协议</td>
-<td>iSBUS协议</td>
+<td>IBUS协议</td>
 </tr>
 </tbody>
 </table>
@@ -334,6 +335,11 @@ git clone https://github.com/umview/raspberry_fc_matlab.git
 <p>由于MATLAB模型中还未包含状态估计模型和无人机模型，还需要执行子模块更新指令，方可完成对模型的完整下载。</p>
 <pre><code>cd raspberry_fc_matlab
 git submodule update --init --recursive
+cd Estimator
+git checkout master
+cd ../Model
+git checkout master
+cd ..
 </code></pre>
 <h3 id="23">2.3 文件组织结构</h3>
 <pre><code>.
@@ -398,9 +404,8 @@ git submodule update --init --recursive
 <h3 id="41">4.1 控制器代码生成</h3>
 <p>打开<code>MIL/usrController.slx</code>模型，可以看到（下图）其中左侧为模型输入接口，其均为结构体类型，其中包含多种数据，模型右侧为PWM信号输出接口与调试数据输出接口。其中右侧对话框中的外部数据用于加载接口定义文件<code>Interface.sldd</code>。这个文件定义的接口与RflyPilot飞控中的C++代码接口一致，是沟通代码生成与RflyPilot基础系统的桥梁。同时这个模型是将原有<code>MPCControllerCodeGen_Vz.slx</code>进行了封装，这样的处理方法有利于代码生成后接口的兼容，也有助于进行控制模型的快速切换与部署。</p>
 <p><img alt="usrController模型信息" src="../img/usrController.png" /></p>
-<p>在上述设置完成之后，即可对该控制器模型进行代码生成。进入APP下的Embedded Code工具箱，选择仅进行代码生成选项。</p>
-<p><img alt="控制器代码生成" src="../img/codegen_only.png" /></p>
-<p>注意：代码生成过程中可能会遇到错误，可以尝试将acado_MPC文件夹下的文件进行重新加载。
+<p>在上述设置完成之后，即可对该控制器模型进行代码生成。进入APP下的Embedded Code工具箱，选择进行<strong>编译</strong>。</p>
+<p>注意：代码生成过程中可能会遇到错误，可以尝试将acado_MPC文件夹下的文件进行重新加载，或尝试清除<code>cache</code>和<code>simulink_codegen</code>文件夹下的内容后重新生成。
 最终可以得到如下界面。</p>
 <p><img alt="控制器代码生成结果" src="../img/codegen_result.png" /></p>
 <h3 id="42">4.2 状态估计代码生成</h3>
@@ -556,7 +561,7 @@ log_dir = &quot;.&quot;
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../../introduction/sys_overview/" class="btn btn-neutral float-left" title="软硬件架构"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../../acado/acado/" class="btn btn-neutral float-right" title="系统组件/功能">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../mpc/mpc_example/" class="btn btn-neutral float-right" title="模型预测控制应用案例">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -582,19 +587,18 @@ log_dir = &quot;.&quot;
       <span><a href="../../introduction/sys_overview/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../../acado/acado/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../../mpc/mpc_example/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
-    <script src="../../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "../..";</script>
-    <script src="../../js/theme_extra.js"></script>
-    <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
-    <script>
-        jQuery(function () {
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
-        });
+        };
     </script>
 
 </body>
