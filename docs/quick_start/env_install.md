@@ -25,8 +25,10 @@ RflyPilot采用的是树莓派CM4核心板，与树莓派4B标准版不同，它
 |2|DAT(GPIO25)|飞控程序开机自启*|取消自启|
 |3|SW|SBUS协议|IBUS协议|
 
-注意：
-*飞控程序开机自启功能目前并未实现
+
+<font face="黑体" color=red size=3>注意：飞控程序开机自启功能目前并未实现</font>
+
+
 #### 1.2.2 RflyPilot固件下载
 1. 首先需要安装驱动程序，[rpiboot](https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe)，安装完成后运行``rpiboot.exe``，然后将将RflyPilot拨码开关的``BOOT``键拨为``ON``，即识别为U盘。通过USB线连接到电脑。（注意：此时不能将飞控连接到飞机上，以免出现信号异常现象）稍等一会儿，便会看到如下界面
 ![Rpiboot界面](img/rpiboot.png)
@@ -214,7 +216,7 @@ cd ..
 
 ![参考模型](img/modelref.png)
 
-在部署完[NMPC求解器]后，可以直接运行综合仿真模型，并打开``RflySim3D``，进行位姿显示。默认模型采用Dashboard进行指令输入，如下图所示（在Viewer中）。
+在部署完[NMPC求解器](../mpc/mpc_example.md)后，可以直接运行综合仿真模型，并打开``RflySim3D``，进行位姿显示。默认模型采用Dashboard进行指令输入，如下图所示（在Viewer中）。
 
 ![默认控制台](img/dashboard.png)
 ![Rflysim3D视角](img/quadcopter_rflysim3d.png)
