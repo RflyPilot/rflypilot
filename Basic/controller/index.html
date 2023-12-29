@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rflypilot.github.io/others/help/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rflypilot.github.io/Basic/controller/" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Contribute - RflyPilot Doc</title>
+    <title>Controller - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Contribute";
-        var mkdocs_page_input_path = "others\\help.md";
-        var mkdocs_page_url = "/others/help/";
+        var mkdocs_page_name = "Controller";
+        var mkdocs_page_input_path = "Basic\\controller.md";
+        var mkdocs_page_url = "/Basic/controller/";
       </script>
     
     <script src="../../js/jquery-3.6.0.min.js" defer></script>
@@ -47,23 +47,23 @@
               </ul>
               <p class="caption"><span class="caption-text">基本使用</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/codegen/">代码生成与交叉编译</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../codegen/">代码生成与交叉编译</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../simulation/">MIL\SIH\HIL仿真</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/scope/">在线示波器</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../scope/">在线示波器</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/rflysim3d/">RflySim3D显示</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../rflysim3d/">RflySim3D显示</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/console/">远程控制台</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../console/">远程控制台</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/logger/">日志系统</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../logger/">日志系统</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/calibration/">传感器校准</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../calibration/">传感器校准</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/paramupdate/">在线调参</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../paramupdate/">在线调参</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/experiment/">实飞实验</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../experiment/">实飞实验</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
                   </li>
@@ -79,10 +79,8 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Help</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Contribute</a>
-    <ul class="current">
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/help/">Contribute</a>
                   </li>
               </ul>
       </div>
@@ -99,8 +97,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Help &raquo;</li>
-      <li>Contribute</li>
+      <li>Controller</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -109,37 +106,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="_1">如何贡献代码</h1>
-<p>本文文档使用MkDocs开发，配置简单。建议在WSL下进行开发。</p>
-<ol>
-<li>
-<p>安装文档环境可以参考<a href="https://www.mkdocs.org">mkdocs.org</a></p>
-</li>
-<li>
-<p>修改文档内容</p>
-<p>2.1 运行<code>git clone https://github.com/RflyPilot/rflypilot.github.com.git</code></p>
-<p>2.2 运行<code>git checkout master</code> (注意：默认分支是gh-pages, 所以需要手动切换)</p>
-<p>2.3 运行<code>mkdocs serve</code>可以本地预览效果</p>
-</li>
-<li>
-<p>运行<code>mkdocs build</code>，之后会在根目录下生成/更新<code>site</code>文件夹下的内容</p>
-</li>
-<li>
-<p>运行<code>mkdocs gh-deploy</code>以提交site下的更改</p>
-</li>
-<li>
-<p>如果<code>mkdocs gh-deploy</code>本身没能自动将更改push到远端仓库，那么手动<code>git push origin gh-pages</code> </p>
-</li>
-<li>
-<p>提交master分支的更改</p>
-</li>
-</ol>
+                
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../Future/future/" class="btn btn-neutral float-left" title="下一代RflyPilot"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-    </div>
 
   <hr/>
 
@@ -160,8 +130,6 @@
   <div class="rst-versions" role="note" aria-label="Versions">
   <span class="rst-current-version" data-toggle="rst-current-version">
     
-    
-      <span><a href="../../Future/future/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
   </span>
