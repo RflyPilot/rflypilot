@@ -333,6 +333,10 @@ cmake .. && make -j128
 - ``rflypilot.txt``——RflyPilot配置文件
 
 点击“Upload”后，即可在RflyPilot飞控中看到更新后的文件。
+
+
+<font face="黑体" color=red size=3>注：第一次下载需要提前用WSL ubuntu 18.04登录树莓派的SSH, 并建立文件夹RflyPilot_Project\RflyPilot</font>
+
 ```
 dpi@navio:~ $ cd RflyPilot_Project/RflyPilot/
 pi@navio:~/RflyPilot_Project/RflyPilot $ ls

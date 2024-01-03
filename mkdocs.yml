@@ -8,6 +8,7 @@ nav:
         - 快速使用: quick_start/env_install.md
     - 基本使用:
         - 代码生成与交叉编译: Basic/codegen.md
+        - 硬件连接: Basic/hardware_connection.md
         - MIL\SIH\HIL仿真: Basic/simulation.md
         - 在线示波器: Basic/scope.md
         - RflySim3D显示: Basic/rflysim3d.md
