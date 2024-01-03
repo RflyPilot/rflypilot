@@ -49,6 +49,8 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/codegen/">代码生成与交叉编译</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/hardware_connection/">硬件连接</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/scope/">在线示波器</a>
@@ -118,7 +120,7 @@
 <p>模型预测控制是在有限时域内进行预测的，并不是将目标/代价函数所求出的最优控制序列全部应用于系统控制，而是把采样周期内的最优控制序列的第一个分量作为该时域的控制输入作用于系统，即在该时域内持续滚动优化。滚动优化是在 k 步通过代价 函数得出最优控制序列 U'(k)，将该控制序列的第一个分量 u'(k)作用于模型，在k+1步，系统的初始条件更新为 x(k+1)，此时再将优化求解得到的控制序列U'(k+1) 的第一个分量 u'(k+1)作用于系统，如此重复进行在线优化求解。 </p>
 <p>3）<strong>反馈校正</strong></p>
 <p>为解决由于时变、非线性、干扰等因素导致的预测模型和实际模型之间的失配问题，需要在控制过程中增加反馈校正环节，即把测量或估计出的实际系统输出与预测输出进行对比、优化，进而减少控制误差，提高控制精度。
-如图[Fig7.19]所示，在 t0 时刻系统状态为x(0)，基于当前的状态，确定出一个最优的控制 序列和未来时刻相应的状态轨迹（x(0)至\hat{x}(1) 段虚线）。执行最优控制序列第一个元素， 得到 k+1步的系统状态x(1)，该状态可能与预测状态\hat{x}(1) 有差异。重复上述过程，计算最优控制序列和未来的状态轨迹。 </p>
+如图下图所示，在 t0 时刻系统状态为x(0)，基于当前的状态，确定出一个最优的控制 序列和未来时刻相应的状态轨迹（x(0)至\hat{x}(1) 段虚线）。执行最优控制序列第一个元素， 得到 k+1步的系统状态x(1)，该状态可能与预测状态\hat{x}(1) 有差异。重复上述过程，计算最优控制序列和未来的状态轨迹。 </p>
 <p><img alt="MPC预测时域" src="../img/mpc_horizion.jpg" /></p>
 <p><strong><em>非线性模型预测控制问题的数学描述</em></strong></p>
 <p>非线性模型预测控制（Nonlinear Model Predictive Control，NMPC）是模型预测控制的一种，它适用于非线性系统，其数学描述可以表示为

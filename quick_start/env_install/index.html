@@ -125,6 +125,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/codegen/">代码生成与交叉编译</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/hardware_connection/">硬件连接</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/scope/">在线示波器</a>
@@ -496,6 +498,7 @@ cmake .. &amp;&amp; make -j128
 <li><code>rflypilot.txt</code>——RflyPilot配置文件</li>
 </ul>
 <p>点击“Upload”后，即可在RflyPilot飞控中看到更新后的文件。</p>
+<p><font face="黑体" color=red size=3>注：第一次下载需要提前用WSL ubuntu 18.04登录树莓派的SSH, 并建立文件夹RflyPilot_Project\RflyPilot</font></p>
 <pre><code>dpi@navio:~ $ cd RflyPilot_Project/RflyPilot/
 pi@navio:~/RflyPilot_Project/RflyPilot $ ls
 parameter.txt  rflypilot  rflypilot.txt
