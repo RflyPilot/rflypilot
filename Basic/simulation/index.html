@@ -47,11 +47,11 @@
               </ul>
               <p class="caption"><span class="caption-text">基本使用</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../codegen/">代码生成与交叉编译</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../hardware_connection/">硬件连接</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">MIL\SIH\HIL仿真</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../scope/">在线示波器</a>
                   </li>
@@ -64,6 +64,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../calibration/">传感器校准</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../paramupdate/">在线调参</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../codegen/">代码生成与交叉编译</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../experiment/">实飞实验</a>
                   </li>
@@ -109,7 +111,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <p>本小结将对常用的三种仿真模式（MIL\SIH\HIL）进行操作介绍。</p>
+<p><img alt="MIL_SIH_HIL" src="../../introduction/img/validation_mode.jpg" /></p>
+<h1 id="mil">MIL</h1>
+<p>MIL仿真，即模型在环，该仿真模式主要用于进行控制系统的初期验证阶段，用于评估控制器的可控性。利用RflyPilot工程文件夹下的<code>MIL/MPC_HIL.slx</code>即可进行MIL仿真。这部分仿真主要在Simulink中进行，其仿真方法，这里不再赘述，具体内容由读者自行决定，相应的内容可以参考<a href="../../quick_start/env_install/">快速使用</a>中的部分内容。</p>
+<h1 id="sih">SIH</h1>
+<p>SIH仿真，即仿真器在环，该仿真模式主要用于测试控制器在真实嵌入式系统中的表现。SIH的仿真步骤在<a href="../../quick_start/env_install/">快速使用</a>中进行了详细介绍，这里也不再赘述。</p>
+<h1 id="hil">HIL</h1>
+<p>HIL，即半物理仿真，一般作为实飞实验的最后一步，在这个模式中，RflyPilot将直接连接到<a href="https://rflybuaa.github.io/RflySimRTDoc/">硬件在环实时仿真系统</a>上，其硬件连接方法请参考<a href="../hardware_connection/">硬件连接</a>一节中的内容。</p>
               
             </div>
           </div><footer>
