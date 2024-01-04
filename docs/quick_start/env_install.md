@@ -196,8 +196,8 @@ cd ..
 └── swfiles（RflyPilot飞控外壳3D打印文件）
 ```
 
-## 3 模型的运行
-本小节将介绍如何运行数值仿真。
+## 3 模型的运行(MIL)
+本小节将介绍如何运行数值仿真，即模型在环仿真。
 ### 3.1 仿真参数初始化
 首先在MATLAB中打开工程文件``Raspberry_fc_matlab.prj``，然后分别运行如下脚本
 
@@ -344,8 +344,8 @@ parameter.txt  rflypilot  rflypilot.txt
 pi@navio:~/RflyPilot_Project/RflyPilot $ 
 ```
 至此，便完成了飞控程序的部署。
-## 6 飞控的运行
-为了方便演示，这里以SIH仿真为例，进行飞控的仿真验证。
+## 6 飞控的运行（SIH）
+为了方便演示，这里以SIH仿真为例，进行飞控的运行验证。
 首先修改配置文件，将运行模式修改为SIH模式，即，``valid_mode = 1``。然后将``scope_ip``与``station_ip``修改为电脑IP。
 ```
 ########################### SYSTEM PARAMETER ###################
@@ -383,9 +383,47 @@ log_dir = "."
 
 ![sih_boot](img/sih_boot.png)
 
+<font face="黑体" color=red size=3>注：此时应仔细观察调试输出信息，查看是否存在异常现象。</font>
+
 系统正常启动后，界面如下
 ![console](img/console.png)
 
+此时按``Ctrl+C``键即可中止程序的运行。
+
+## 7 SIH仿真
+基于以上内容，读者已经完成了从环境安装到模型仿真（MIL），再到代码生成、运行飞控的全流程。笔者以SIH为例，介绍仿真的基本流程和操作。
+### 7.1 前期准备
+在SIH仿真模式下，由于飞控软件和被控对象都运行在RflyPilot中，并不需要连接到飞行器本体上，但是由于仿真过程中，需要输入控制指令，此时，还需要将遥控器的接收机连接到RflyPilot上。 故在SIH仿真模式下，硬件准备上，只需要RflyPilot与遥控器和接收机，最后通过WIFI连接到计算机，在RflySim3D上进行显示。
+
+![](../Basic/img/sih_con.jpg)
+
+Scope示波器：打开MATLAB工程文件中的``debug_tools/udp_recv3_ke.slx``，该模型利用Simulink的UDP工具箱，实现了简易的飞控数据曲线实时展示功能，RflyPilot的一些关键数据，如位置、速度、姿态等信息，均会在飞控运行时实时显示。双击打开①后，配置②``Remote IP address``，该IP应设置为RflyPilot的IP。点击“确定”即可完成设置，随后点击“运行”。
+
+![](img/scope.jpg)
+
+RflySim3D: Rflysim3D在RflyPilot中主要作为视景显示软件，位姿数据从RflyPilot中发送，通过UDP协议，由RflySim3D软件进行接收和显示。RflySim3D不需要额外的配置，双击运行即可，这里不做展开叙述。
+
+RflySim3D软件的相关使用介绍可以参考[Rflysim](https://https://rflysim.com/)。
+
+<font face="黑体" color=red size=3>注：在进行SIH仿真时，运行RflySim3D和在线示波器的计算机和RflyPilot应处于同一局域网下</font>
+
+### 7.2 开始仿真
+通过命令``./rflypilot``运行飞控即可，注意此时应该设置好飞控的仿真模式和IP地址。打开遥控器。
+
+|通道|功能|说明|
+|----|----|----|
+|CH1|x|水平通道|
+|CH2|y|水平通道|
+|CH3|z|垂向通道|
+|CH4|yaw|航向控制|
+|CH5|MODE*|用于设置飞行模式|
+|CH6|ARM|用于解锁(ARM>1250)|
+
+<font face="黑体" color=red size=3>注：MODE功能未明确在仿真模型中定义，该通道约定俗成为模式切换通道。ARM通道的设计与仿真模型无关，该通道的功能在底层飞控系统中固定为解锁通道。</font>
+
+![](img/sih.PNG)
+
+<font face="黑体" color=red size=3>仿真技巧：仿真时应先解锁，再缓慢推油门，直至飞行器起飞</font>
 ## 参考资料
 
 [config.txt树莓派官方说明](https://www.raspberrypi.com/documentation/computers/config_txt.html#overclocking-options)
@@ -398,14 +436,14 @@ log_dir = "."
 
 
 
-## 4.快速体验
+<!-- ## 4.快速体验
 
 1. 打开MATLAB 2022b, 打开RflyPilot MATLAB工程, 安装RflyPilot ToolBox
 2. 代码生成姿态估计, 位置估计, SIH模型, 示例控制器.
 3. 第一次下载需要提前用WSL ubuntu 18.04登录树莓派的SSH, 并建立文件夹RflyPilot_Project\RflyPilot
 4. 在MTLAB APP中打开安装的RflyPilot ToolBox进行操作完成编译下载工作
 5. SSH中`cd /home/pi/RflyPilot_Project/RflyPilot/`并`./rflypilot` or `sudo ./rflypilot`
-> 如果不使用sudo可能无法正常向指定IP地址发送UDP数据，暂时影响SIH模式运行
+> 如果不使用sudo可能无法正常向指定IP地址发送UDP数据，暂时影响SIH模式运行 -->
 <!-- ### 代码生成
 
 - If the acado lib is used, do not copy the files `acado_solver_mex.c` and `make_acado_solver.m` into RflyPilot project.

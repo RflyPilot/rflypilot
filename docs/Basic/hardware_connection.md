@@ -94,7 +94,7 @@ HIL仿真相比于实飞实验的区别是RflyPilot飞控直接连接到半物�
 
 由于进行HIL仿真并不需要真实的传感器，为了方便进行HIL仿真，笔者直接使用树莓派4B和“Rflysim for Pilot"接口板代替RflyPilot连接到硬件在环仿真平台上。
 
-![HIL仿真器-飞控平台](img/raspberrypi_hil.jpg)
+![HIL仿真器-飞控平台](img/rflypilot_fpga.jpg)
 
 将以上两个组件拼接完成后，得到了可以用于硬件在环仿真的RflyPilot。
 
@@ -104,7 +104,7 @@ HIL仿真相比于实飞实验的区别是RflyPilot飞控直接连接到半物�
 
 参考[硬件在环实时仿真平台](https://rflybuaa.github.io/RflySimRTDoc/)中的教程进行硬件连接，便可以得到如下半物理联合仿真平台。
 
-![用于HIL仿真的RflyPilot](img/fpga_rflypilot.jpg)
+![用于HIL仿真的RflyPilot](img/rflypilot_fpga.jpg)
 
 <font face="黑体" color=red size=3>注：由于飞控运行时处理器功率增加，为保障计算性能，建议使用大功率电源连接树莓派。</font>
 
