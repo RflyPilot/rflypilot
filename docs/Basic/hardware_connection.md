@@ -94,11 +94,11 @@ HIL仿真相比于实飞实验的区别是RflyPilot飞控直接连接到半物�
 
 由于进行HIL仿真并不需要真实的传感器，为了方便进行HIL仿真，笔者直接使用树莓派4B和“Rflysim for Pilot"接口板代替RflyPilot连接到硬件在环仿真平台上。
 
-![HIL仿真器-飞控平台](img/rflypilot_fpga.jpg)
+![HIL仿真器-飞控平台](img/raspberrypi_hil.jpg)
 
 将以上两个组件拼接完成后，得到了可以用于硬件在环仿真的RflyPilot。
 
-<font face="黑体" color=red size=3>注：由于前期硬件电路设计存在一些小问题，串口芯片``SC16IS752IPW``的中断引脚没有连接到树莓派的``BCM24``号引脚，故这里增加了绿色飞线</font>
+<font face="黑体" color=red size=3>注：由于前期硬件电路设计存在一些小问题，串口芯片``SC16IS752IPW``的中断引脚没有连接到树莓派的``BCM24``号引脚，故这里增加了红色飞线</font>
 
 ![用于HIL仿真的RflyPilot](img/rflypilot_hil.jpg)
 

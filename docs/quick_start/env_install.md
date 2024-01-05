@@ -329,8 +329,8 @@ cmake .. && make -j128
 ### 5.3 飞控程序部署
 交叉编译完成后，将在``build``目录下生成可执行文件``rflypilot``，该可执行文件只能运行于树莓派系统中。故需要上传到树莓派中才可以运行。于此同时，除了``rflypilot``文件以外，还有一些配置文件需要被同时上传到树莓派中
 
-- ``parameter.txt``——用于存储自定义的飞控参数
-- ``rflypilot.txt``——RflyPilot配置文件
+- ``config/parameter.txt``——用于存储自定义的飞控参数
+- ``config/rflypilot.txt``——RflyPilot配置文件
 
 点击“Upload”后，即可在RflyPilot飞控中看到更新后的文件。
 
@@ -347,6 +347,9 @@ pi@navio:~/RflyPilot_Project/RflyPilot $
 ## 6 飞控的运行（SIH）
 为了方便演示，这里以SIH仿真为例，进行飞控的运行验证。
 首先修改配置文件，将运行模式修改为SIH模式，即，``valid_mode = 1``。然后将``scope_ip``与``station_ip``修改为电脑IP。
+
+<font face="黑体" color=red size=3>注：要注意在``=``两端存在两个空格，需要在配置文件中保留此空格！</font>
+
 ```
 ########################### SYSTEM PARAMETER ###################
 #validation mode SIH:1 HIL:2 EXP:3 OFFBOARD:4
@@ -403,12 +406,12 @@ Scope示波器：打开MATLAB工程文件中的``debug_tools/udp_recv3_ke.slx``�
 
 RflySim3D: Rflysim3D在RflyPilot中主要作为视景显示软件，位姿数据从RflyPilot中发送，通过UDP协议，由RflySim3D软件进行接收和显示。RflySim3D不需要额外的配置，双击运行即可，这里不做展开叙述。
 
-RflySim3D软件的相关使用介绍可以参考[Rflysim](https://https://rflysim.com/)。
+RflySim3D软件的相关使用介绍可以参考[Rflysim](https://doc.rflysim.com/)。
 
 <font face="黑体" color=red size=3>注：在进行SIH仿真时，运行RflySim3D和在线示波器的计算机和RflyPilot应处于同一局域网下</font>
 
 ### 7.2 开始仿真
-通过命令``./rflypilot``运行飞控即可，注意此时应该设置好飞控的仿真模式和IP地址。打开遥控器。
+通过命令``./rflypilot``运行飞控即可，注意此时应该设置好飞控的仿真模式和IP地址。打开遥控器。此时在示波器中可以观察到当前飞行器的状态数据。
 
 |通道|功能|说明|
 |----|----|----|
