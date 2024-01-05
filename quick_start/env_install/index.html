@@ -135,8 +135,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/scope/">在线示波器</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/rflysim3d/">RflySim3D显示</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/console/">远程控制台</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/logger/">日志系统</a>
@@ -144,8 +142,6 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/calibration/">传感器校准</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/paramupdate/">在线调参</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/codegen/">代码生成与交叉编译</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/experiment/">实飞实验</a>
                   </li>
@@ -559,7 +555,7 @@ log_dir = &quot;.&quot;
 <p><img alt="" src="../../Basic/img/sih_con.jpg" /></p>
 <p>Scope示波器：打开MATLAB工程文件中的<code>debug_tools/udp_recv3_ke.slx</code>，该模型利用Simulink的UDP工具箱，实现了简易的飞控数据曲线实时展示功能，RflyPilot的一些关键数据，如位置、速度、姿态等信息，均会在飞控运行时实时显示。双击打开①后，配置②<code>Remote IP address</code>，该IP应设置为RflyPilot的IP。点击“确定”即可完成设置，随后点击“运行”。</p>
 <p><img alt="" src="../img/scope.jpg" /></p>
-<p>RflySim3D: Rflysim3D在RflyPilot中主要作为视景显示软件，位姿数据从RflyPilot中发送，通过UDP协议，由RflySim3D软件进行接收和显示。RflySim3D不需要额外的配置，双击运行即可，这里不做展开叙述。</p>
+<p>RflySim3D: RflySim3D是一款基于UE引擎开发的飞行器视景显示平台，它是<a href="https://rfly.buaa.edu.cn/">可靠飞行控制组</a>开发的RflySim平台的一部分。使用者可以通过UDP发送特定协议的数据包，进而实现控制视景中无人机的位置、姿态、旋翼转速等，是无人机控制器开发的利器。更多的介绍请参考<a href="http://doc.rflysim.com/">RflySim官方网站</a>。Rflysim3D在RflyPilot中主要作为视景显示软件，位姿数据从RflyPilot中发送，通过UDP协议，由RflySim3D软件进行接收和显示。</p>
 <p>RflySim3D软件的相关使用介绍可以参考<a href="https://doc.rflysim.com/">Rflysim</a>。</p>
 <p><font face="黑体" color=red size=3>注：在进行SIH仿真时，运行RflySim3D和在线示波器的计算机和RflyPilot应处于同一局域网下</font></p>
 <h3 id="72">7.2 开始仿真</h3>

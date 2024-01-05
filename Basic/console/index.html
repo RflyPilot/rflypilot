@@ -53,17 +53,15 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../scope/">在线示波器</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../rflysim3d/">RflySim3D显示</a>
-                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">远程控制台</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../logger/">日志系统</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../calibration/">传感器校准</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../paramupdate/">在线调参</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../codegen/">代码生成与交叉编译</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../experiment/">实飞实验</a>
                   </li>
@@ -109,12 +107,96 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <p>控制台功能是RflyPilot飞控的一个非常实用的功能，它起到了远程调试的功能，它可以作为简易的飞控地面站功能。它支持多种调试指令，也可也由开发者自行增加指令。于此同时，控制台还支持实时显示当前状态信息，包括姿态、GPS信号质量、运行频率等等。在室外进行实飞实验时，利用手机SSH连接到RflyPilot控制台，即可简单便捷地获取飞控状态信息，查看异常信息。</p>
+<p><img alt="" src="../img/console.gif" /></p>
+<h1 id="_1">状态信息</h1>
+<p>如上图所示，RflyPilot飞控的状态信息会实时更新。</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>说明</th>
+<th>单位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Timestamp</td>
+<td>当前行变量的时间戳</td>
+<td>微秒</td>
+</tr>
+<tr>
+<td>roll/pitch/yaw</td>
+<td>姿态角</td>
+<td>deg</td>
+</tr>
+<tr>
+<td>gyro_{x,y,z}</td>
+<td>角速度</td>
+<td>deg/s</td>
+</tr>
+<tr>
+<td>accel_{x,y,z}</td>
+<td>加速度</td>
+<td>m/s^2</td>
+</tr>
+<tr>
+<td>mag_{x,y,z}</td>
+<td>磁力计输出</td>
+<td></td>
+</tr>
+<tr>
+<td>hacc</td>
+<td>GPS水平精度因子</td>
+<td></td>
+</tr>
+<tr>
+<td>vacc</td>
+<td>GPS垂直精度因子</td>
+<td></td>
+</tr>
+<tr>
+<td>sacc</td>
+<td>GPS速度精度因子</td>
+<td></td>
+</tr>
+<tr>
+<td>fixType</td>
+<td>GPS工作模式</td>
+<td></td>
+</tr>
+<tr>
+<td>numSV</td>
+<td>GPS卫星数</td>
+<td></td>
+</tr>
+<tr>
+<td>Updated</td>
+<td>状态估计初始化完成标志位</td>
+<td></td>
+</tr>
+<tr>
+<td>imuHz</td>
+<td>IMU采样率</td>
+<td>Hz</td>
+</tr>
+<tr>
+<td>ctrlHz</td>
+<td>控制器运行频率</td>
+<td>Hz</td>
+</tr>
+<tr>
+<td>GPSHz</td>
+<td>GPS数据更新频率</td>
+<td>Hz</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../rflysim3d/" class="btn btn-neutral float-left" title="RflySim3D显示"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../scope/" class="btn btn-neutral float-left" title="在线示波器"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../logger/" class="btn btn-neutral float-right" title="日志系统">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -138,7 +220,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../rflysim3d/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../scope/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../logger/" style="color: #fcfcfc">Next &raquo;</a></span>
