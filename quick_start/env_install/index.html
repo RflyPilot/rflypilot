@@ -500,8 +500,8 @@ cmake .. &amp;&amp; make -j128
 <h3 id="53">5.3 飞控程序部署</h3>
 <p>交叉编译完成后，将在<code>build</code>目录下生成可执行文件<code>rflypilot</code>，该可执行文件只能运行于树莓派系统中。故需要上传到树莓派中才可以运行。于此同时，除了<code>rflypilot</code>文件以外，还有一些配置文件需要被同时上传到树莓派中</p>
 <ul>
-<li><code>parameter.txt</code>——用于存储自定义的飞控参数</li>
-<li><code>rflypilot.txt</code>——RflyPilot配置文件</li>
+<li><code>config/parameter.txt</code>——用于存储自定义的飞控参数</li>
+<li><code>config/rflypilot.txt</code>——RflyPilot配置文件</li>
 </ul>
 <p>点击“Upload”后，即可在RflyPilot飞控中看到更新后的文件。</p>
 <p><font face="黑体" color=red size=3>注：第一次下载需要提前用WSL ubuntu 18.04登录树莓派的SSH, 并建立文件夹RflyPilot_Project\RflyPilot</font></p>
@@ -514,6 +514,7 @@ pi@navio:~/RflyPilot_Project/RflyPilot $
 <h2 id="6-sih">6 飞控的运行（SIH）</h2>
 <p>为了方便演示，这里以SIH仿真为例，进行飞控的运行验证。
 首先修改配置文件，将运行模式修改为SIH模式，即，<code>valid_mode = 1</code>。然后将<code>scope_ip</code>与<code>station_ip</code>修改为电脑IP。</p>
+<p><font face="黑体" color=red size=3>注：要注意在<code>=</code>两端存在两个空格，需要在配置文件中保留此空格！</font></p>
 <pre><code>########################### SYSTEM PARAMETER ###################
 #validation mode SIH:1 HIL:2 EXP:3 OFFBOARD:4
 valid_mode = 1
@@ -559,10 +560,10 @@ log_dir = &quot;.&quot;
 <p>Scope示波器：打开MATLAB工程文件中的<code>debug_tools/udp_recv3_ke.slx</code>，该模型利用Simulink的UDP工具箱，实现了简易的飞控数据曲线实时展示功能，RflyPilot的一些关键数据，如位置、速度、姿态等信息，均会在飞控运行时实时显示。双击打开①后，配置②<code>Remote IP address</code>，该IP应设置为RflyPilot的IP。点击“确定”即可完成设置，随后点击“运行”。</p>
 <p><img alt="" src="../img/scope.jpg" /></p>
 <p>RflySim3D: Rflysim3D在RflyPilot中主要作为视景显示软件，位姿数据从RflyPilot中发送，通过UDP协议，由RflySim3D软件进行接收和显示。RflySim3D不需要额外的配置，双击运行即可，这里不做展开叙述。</p>
-<p>RflySim3D软件的相关使用介绍可以参考<a href="https://https://rflysim.com/">Rflysim</a>。</p>
+<p>RflySim3D软件的相关使用介绍可以参考<a href="https://doc.rflysim.com/">Rflysim</a>。</p>
 <p><font face="黑体" color=red size=3>注：在进行SIH仿真时，运行RflySim3D和在线示波器的计算机和RflyPilot应处于同一局域网下</font></p>
 <h3 id="72">7.2 开始仿真</h3>
-<p>通过命令<code>./rflypilot</code>运行飞控即可，注意此时应该设置好飞控的仿真模式和IP地址。打开遥控器。</p>
+<p>通过命令<code>./rflypilot</code>运行飞控即可，注意此时应该设置好飞控的仿真模式和IP地址。打开遥控器。此时在示波器中可以观察到当前飞行器的状态数据。</p>
 <table>
 <thead>
 <tr>
