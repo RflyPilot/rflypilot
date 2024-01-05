@@ -404,7 +404,7 @@ Scope示波器：打开MATLAB工程文件中的``debug_tools/udp_recv3_ke.slx``�
 
 ![](img/scope.jpg)
 
-RflySim3D: Rflysim3D在RflyPilot中主要作为视景显示软件，位姿数据从RflyPilot中发送，通过UDP协议，由RflySim3D软件进行接收和显示。RflySim3D不需要额外的配置，双击运行即可，这里不做展开叙述。
+RflySim3D: RflySim3D是一款基于UE引擎开发的飞行器视景显示平台，它是[可靠飞行控制组](https://rfly.buaa.edu.cn/)开发的RflySim平台的一部分。使用者可以通过UDP发送特定协议的数据包，进而实现控制视景中无人机的位置、姿态、旋翼转速等，是无人机控制器开发的利器。更多的介绍请参考[RflySim官方网站](http://doc.rflysim.com/)。Rflysim3D在RflyPilot中主要作为视景显示软件，位姿数据从RflyPilot中发送，通过UDP协议，由RflySim3D软件进行接收和显示。
 
 RflySim3D软件的相关使用介绍可以参考[Rflysim](https://doc.rflysim.com/)。
 

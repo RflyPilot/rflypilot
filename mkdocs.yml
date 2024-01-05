@@ -10,12 +10,10 @@ nav:
         - 硬件连接: Basic/hardware_connection.md
         - MIL\SIH\HIL仿真: Basic/simulation.md
         - 在线示波器: Basic/scope.md
-        - RflySim3D显示: Basic/rflysim3d.md
         - 远程控制台: Basic/console.md
         - 日志系统: Basic/logger.md
         - 传感器校准: Basic/calibration.md
         - 在线调参: Basic/paramupdate.md
-        - 代码生成与交叉编译: Basic/codegen.md
         - 实飞实验: Basic/experiment.md
         # - Quick Start: Basic/index.md
         # - Configuration: Basic/config.md
