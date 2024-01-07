@@ -60,6 +60,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../calibration/">传感器校准</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">在线调参</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../experiment/">实飞实验</a>
                   </li>
@@ -105,7 +107,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                
+                <p>RflyPilot支持在线调参功能，允许在飞控运行时进行参数修改与更新。</p>
+<h1 id="mil">MIL</h1>
+<p>解压工程文件中<code>slib/rflypilotblock.zip</code>，并添加到工程路径中，运行脚本<code>slblocks.m</code>，此时RflyPilot模块便被加载到Simulink中，此时打开<code>MIL_HIL.slx</code>模型文件，即可在“库浏览器”中看到相应的模块。
+该参数模块在模型首次运行时将运行一次，读取相应字符串定义的参数，而后在<code>param_read_flag</code>的上升沿时将再次触发，继续读取参数，以实现参数更新的目的。
+<img alt="" src="../img/rflypilotblock.jpg" /></p>
+<p>将<code>parameter.txt</code>拷贝到工程根目录下，模型在运行时将会从中读取参数。
+设置<code>get_param</code>模块的采样周期为<code>-1</code>。并设置<code>param_name</code>为<code>test_data</code>。
+现给<code>param_read_flag</code>脉冲信号，则将在脉冲的上升沿进行参数更新，最后显示到示波器中，如下图所示。
+<img alt="" src="../img/paramupdate_demo.jpg" />
+在仿真的过程中修改<code>parameter.txt</code>中的<code>test_data</code>数值，示波器中的数值会发生相应的变化，而变化周期与脉冲信号周期相同。</p>
+<p><img alt="" src="../img/param_update.gif" /></p>
+<p><font face="黑体" color=red size=3>强烈建议开发者自行引入<code>param_read_flag</code>信号，比如由遥控器的开关触发，在修改完<code>parameter.txt</code>后，通过遥控器开关触发，这样的触发方式有利于降低参数更新模块对系统资源的占用，因为每个参数更新模块在每次参数更新时均会执行读操作，并且会遍历<code>parameter.txt</code>，如果只使用脉冲信号触发，比如会造成系统资源的极大浪费，同时可靠性不高。</font></p>
+<h1 id="sihhilexp">SIH/HIL/EXP</h1>
+<p>参数更新模块同样可以运用在SIH/HIL模式和实验中。其使用方法与MIL差别不大，仅需将<code>parameter.txt</code>文件更新到RflyPilot飞控源码的<code>config/parameter.txt</code>中，在使用RflyPilotTools进行上传时，该文件会自动上传至RflyPilot飞控中。在此模式中，笔者强烈建议使用遥控器开关触发参数更新。</p>
               
             </div>
           </div><footer>
