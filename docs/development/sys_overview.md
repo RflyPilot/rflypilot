@@ -16,7 +16,7 @@ RflyPilot飞控硬件主要分为两大部分，树莓派CM4计算板和外设�
 
 ![cm4](img/cm4.jpg)
 
-***关于树莓派CM4计算板的相关介绍可以参考[https://www.raspberrypi.com/documentation/computers/compute-module.html](https://www.raspberrypi.com/documentation/computers/compute-module.html)***
+**关于树莓派CM4计算板的相关介绍可以参考[https://www.raspberrypi.com/documentation/computers/compute-module.html](https://www.raspberrypi.com/documentation/computers/compute-module.html)**
 
 ## 1.2 外设扩展板
 

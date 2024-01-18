@@ -27,6 +27,8 @@ nav:
         - 系统实时性: development/realtime.md
         - 任务运行频率: development/task_period.md
         - 线程间通信: development/msg.md
+        - 网络通信接口: development/net_interface.md
+        - 编译与部署: development/compiling_deploy.md
     - 展望:
         - 下一代RflyPilot: Future/future.md
     - Help:

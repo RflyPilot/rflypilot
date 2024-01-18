@@ -114,11 +114,14 @@ IMU线程的运行频率可以在``rflypilot.txt``文件中进行设置，默认
 |ATT|800/IMU_LPE/LPE_ATT = 800|
 |CTRL|800/IMU_LPE/LPE_ATT/ATT_CTRL = 400|
 
-结果如下
+## 运行结果
 
 ![](img/thread_sync_result.jpg)
 
 ![](img/thread_rate.jpg)
+
+!!! Warning
+    当启用``USING_THREAD_SYNC``后，``rflypilot.txt``中的``controller_rate``,``attitude_est_rate``,``lpe_rate``将不再生效。
 
 # 代码优化
 在代码中，RflyPilot尽量减少了频繁的IO操作，以保障较小的任务耗时。
