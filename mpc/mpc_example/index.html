@@ -8,7 +8,8 @@
     <title>模型预测控制应用案例 - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -17,12 +18,21 @@
         var mkdocs_page_url = "/mpc/mpc_example/";
       </script>
     
-    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/django.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-274394082"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-274394082");
+      </script>
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +44,7 @@
           <a href="../.." class="icon icon-home"> RflyPilot Doc
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -45,7 +55,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../quick_start/env_install/">快速使用</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">基本使用</span></p>
+              <p class="caption"><span class="caption-text">用户手册</span></p>
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/hardware_connection/">硬件连接</a>
                   </li>
@@ -61,16 +71,26 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/paramupdate/">在线调参</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/experiment/">实飞实验</a>
-                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">模型预测控制应用案例</a>
     <ul class="current">
     </ul>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">开发者文档</span></p>
+              <p class="caption"><span class="caption-text">开发手册</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件架构</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件概览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/rflypilot_system/">软件架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/realtime/">系统实时性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/task_period/">任务运行频率</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/msg/">线程间通信</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/net_interface/">网络通信接口</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/compiling_deploy/">编译与部署</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">展望</span></p>
@@ -96,9 +116,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>基本使用 &raquo;</li>
-      <li>模型预测控制应用案例</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">用户手册</li>
+      <li class="breadcrumb-item active">模型预测控制应用案例</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -107,29 +127,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>本节将主要介绍如何将非线性模型预测控制应用在RflyPilot飞控中，实现四旋翼的飞行控制。</p>
-<h1 id="1">1 模型预测控制</h1>
+                <div><p>本节将主要介绍如何将非线性模型预测控制应用在RflyPilot飞控中，实现四旋翼的飞行控制。</p>
+<h1 id="1">1 模型预测控制<a class="headerlink" href="#1" title="Permanent link"></a></h1>
 <p>模型预测控制（Model Predictive Control，MPC）是一种反馈控制策略[56]，它的基本思想可以描述为：针对控制对象模型，在某一个采样时刻，利用测量或观测的状态信息， 在线求解并得到一个控制序列，并将该控制序列的第一个控制量作用于控制对象，在下 一个采样时刻循环上述过程，实现滚动优化。因此模型预测控制的基本特征可总结为预 测模型、滚动优化和反馈校正，如图![MPC预测时域]所示。</p>
 <p>1）<strong>预测模型</strong></p>
 <p>顾名思义，模型预测控制是一种基于模型的控制策略，在控制过程中的控制对象称 为预测模型。模型预测控制是根据系统的当前时刻的信息（系统状态 x(k)）以及下一时刻的控制输入 u(k+1)，来预测未来时刻的系统输出信息x(k+1)，同 时通过将系统输出与系统的参考值的误差优化系统的控制响应，以达到更优的控制效果。 </p>
 <p>2）<strong>滚动优化</strong></p>
 <p>模型预测控制是在有限时域内进行预测的，并不是将目标/代价函数所求出的最优控制序列全部应用于系统控制，而是把采样周期内的最优控制序列的第一个分量作为该时域的控制输入作用于系统，即在该时域内持续滚动优化。滚动优化是在 k 步通过代价 函数得出最优控制序列 U'(k)，将该控制序列的第一个分量 u'(k)作用于模型，在k+1步，系统的初始条件更新为 x(k+1)，此时再将优化求解得到的控制序列U'(k+1) 的第一个分量 u'(k+1)作用于系统，如此重复进行在线优化求解。 </p>
 <p>3）<strong>反馈校正</strong></p>
-<p>为解决由于时变、非线性、干扰等因素导致的预测模型和实际模型之间的失配问题，需要在控制过程中增加反馈校正环节，即把测量或估计出的实际系统输出与预测输出进行对比、优化，进而减少控制误差，提高控制精度。
+<p>为解决由于时变、非线性、干扰等因素导致的预测模型和实际模型之间的失配问题，需要在控制过程中增加反馈校正环节，即把测量或估计出的实际系统输出与预测输出进行对比、优化，进而减少控制误差，提高控制精度。<br>
 如图下图所示，在 t0 时刻系统状态为x(0)，基于当前的状态，确定出一个最优的控制 序列和未来时刻相应的状态轨迹（x(0)至\hat{x}(1) 段虚线）。执行最优控制序列第一个元素， 得到 k+1步的系统状态x(1)，该状态可能与预测状态\hat{x}(1) 有差异。重复上述过程，计算最优控制序列和未来的状态轨迹。 </p>
-<p><img alt="MPC预测时域" src="../img/mpc_horizion.jpg" /></p>
+<p><img alt="MPC预测时域" src="../img/mpc_horizion.jpg"></p>
 <p><strong><em>非线性模型预测控制问题的数学描述</em></strong></p>
-<p>非线性模型预测控制（Nonlinear Model Predictive Control，NMPC）是模型预测控制的一种，它适用于非线性系统，其数学描述可以表示为
-<img alt="NMPC优化问题" src="../img/nmpc_problem.jpg" /></p>
+<p>非线性模型预测控制（Nonlinear Model Predictive Control，NMPC）是模型预测控制的一种，它适用于非线性系统，其数学描述可以表示为<br>
+<img alt="NMPC优化问题" src="../img/nmpc_problem.jpg"></p>
 <p>系统框图为</p>
-<p><img alt="ACADO NMPC" src="../img/acado_overview.jpg" />
+<p><img alt="ACADO NMPC" src="../img/acado_overview.jpg"><br>
 从上述系统框图中，一个NMPC求解器需要基本参数，包括反馈状态、参考输入、权重、控制量约束以及系统参数，输出为控制量。</p>
-<h1 id="2">2 动力学方程的获取</h1>
-<p>利用MATLAB的符号工具箱，可以进行飞行器动力学方程的推导。
-利用如下脚本
-在RflyPilot的MATLAB工程下<code>Raspberry_fc_matlab</code>
-运行如下脚本即可得到四旋翼飞行器的动力学方程。</p>
-<pre><code>syms u1 u2 u3 u4 real; % 定义控制输入
+<h1 id="2">2 动力学方程的获取<a class="headerlink" href="#2" title="Permanent link"></a></h1>
+<p>利用MATLAB的符号工具箱，可以进行飞行器动力学方程的推导。<br>
+利用如下脚本<br>
+在RflyPilot的MATLAB工程下<code>Raspberry_fc_matlab</code><br>
+运行如下脚本即可得到四旋翼飞行器的动力学方程。<br>
+</p><pre class="highlight"><code>syms u1 u2 u3 u4 real; % 定义控制输入
 syms vx vy vz q0 q1 q2 q3 wbx wby wbz T1 T2 T3 T4 real; %定义系统状态
 syms R h mass K_tau drag_w_x drag_w_y drag_w_z Jxx Jyy Jzz Tm q0d q1d q2d q3d disturbance_f disturbance_p disturbance_q disturbance_r real; %定义系统参数
 
@@ -189,10 +209,9 @@ dotT = [u1 - T1;
         u2 - T2;
         u3 - T3;
         u4 - T4] ./ Tm;
-dotT = vpa(dotT,6)
-</code></pre>
-<p>结果如下</p>
-<pre><code>angular_accel =
+dotT = vpa(dotT,6)</code></pre><br>
+结果如下<br>
+<pre class="highlight"><code>angular_accel =
 
 -(0.5*(2.0*disturbance_p + 1.41421*R*T1 - 1.41421*R*T2 - 1.41421*R*T3 + 1.41421*R*T4 + 2.0*drag_w_x*wbx - 2.0*Jyy*wby*wbz + 2.0*Jzz*wby*wbz))/Jxx
 -(0.5*(2.0*disturbance_p - 1.41421*R*T1 + 1.41421*R*T2 - 1.41421*R*T3 + 1.41421*R*T4 + 2.0*drag_w_y*wby + 2.0*Jxx*wbx*wbz - 2.0*Jzz*wbx*wbz))/Jyy
@@ -216,25 +235,22 @@ dotT =
 -(1.0*(T1 - 1.0*u1))/Tm
 -(1.0*(T2 - 1.0*u2))/Tm
 -(1.0*(T3 - 1.0*u3))/Tm
--(1.0*(T4 - 1.0*u4))/Tm
-</code></pre>
-<h1 id="2-acado">2 ACADO简介</h1>
-<p>有了以上非线性模型预测控制的理论基础，我们便可以设计出非线性模型预测控制的优化问题。ACADO（Automatic Control and Dynamic Optimization）作为是一款开源的自动控制与动态优化工具包
+-(1.0*(T4 - 1.0*u4))/Tm</code></pre>
+<h1 id="2-acado">2 ACADO简介<a class="headerlink" href="#2-acado" title="Permanent link"></a></h1>
+<p>有了以上非线性模型预测控制的理论基础，我们便可以设计出非线性模型预测控制的优化问题。ACADO（Automatic Control and Dynamic Optimization）作为是一款开源的自动控制与动态优化工具包<br>
 ，它提供了一个最优控制问题的优化的基本框架，它可以用于生成高效的最优控制问题求解器，如NMPC，它也提供了MATLAB与C++代码接口，用于嵌入式部署。</p>
 <p>在RflyPilot中，ACADO主要用于生成NMPC求解器，生成得到的C++代码将被用于Simulink仿真模型中，进行数值仿真。同时，也可以部署到嵌入式系统中，实现在线运行。</p>
-<h1 id="3-acadonmpc">3 利用ACADO生成NMPC求解器</h1>
+<h1 id="3-acadonmpc">3 利用ACADO生成NMPC求解器<a class="headerlink" href="#3-acadonmpc" title="Permanent link"></a></h1>
 <p>本小节将介绍如何利用ACADO实现NMPC控制。</p>
-<h2 id="31-acado">3.1 ACADO的安装</h2>
-<p>软件下载</p>
-<pre><code>git clone https://github.com/acado/acado.git -b stable ACADOtoolkit
-</code></pre>
-<p>软件安装
-在MATLAB命令行窗口</p>
-<pre><code>cd ACADOtoolkit/interfaces/matlab/
-make clean all
-</code></pre>
-<p>注：需要事先安装VS2017等编译环境。首次运行需要进行<code>make clean all</code>，后续仅需要运行<code>make</code>即可。</p>
-<h2 id="32-acado">3.2 ACADO语法</h2>
+<h2 id="31-acado">3.1 ACADO的安装<a class="headerlink" href="#31-acado" title="Permanent link"></a></h2>
+<p>软件下载<br>
+</p><pre class="highlight"><code>git clone https://github.com/acado/acado.git -b stable ACADOtoolkit</code></pre><br>
+软件安装<br>
+在MATLAB命令行窗口<br>
+<pre class="highlight"><code>cd ACADOtoolkit/interfaces/matlab/
+make clean all</code></pre><br>
+注：需要事先安装VS2017等编译环境。首次运行需要进行<code>make clean all</code>，后续仅需要运行<code>make</code>即可。
+<h2 id="32-acado">3.2 ACADO语法<a class="headerlink" href="#32-acado" title="Permanent link"></a></h2>
 <table>
 <thead>
 <tr>
@@ -269,10 +285,10 @@ make clean all
 <li>配置优化问题基本参数</li>
 <li>配置优化求解器参数</li>
 </ol>
-<h2 id="33">3.3 生成求解器</h2>
+<h2 id="33">3.3 生成求解器<a class="headerlink" href="#33" title="Permanent link"></a></h2>
 <p>根据已有的动力学方程表达式，可以将其用ACADO语法进行描述，下面提供一个四旋翼NMPC控制器的脚本示例。</p>
-<p><strong><em>文件位置：<code>raspberry_fc_matlab/MIL/quad_make_solver_vz.m</code></em></strong></p>
-<pre><code>clc;
+<p><strong><em>文件位置：<code>raspberry_fc_matlab/MIL/quad_make_solver_vz.m</code></em></strong><br>
+</p><pre class="highlight"><code>clc;
 clear all;
 close all;
 EXPORT_MPC = 1;
@@ -402,16 +418,15 @@ copyfile([ACADO_.pwd '/../../external_packages/qpoases'], 'export_MPC/qpoases')
 cd export_MPC
 % make_acado_solver('../acado_MPCstep')%编译生成mex文件
 cd ../../
-end
-</code></pre>
-<p>注：该脚本应在工程根目录下运行，<code>MIL</code>应以如下方式打开，运行脚本之前应加载ACADO工具箱</p>
-<p><img alt="acado_script" src="../img/acado_script.jpg" /></p>
+end</code></pre><br>
+注：该脚本应在工程根目录下运行，<code>MIL</code>应以如下方式打开，运行脚本之前应加载ACADO工具箱
+<p><img alt="acado_script" src="../img/acado_script.jpg"></p>
 <p>运行完成后，将会在工程根目录生成<code>acado_MPC</code>文件夹，该文件夹包含刚刚生成求解器源码，需要将该目录及其子文件子文件夹包含到工程路径中。</p>
-<h2 id="34">3.4 求解器代码解析</h2>
+<h2 id="34">3.4 求解器代码解析<a class="headerlink" href="#34" title="Permanent link"></a></h2>
 <p>打开<code>acado_MPC</code>后，可以看到如下文件</p>
-<p><img alt="acado_code" src="../img/acado_code.jpg" /></p>
-<p>这里可以只关注<code>acado_common.h</code>与<code>test.c</code>。<code>test.c</code>提供了基本的调用示例，求解调用方法可以参考该文件。<code>acado_common.h</code>定义了求解器需要用到的变量，这里具体解释一下。</p>
-<pre><code>/** Number of control/estimation intervals. */
+<p><img alt="acado_code" src="../img/acado_code.jpg"></p>
+<p>这里可以只关注<code>acado_common.h</code>与<code>test.c</code>。<code>test.c</code>提供了基本的调用示例，求解调用方法可以参考该文件。<code>acado_common.h</code>定义了求解器需要用到的变量，这里具体解释一下。<br>
+</p><pre class="highlight"><code>/** Number of control/estimation intervals. */
 #define ACADO_N 5 //定义预测步数
 /** Number of online data values. */
 #define ACADO_NOD 19 //定义参数个数 即 onlinedata
@@ -449,7 +464,7 @@ end
 
 /** The structure containing the user data.
  * 
- *  Via this structure the user &quot;communicates&quot; with the solver code.
+ *  Via this structure the user "communicates" with the solver code.
  */
 typedef struct ACADOvariables_
 {
@@ -498,9 +513,8 @@ real_t lbValues[ 20 ]; // 控制量约束下界 NU * N ， 求解器输入
  *  Upper bounds values.
  */
 real_t ubValues[ 20 ]; // 控制量约束上届 NU * N， 求解器输入
-} ACADOvariables;
-</code></pre>
-<p>综上，求解器的输入输出结构可以总结为如下表</p>
+} ACADOvariables;</code></pre><br>
+综上，求解器的输入输出结构可以总结为如下表
 <table>
 <thead>
 <tr>
@@ -562,22 +576,25 @@ real_t ubValues[ 20 ]; // 控制量约束上届 NU * N， 求解器输入
 </tr>
 </tbody>
 </table>
-<h2 id="35-simulink">3.5 Simulink调用求解器的实现原理与部署</h2>
+<h2 id="35-simulink">3.5 Simulink调用求解器的实现原理与部署<a class="headerlink" href="#35-simulink" title="Permanent link"></a></h2>
 <p>在模型<code>MPCControllerCodeGen_Vz.slx</code>中，通过使用<code>S-Function</code>调用ACADO生成的求解器代码。双击打开该s-function可以得到如下</p>
-<p><img alt="acado_sfunction" src="../img/acado_sfunction.jpg" /></p>
-<p>该文件定义了simulink调用ACADO求解器的接口，接口的衔接通过C语言完成。代码的细节这里不再展示，这里只介绍其中的关键函数
-<code>nmpc_solver_vz_Start_wrapper()</code>：该函数用于对求解器进行初始化，在该控制器首次运行时，仅调用一次。该函数固化了求解器初值，需要根据实际需求判断相应变量初值，比如系统状态中的四元数的q0，其值一般可设置为1，如果为0，则求解器可能求解出NaN的结果。其中变量的维度也要根据实际需要进行修改，<code>od</code>数据也时如此，需要根据实际情况将进行赋值。
+<p><img alt="acado_sfunction" src="../img/acado_sfunction.jpg"></p>
+<p>该文件定义了simulink调用ACADO求解器的接口，接口的衔接通过C语言完成。代码的细节这里不再展示，这里只介绍其中的关键函数<br>
+<code>nmpc_solver_vz_Start_wrapper()</code>：该函数用于对求解器进行初始化，在该控制器首次运行时，仅调用一次。该函数固化了求解器初值，需要根据实际需求判断相应变量初值，比如系统状态中的四元数的q0，其值一般可设置为1，如果为0，则求解器可能求解出NaN的结果。其中变量的维度也要根据实际需要进行修改，<code>od</code>数据也时如此，需要根据实际情况将进行赋值。<br>
 <code>nmpc_solver_vz_Outputs_wrapper()</code>：该函数用于完成一次问题求解，输入参数包括参考输入，系统当前状态，系统参数，求解器权重，控制量上下界；输出为指令控制量。其输入输出信号维度如下</p>
-<p><img alt="sovler_interface" src="../img/solver_interface.jpg" /></p>
+<p><img alt="sovler_interface" src="../img/solver_interface.jpg"></p>
 <p><strong>注：如需对NMPC问题进行修改，需要根据实际需求对上述端口进行相应调整。如无需修改，这里只需要点击“Build”编译即可，编译完成后，即可完成Simulink对ACADO求解器的部署。</strong></p>
-<p><img alt="sovler_build" src="../img/sfunction_build.jpg" /></p>
+<p><img alt="sovler_build" src="../img/sfunction_build.jpg"></p>
 <p>最终得到的求解器输入输出接口为</p>
-<p><img alt="acado_solver_simlink" src="../img/acado_simulink.jpg" /></p>
-<h2 id="36-matlabacado">3.6 MATLAB脚本调用ACADO求解器</h2>
+<p><img alt="acado_solver_simlink" src="../img/acado_simulink.jpg"></p>
+<h2 id="36-matlabacado">3.6 MATLAB脚本调用ACADO求解器<a class="headerlink" href="#36-matlabacado" title="Permanent link"></a></h2>
 <p>具体实现可以参考如下脚本（该脚本实现了一次在预测时域内的预测）</p>
-<p><strong>注意：此脚本增加了<code>make_acado_solver('../mpc_step')</code>，用于生成可以被直接调用mex文件</strong></p>
-<p><strong>求解器生成脚本</strong></p>
-<pre><code>clc;
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><strong>此脚本增加了<code>make_acado_solver('../mpc_step')</code>，用于生成可以被直接调用mex文件</strong></p>
+</div>
+<p><strong>求解器生成脚本</strong><br>
+</p><pre class="highlight"><code>clc;
 clear all;
 % close all;
 EXPORT = 1;
@@ -711,10 +728,9 @@ copyfile([ACADO_.pwd '/../../external_packages/qpoases'], 'export_MPC/qpoases')
 cd export_MPC
 make_acado_solver('../mpc_step')%编译生成mex文件
 cd ../../
-end
-</code></pre>
-<p><strong>运行脚本</strong></p>
-<pre><code>clear input;
+end</code></pre><br>
+<strong>运行脚本</strong><br>
+<pre class="highlight"><code>clear input;
 addpath('../mathlib');
 % NOTE
 % 增加执行器动态以排除初始状态的影响
@@ -882,10 +898,9 @@ k2 = calc_general_state(y0 + Ts * k1 / 2,input,param);
 k3 = calc_general_state(y0 + Ts * k2 / 2,input,param);
 k4 = calc_general_state(y0 + Ts * k3,input,param);
 y = y0 + (k1 + 2 * k2 + 2 * k3 + k4) * Ts / 6;
-end
-</code></pre>
-<p>被控对象模型<code>calc_general_state.m</code></p>
-<pre><code>function x_dot = calc_general_state(x0, u, onlineData)
+end</code></pre><br>
+被控对象模型<code>calc_general_state.m</code><br>
+<pre class="highlight"><code>function x_dot = calc_general_state(x0, u, onlineData)
 vx = x0(1,1);
 vy = x0(2,1);
 vz = x0(3,1);
@@ -967,18 +982,17 @@ x_dot = [
 
 ];
 
-end
-</code></pre>
-<h1 id="_1">参考资料</h1>
+end</code></pre>
+<h1 id="_1">参考资料<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
 <ul>
 <li><a href="https://acado.github.io/">https://acado.github.io/</a></li>
-</ul>
+</ul></div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../../Basic/experiment/" class="btn btn-neutral float-left" title="实飞实验"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../../development/sys_overview/" class="btn btn-neutral float-right" title="软硬件架构">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../Basic/paramupdate/" class="btn btn-neutral float-left" title="在线调参"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../development/sys_overview/" class="btn btn-neutral float-right" title="软硬件概览">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -1001,21 +1015,22 @@ end
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../../Basic/experiment/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../../Basic/paramupdate/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../../development/sys_overview/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme_extra.js" defer></script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

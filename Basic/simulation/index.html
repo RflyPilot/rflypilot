@@ -8,7 +8,8 @@
     <title>MIL\SIH\HIL仿真 - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -17,12 +18,21 @@
         var mkdocs_page_url = "/Basic/simulation/";
       </script>
     
-    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/django.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-274394082"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-274394082");
+      </script>
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +44,7 @@
           <a href="../.." class="icon icon-home"> RflyPilot Doc
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -45,7 +55,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../quick_start/env_install/">快速使用</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">基本使用</span></p>
+              <p class="caption"><span class="caption-text">用户手册</span></p>
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../hardware_connection/">硬件连接</a>
                   </li>
@@ -63,14 +73,24 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../paramupdate/">在线调参</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../experiment/">实飞实验</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">开发者文档</span></p>
+              <p class="caption"><span class="caption-text">开发手册</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件架构</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件概览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/rflypilot_system/">软件架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/realtime/">系统实时性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/task_period/">任务运行频率</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/msg/">线程间通信</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/net_interface/">网络通信接口</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/compiling_deploy/">编译与部署</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">展望</span></p>
@@ -96,9 +116,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>基本使用 &raquo;</li>
-      <li>MIL\SIH\HIL仿真</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">用户手册</li>
+      <li class="breadcrumb-item active">MIL\SIH\HIL仿真</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -107,16 +127,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>本小结将对常用的三种仿真模式（MIL\SIH\HIL）进行操作介绍。</p>
-<p><img alt="MIL_SIH_HIL" src="../../introduction/img/validation_mode.jpg" /></p>
-<h1 id="mil">MIL</h1>
+                <div><p>本小结将对常用的三种仿真模式（MIL\SIH\HIL）进行操作介绍。</p>
+<p><img alt="MIL_SIH_HIL" src="../../introduction/img/validation_mode.jpg"></p>
+<h1 id="mil">MIL<a class="headerlink" href="#mil" title="Permanent link"></a></h1>
 <p>MIL仿真，即模型在环，该仿真模式主要用于进行控制系统的初期验证阶段，用于评估控制器的可控性。利用RflyPilot工程文件夹下的<code>MIL/MPC_HIL.slx</code>即可进行MIL仿真。这部分仿真主要在Simulink中进行，其仿真方法，这里不再赘述，具体内容由读者自行决定，相应的内容可以参考<a href="../../quick_start/env_install/">快速使用</a>中的部分内容。</p>
-<h1 id="sih">SIH</h1>
+<h1 id="sih">SIH<a class="headerlink" href="#sih" title="Permanent link"></a></h1>
 <p>SIH仿真，即仿真器在环，该仿真模式主要用于测试控制器在真实嵌入式系统中的表现。SIH的仿真步骤在<a href="../../quick_start/env_install/">快速使用</a>中进行了详细介绍，这里也不再赘述。</p>
-<h1 id="hil">HIL</h1>
-<p>HIL，即半物理仿真，一般作为实飞实验的最后一步，在这个模式中，RflyPilot将直接连接到<a href="https://rflybuaa.github.io/RflySimRTDoc/">硬件在环实时仿真系统</a>上，其硬件连接方法请参考<a href="../hardware_connection/">硬件连接</a>一节中的内容。
-在HIL仿真中，仿真操作与SIH基本相同，不同的是需要修改<code>valid_mode = 2</code>，同时修改宏定义文件<code>config/configure.h</code>中的<code>USE_RFLYPILOT</code>为<code>0</code>。</p>
-<pre><code>#define POLL_TIME_US 10*1000// 10*1000ns = 10us
+<h1 id="hil">HIL<a class="headerlink" href="#hil" title="Permanent link"></a></h1>
+<p>HIL，即半物理仿真，一般作为实飞实验的最后一步，在这个模式中，RflyPilot将直接连接到<a href="https://rflybuaa.github.io/RflySimRTDoc/">硬件在环实时仿真系统</a>上，其硬件连接方法请参考<a href="../hardware_connection/">硬件连接</a>一节中的内容。<br>
+在HIL仿真中，仿真操作与SIH基本相同，不同的是需要修改<code>valid_mode = 2</code>，同时修改宏定义文件<code>config/configure.h</code>中的<code>USE_RFLYPILOT</code>为<code>0</code>。<br>
+</p><pre class="highlight"><code>#define POLL_TIME_US 10*1000// 10*1000ns = 10us
 #define TIMER_TICK_RATE 2000
 #define SCOPE_DATA_N 40
 /* Estimator Thread Core */
@@ -154,13 +174,21 @@
 #define OFFBOARD_DATA_N 20
 #define PWM_FREQ (USE_ONESHOT_125==1?1500:400)
 #define SERVO_PWM_FREQ 333
-#define I2C_BUS_1 &quot;/dev/i2c-1&quot;
-#define I2C_BUS_0 &quot;/dev/i2c-10&quot;
+#define I2C_BUS_1 "/dev/i2c-1"
+#define I2C_BUS_0 "/dev/i2c-10"
 
-#define TASK_SCHEDULE_DEBUG 0
-</code></pre>
+#define TASK_SCHEDULE_DEBUG 0</code></pre>
 <p>最后重新编译上传即可。</p>
-<p><font face="黑体" color=red size=3>由于半物理仿真平台的PWM信号支持标注400HzPWM和Oneshot125，使用者可以根据需要修改该文件进行适配。默认配置为Oneshot125，如需修改为400Hz的PWM，可以设置<code>USE_ONESHOT_125 0</code>。</font></p>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">由于半物理仿真平台的PWM信号支持标注400HzPWM和Oneshot125，使用者可以根据需要修改该文件进行适配。默认配置为Oneshot125，如需修改为400Hz的PWM，可以设置<code>USE_ONESHOT_125 0</code>。</font></p>
+</div>
+<h1 id="exp">EXP<a class="headerlink" href="#exp" title="Permanent link"></a></h1>
+<p>EXP，即实飞实验模式，在该模式下，RflyPilot将利用真实的传感器数据计算控制输出，并直接输出PWM控制指令。为启用该模式，读者需要修改<code>valid_mode = 3</code>，同时修改宏定义文件<code>config/configure.h</code>中的<code>USE_RFLYPILOT</code>为<code>1</code>。在该模式下，需要开发者自行连接飞控到飞行器上，包括电源模块、GPS、接收机、电调等。</p>
+<p>如下图所示，这是一架搭载RflyPilot的四旋翼无人机</p>
+<p><img alt="" src="../img/quadcopter_with_rflypilot.jpg"></p>
+<p>实飞效果如下</p>
+<p><img alt="" src="../img/realflight.gif"></p></div>
               
             </div>
           </div><footer>
@@ -196,14 +224,15 @@
     
   </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme_extra.js" defer></script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

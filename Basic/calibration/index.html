@@ -8,7 +8,8 @@
     <title>传感器校准 - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -17,12 +18,21 @@
         var mkdocs_page_url = "/Basic/calibration/";
       </script>
     
-    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/django.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-274394082"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-274394082");
+      </script>
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +44,7 @@
           <a href="../.." class="icon icon-home"> RflyPilot Doc
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -45,7 +55,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../quick_start/env_install/">快速使用</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">基本使用</span></p>
+              <p class="caption"><span class="caption-text">用户手册</span></p>
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../hardware_connection/">硬件连接</a>
                   </li>
@@ -63,14 +73,24 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../paramupdate/">在线调参</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../experiment/">实飞实验</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">开发者文档</span></p>
+              <p class="caption"><span class="caption-text">开发手册</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件架构</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件概览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/rflypilot_system/">软件架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/realtime/">系统实时性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/task_period/">任务运行频率</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/msg/">线程间通信</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/net_interface/">网络通信接口</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/compiling_deploy/">编译与部署</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">展望</span></p>
@@ -96,9 +116,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>基本使用 &raquo;</li>
-      <li>传感器校准</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">用户手册</li>
+      <li class="breadcrumb-item active">传感器校准</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -107,11 +127,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>本小结将介绍传感器的校准方法，包括IMU和磁力计。传感器校准是状态估计与控制中至关重要的一步，它有利于降低状态估计与控制误差。</p>
-<h1 id="_1">基本使用</h1>
-<p>RflyPilot内置了传感器校准功能，校准操作主要通过控制台命令实现，校准结果将以文本文件的形式存储在RflyPilot飞控中。
-在这之前，需要设置<code>rflypilot.txt</code>中的<code>valid_mode = 3</code>，以启用实验模式。校准参数将被以文本形式存储在<code>calibration.txt</code>，在首次使用时，该文件需要手动创建，文件内容可以设置为如下</p>
-<pre><code>accel_scale_0 = 0.000000
+                <div><p>本小结将介绍传感器的校准方法，包括IMU和磁力计。传感器校准是状态估计与控制中至关重要的一步，它有利于降低状态估计与控制误差。</p>
+<h1 id="_1">基本使用<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
+<p>RflyPilot内置了传感器校准功能，校准操作主要通过控制台命令实现，校准结果将以文本文件的形式存储在RflyPilot飞控中。<br>
+在这之前，需要设置<code>rflypilot.txt</code>中的<code>valid_mode = 3</code>，以启用实验模式。校准参数将被以文本形式存储在<code>calibration.txt</code>，在首次使用时，该文件需要手动创建，文件内容可以设置为如下<br>
+</p><pre class="highlight"><code>accel_scale_0 = 0.000000
 accel_scale_1 = 0.000000
 accel_scale_2 = 0.000000
 accel_offset_0 = 0.000000
@@ -128,12 +148,14 @@ mag_scale_1 = 0.000000
 mag_scale_2 = 0.000000
 mag_offset_0 = 0.000000
 mag_offset_1 = 0.000000
-mag_offset_2 = 0.000000
-</code></pre>
-<p><font face="黑体" color=red size=3>注意文件内容的格式，要保留空格。主要陀螺仪的尺度系数<code>gyro_scale_{0,1,2}</code>应设置为<code>1</code>。</font></p>
-<h1 id="_2">陀螺仪校准</h1>
-<p>在控制台中输入<code>calib gyro</code>，等待一段时间，即可完成校准。</p>
-<pre><code>vehicle &gt; calib gyro
+mag_offset_2 = 0.000000</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>注意文件内容的格式，要保留空格。主要陀螺仪的尺度系数<code>gyro_scale_{0,1,2}</code>应设置为<code>1</code>。</p>
+</div>
+<h1 id="_2">陀螺仪校准<a class="headerlink" href="#_2" title="Permanent link"></a></h1>
+<p>在控制台中输入<code>calib gyro</code>，等待一段时间，即可完成校准。<br>
+</p><pre class="highlight"><code>vehicle &gt; calib gyro
 gyro calibration mode
 Calibration thread created with process pid : 1036
 Calibration starting
@@ -144,11 +166,13 @@ Please do not move the aircraft
  gyro_x_offset =        0.013428
  gyro_y_offset =        0.006644
  gyro_z_offset =        -0.002992
-calibration finished !
-</code></pre>
-<p><font face="黑体" color=red size=3>注：在校准的过程中一定要保持RflyPilot处于静止状态；这里只校准了陀螺仪的零偏，没有校准陀螺仪的尺度系数。建议在上电之后IMU器件温度稳定后再进行校准。</font></p>
-<p>在输入<code>calib save</code>即可保存校准数据。</p>
-<pre><code>vehicle &gt; calib gyro
+calibration finished !</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>在校准的过程中一定要保持RflyPilot处于静止状态；这里只校准了陀螺仪的零偏，没有校准陀螺仪的尺度系数。建议在上电之后IMU器件温度稳定后再进行校准。</p>
+</div>
+<p>在输入<code>calib save</code>即可保存校准数据。<br>
+</p><pre class="highlight"><code>vehicle &gt; calib gyro
 gyro calibration mode
 Calibration thread created with process pid : 1036
 Calibration starting
@@ -159,10 +183,9 @@ Please do not move the aircraft
  gyro_x_offset =        0.013428
  gyro_y_offset =        0.006644
  gyro_z_offset =        -0.002992
-calibration finished !
-</code></pre>
-<p>通过<code>calib load</code>即可查看校准参数</p>
-<pre><code>vehicle &gt; calib load
+calibration finished !</code></pre><br>
+通过<code>calib load</code>即可查看校准参数<br>
+<pre class="highlight"><code>vehicle &gt; calib load
 LOAD calibration mode
 Calibration thread created with process pid : 1220
 Calibration starting
@@ -186,15 +209,17 @@ mag_scale_2 is 0.000000
 mag_offset_0 is 0.000000
 mag_offset_1 is 0.000000
 mag_offset_2 is 0.000000
-calibration finished !
-</code></pre>
-<p><font face="黑体" color=red size=3>注：校准结果将被存储在与<code>rflypilot</code>可执行文件同级的<code>calibration.txt</code>中。</font></p>
-<h1 id="_3">加速度计校准</h1>
+calibration finished !</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>校准结果将被存储在与<code>rflypilot</code>可执行文件同级的<code>calibration.txt</code>中。</p>
+<h1 id="_3">加速度计校准<a class="headerlink" href="#_3" title="Permanent link"></a></h1>
 <p>RflyPilot的坐标系定义如下</p>
-<p><img alt="" src="../img/rflypilot_frame.jpg" /></p>
-<p>加速度计的校准采用了常用的六面校准法。输入指令<code>calib accel</code>，便开始了校准。
-RflyPilot首先会提示，<code>Please place the (+x) axis of the aircraft upward</code>,使用者将<code>+x</code>轴朝上静置即可，待姿态稳定后，RflyPilot将提示<code>Please do not move the aircraft</code>，此时需要静置飞控，RflyPilot正在采集加速度计数据。待数据采集完成后，将会提示<code>Please place the (+z) axis of the aircraft upward</code>，后续操作以此类推，这里不再赘述。</p>
-<pre><code>vehicle &gt; calib accel
+<p><img alt="" src="../img/rflypilot_frame.jpg"></p>
+<p>加速度计的校准采用了常用的六面校准法。输入指令<code>calib accel</code>，便开始了校准。<br>
+RflyPilot首先会提示，<code>Please place the (+x) axis of the aircraft upward</code>,使用者将<code>+x</code>轴朝上静置即可，待姿态稳定后，RflyPilot将提示<code>Please do not move the aircraft</code>，此时需要静置飞控，RflyPilot正在采集加速度计数据。待数据采集完成后，将会提示<code>Please place the (+z) axis of the aircraft upward</code>，后续操作以此类推，这里不再赘述。<br>
+</p><pre class="highlight"><code>vehicle &gt; calib accel
 accel calibration mode
 Calibration thread created with process pid : 1406
 Calibration starting
@@ -244,13 +269,12 @@ A = 8290.0000
 
 1.000355 0.998360 0.997071 
 0.022998 0.011350 0.116596
-calibration finished !
-</code></pre>
-<p>加速度计校准完成后，利用<code>calib save</code>保存即可，数据将写入到<code>calibration.txt</code>中。</p>
-<h1 id="_4">磁力计校准</h1>
-<p>磁力计校准使用的方法是椭球拟合。输入命令<code>calib mag</code>, RflyPilot首先会提示，<code>Please place the (-z) axis of the aircraft upward</code>,使用者将<code>-z</code>轴朝上静置即可，待姿态稳定后，出现提示
-<code>Please rotate the aircraft around -z axis</code>，此时绕<code>-z</code>轴缓慢单向旋转RflyPilot即可（旋转方向任意），RflyPilot需要使用者在7秒钟内绕一圈，7秒钟后，校准程序将自动进入下一阶段，<code>Please place the (+x) axis of the aircraft upward</code>, 此时按照步骤操作即可。</p>
-<pre><code>Calibration thread created with process pid : 786
+calibration finished !</code></pre><br>
+加速度计校准完成后，利用<code>calib save</code>保存即可，数据将写入到<code>calibration.txt</code>中。
+<h1 id="_4">磁力计校准<a class="headerlink" href="#_4" title="Permanent link"></a></h1>
+<p>磁力计校准使用的方法是椭球拟合。输入命令<code>calib mag</code>, RflyPilot首先会提示，<code>Please place the (-z) axis of the aircraft upward</code>,使用者将<code>-z</code>轴朝上静置即可，待姿态稳定后，出现提示<br>
+<code>Please rotate the aircraft around -z axis</code>，此时绕<code>-z</code>轴缓慢单向旋转RflyPilot即可（旋转方向任意），RflyPilot需要使用者在7秒钟内绕一圈，7秒钟后，校准程序将自动进入下一阶段，<code>Please place the (+x) axis of the aircraft upward</code>, 此时按照步骤操作即可。<br>
+</p><pre class="highlight"><code>Calibration thread created with process pid : 786
 Calibration starting
 vehicle &gt; thread calibration running
 start mag calibration process......Please place the (-z) axis of the aircraft upward
@@ -296,16 +320,18 @@ step6 is completed!
 A = 4175.0000
  1.912619 2.172892 2.158774 
 0.092122 0.183707 0.208248
-calibration finished !
-</code></pre>
+calibration finished !</code></pre>
 <p>磁力计计校准完成后，利用<code>calib save</code>保存即可，数据将写入到<code>calibration.txt</code>中。</p>
-<p><font face="黑体" color=red size=3>注：磁力计的校准需要在磁场干扰较少的区域，要尽量避免周围有金属物质。</font></p>
-<h1 id="_5">其他</h1>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>磁力计的校准需要在磁场干扰较少的区域，要尽量避免周围有金属物质。</p>
+</div>
+<h1 id="_5">其他<a class="headerlink" href="#_5" title="Permanent link"></a></h1>
 <ol>
 <li>如要查看当前传感器校准参数，可以输入命令<code>calib load</code>，即可列出当前校准参数。</li>
 <li>RflyPilot默认保存了校准时读取的传感器数据，这些数据在校准完成之后将存储在当前目录，分别名为<code>accel_data.txt</code>, <code>gyro_data.txt</code>, <code>mag_data.txt</code>，这些数据可用于在MATLAB中进行处理。</li>
 <li>首次使用RflyPilot时，<code>calibration.txt</code>文件并不存在，需要使用者自行创建。</li>
-</ol>
+</ol></div>
               
             </div>
           </div><footer>
@@ -341,14 +367,15 @@ calibration finished !
     
   </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme_extra.js" defer></script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

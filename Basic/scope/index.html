@@ -8,7 +8,8 @@
     <title>在线示波器 - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -17,12 +18,21 @@
         var mkdocs_page_url = "/Basic/scope/";
       </script>
     
-    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/django.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-274394082"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-274394082");
+      </script>
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +44,7 @@
           <a href="../.." class="icon icon-home"> RflyPilot Doc
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -45,7 +55,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../quick_start/env_install/">快速使用</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">基本使用</span></p>
+              <p class="caption"><span class="caption-text">用户手册</span></p>
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../hardware_connection/">硬件连接</a>
                   </li>
@@ -63,14 +73,24 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../paramupdate/">在线调参</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../experiment/">实飞实验</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">开发者文档</span></p>
+              <p class="caption"><span class="caption-text">开发手册</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件架构</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件概览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/rflypilot_system/">软件架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/realtime/">系统实时性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/task_period/">任务运行频率</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/msg/">线程间通信</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/net_interface/">网络通信接口</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/compiling_deploy/">编译与部署</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">展望</span></p>
@@ -96,9 +116,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>基本使用 &raquo;</li>
-      <li>在线示波器</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">用户手册</li>
+      <li class="breadcrumb-item active">在线示波器</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -107,12 +127,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>RflyPilot飞控支持将飞行数据通过UDP实时显示在计算机上。本节将以SIH仿真为例介绍示波器系统的基本功能与使用方法。</p>
-<h1 id="rflypilot">RflyPilot的在线示波器</h1>
+                <div><p>RflyPilot飞控支持将飞行数据通过UDP实时显示在计算机上。本节将以SIH仿真为例介绍示波器系统的基本功能与使用方法。</p>
+<h1 id="rflypilot">RflyPilot的在线示波器<a class="headerlink" href="#rflypilot" title="Permanent link"></a></h1>
 <p>RflyPilot在飞控系统底层支持将一些关键数据传输到远程计算机上。这些数据的类型已经预定义在飞控底层代码中，如需修改，需要自行修改飞控源码，该示波器叫做<code>system scope</code>。可由配置文件<code>rflypilot.txt</code>进行配置开启或者关闭。另一种示波器为<code>controller scope</code>，该示波器用于输出与控制器有关的数据，这些数据的定义可以由开发者自行决定。两种示波器的默认数据更新频率为100Hz，可能受系统运行影响而略有浮动。</p>
-<h1 id="_1">系统示波器</h1>
-<p><code>system scope</code>中包含较为丰富的系统状态信息，包括位置、速度、姿态、控制量、运行频率等。RflyPilot通过本机的<code>UDP3333</code>端口向局域网广播数据，该数据为一数组，其定义为</p>
-<pre><code>#define SCOPE_DATA_N 40
+<h1 id="_1">系统示波器<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
+<p><code>system scope</code>中包含较为丰富的系统状态信息，包括位置、速度、姿态、控制量、运行频率等。RflyPilot通过本机的<code>UDP3333</code>端口向局域网广播数据，该数据为一数组，其定义为<br>
+</p><pre class="highlight"><code class="language-C">#define SCOPE_DATA_N 40
 
 typedef struct
 {
@@ -121,12 +141,14 @@ typedef struct
     float data[SCOPE_DATA_N];
 }scope_data_typedef;
 
-ringbuffer_typedef&lt;scope_data_typedef&gt; system_scope_msg(20,&quot;system_debug_data&quot;,LOG_DISABLE);
-
+ringbuffer_typedef&lt;scope_data_typedef&gt; system_scope_msg(20,"system_debug_data",LOG_DISABLE);
 </code></pre>
-<p><font face="黑体" color=red size=3>注：关于<code>system scope</code>的具体定义，请参考RflyPilot源码文件<code>src/msg/msg_def.h</code>。</font></p>
-<p>该示波器具体信息可以参见如下代码，其中<code>_system_debug_data</code>为示波器数据。</p>
-<pre><code>_system_debug_data.data[0] = 1234; //帧头
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><font face="黑体" color="red" size="3">注：关于<code>system scope</code>的具体定义，请参考RflyPilot源码文件<code>src/msg/msg_def.h</code>。</font></p>
+</div>
+<p>该示波器具体信息可以参见如下代码，其中<code>_system_debug_data</code>为示波器数据。<br>
+</p><pre class="highlight"><code class="language-C">_system_debug_data.data[0] = 1234; //帧头
 _system_debug_data.data[1] = get_time_now() / 1e6; //时间戳
 _system_debug_data.data[2] = _att.roll; //滚转角
 _system_debug_data.data[3] = _att.pitch; //俯仰角
@@ -156,33 +178,37 @@ _system_debug_data.data[35] = _rc_input_msg.channels[0];//遥控器输入CH1
 _system_debug_data.data[36] = _rc_input_msg.channels[1];//遥控器输入CH2
 _system_debug_data.data[37] = _mag.mag[0];//磁力计数据x轴
 _system_debug_data.data[38] = _mag.mag[1];//磁力计数据y轴
-_system_debug_data.data[39] = _mag.mag[2];//磁力计数据z轴
-</code></pre>
-<p>可见，利用该示波器一次最多显示40个通道数据。</p>
-<h2 id="_2">配置</h2>
-<h3 id="rflypilot_1">RflyPilot端</h3>
-<p>RflyPilot端仅需要修改配置文件<code>config/rflypilot.txt</code>，首先需要启用系统日志<code>sys_scope_en = 1</code>，为<code>1</code>表示启用系统示波器，为<code>2</code>表示禁用系统示波器。最后设置<code>station_ip</code>与<code>scope_ip</code>为计算机IP，注意加引号。</p>
-<pre><code>sys_scope_en = 1
-scope_ip = &quot;192.168.199.152&quot;
-</code></pre>
-<p><font face="黑体" color=red size=3>注：在配置项所在行，不能增加注释等无关内容。</font></p>
+_system_debug_data.data[39] = _mag.mag[2];//磁力计数据z轴</code></pre><br>
+可见，利用该示波器一次最多显示40个通道数据。
+<h2 id="_2">配置<a class="headerlink" href="#_2" title="Permanent link"></a></h2>
+<h3 id="rflypilot_1">RflyPilot端<a class="headerlink" href="#rflypilot_1" title="Permanent link"></a></h3>
+<p>RflyPilot端仅需要修改配置文件<code>config/rflypilot.txt</code>，首先需要启用系统日志<code>sys_scope_en = 1</code>，为<code>1</code>表示启用系统示波器，为<code>2</code>表示禁用系统示波器。最后设置<code>station_ip</code>与<code>scope_ip</code>为计算机IP，注意加引号。<br>
+</p><pre class="highlight"><code>sys_scope_en = 1
+scope_ip = "192.168.199.152"</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><font face="黑体" color="red" size="3">注：在配置项所在行，不能增加注释等无关内容，注意<code>=</code>两端的空格。</font></p>
+</div>
 <p>至此，RflyPilot端配置完成。</p>
-<h3 id="_3">电脑端</h3>
-<p>打开RflyPilot的Simulink工程文件，并打开<code>debug_tools/udp_recv3_ke.slx</code>。双击打开①后，配置②<code>Remote IP address</code>，该IP应设置为RflyPilot的IP。点击“确定”即可完成设置。
-<img alt="" src="../../quick_start/img/scope.jpg" /></p>
-<h2 id="_4">使用</h2>
+<h3 id="_3">电脑端<a class="headerlink" href="#_3" title="Permanent link"></a></h3>
+<p>打开RflyPilot的Simulink工程文件，并打开<code>debug_tools/udp_recv3_ke.slx</code>。双击打开①后，配置②<code>Remote IP address</code>，该IP应设置为RflyPilot的IP。点击“确定”即可完成设置。<br>
+<img alt="" src="../../quick_start/img/scope.jpg"></p>
+<h2 id="_4">使用<a class="headerlink" href="#_4" title="Permanent link"></a></h2>
 <p>运行<code>./rflypilot</code>，并启动示波器，通过遥控器进行操作即可。</p>
-<p><img alt="" src="../img/scope_demo.jpg" /></p>
-<h1 id="_5">控制器示波器</h1>
+<p><img alt="" src="../img/scope_demo.jpg"></p>
+<h1 id="_5">控制器示波器<a class="headerlink" href="#_5" title="Permanent link"></a></h1>
 <p>控制器示波器<code>controller scope</code>也使用了与系统示波器同样的原理实现。控制器示波器同样具有40个浮点数通道。其配置方法与系统示波器类似，这里不做过多展开。其主要区别是<code>controller scope</code>使用了<code>UDP3334</code>端口。开启控制器示波器需要设置<code>ctrl_scope_en = 1</code>。</p>
-<p><font face="黑体" color=red size=3>注：为避免系统资源浪费，简易将未使用的示波器设置为关闭。</font></p>
-<h2 id="_6">配置自定义示波器数据</h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><font face="黑体" color="red" size="3">为避免系统资源浪费，建议将未使用的示波器设置为关闭。</font></p>
+</div>
+<h2 id="_6">配置自定义示波器数据<a class="headerlink" href="#_6" title="Permanent link"></a></h2>
 <p><code>controller scope</code>的数据输出端口在控制器模块中，在Simulink模型的<code>MPC_HIL/usrcontroller (MPCControllerCodeGen_Vz)</code>中，有预定义一输出端口，如下图中②所示。</p>
-<p><img alt="" src="../img/ctrl_scope_config.jpg" /></p>
+<p><img alt="" src="../img/ctrl_scope_config.jpg"></p>
 <p>它在Simulink中的定义如下，双击设置①，将③<code>data</code>加入到④<code>要赋值的元素中</code>，并“确定”。此时模块①将会增加一端口用于输入数据，维度为40。</p>
-<p><img alt="" src="../img/ctrl_scope_data_def.jpg" />
-<code>_s_scope_s</code>的数据定义同RflyPilot代码中一致</p>
-<pre><code>#define SCOPE_DATA_N 40
+<p><img alt="" src="../img/ctrl_scope_data_def.jpg"><br>
+<code>_s_scope_s</code>的数据定义同RflyPilot代码中一致<br>
+</p><pre class="highlight"><code class="language-C">#define SCOPE_DATA_N 40
 
 typedef struct
 {
@@ -191,17 +217,16 @@ typedef struct
     float data[SCOPE_DATA_N];
 }scope_data_typedef;
 
-scope_data_typedef _controller_debug;
-</code></pre>
-<p>为了演示方便，这里增加一脉冲发生器和常数模块，如下图所示</p>
-<p><img alt="" src="../img/ctrl_scope_demo.jpg" /></p>
+scope_data_typedef _controller_debug;</code></pre><br>
+为了演示方便，这里增加一脉冲发生器和常数模块，如下图所示
+<p><img alt="" src="../img/ctrl_scope_demo.jpg"></p>
 <p>随后进行代码生成与部署即可，这部分已经在<a href="../../quick_start/env_install/">快速开始</a>中介绍过了，这里不再赘述。</p>
-<h2 id="_7">电脑端</h2>
+<h2 id="_7">电脑端<a class="headerlink" href="#_7" title="Permanent link"></a></h2>
 <p>电脑端仅需将UDP端口修改为<code>3334</code>即可，如下图所示，然后选择需要接收的数据通道。</p>
-<p><img alt="" src="../img/pulse_udp_setting.jpg" /></p>
+<p><img alt="" src="../img/pulse_udp_setting.jpg"></p>
 <p>在此直接进行SIH仿真，即可得到从控制器模块中自定义的数据输出，如下图所示。</p>
-<p><img alt="" src="../img/pulse_scope_valid.jpg" /></p>
-<p>不难发现，方波信号并不规整，原因是控制器的运行频率与示波器数据发送的频率异步，示波器的运行频率约为100Hz，而控制器约为333Hz，故出现此问题，这也属于正常现象。</p>
+<p><img alt="" src="../img/pulse_scope_valid.jpg"></p>
+<p>不难发现，方波信号并不规整，原因是控制器的运行频率与示波器数据发送的频率异步，示波器的运行频率约为100Hz，而控制器约为333Hz，故出现此问题，这也属于正常现象。</p></div>
               
             </div>
           </div><footer>
@@ -237,14 +262,15 @@ scope_data_typedef _controller_debug;
     
   </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme_extra.js" defer></script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

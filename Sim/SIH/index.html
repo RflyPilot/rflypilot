@@ -8,7 +8,8 @@
     <title>SIH - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -17,12 +18,21 @@
         var mkdocs_page_url = "/Sim/SIH/";
       </script>
     
-    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/django.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-274394082"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-274394082");
+      </script>
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +44,7 @@
           <a href="../.." class="icon icon-home"> RflyPilot Doc
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -45,7 +55,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../quick_start/env_install/">快速使用</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">基本使用</span></p>
+              <p class="caption"><span class="caption-text">用户手册</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/hardware_connection/">硬件连接</a>
                   </li>
@@ -61,14 +71,24 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/paramupdate/">在线调参</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/experiment/">实飞实验</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">开发者文档</span></p>
+              <p class="caption"><span class="caption-text">开发手册</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件架构</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件概览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/rflypilot_system/">软件架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/realtime/">系统实时性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/task_period/">任务运行频率</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/msg/">线程间通信</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/net_interface/">网络通信接口</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/compiling_deploy/">编译与部署</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">展望</span></p>
@@ -94,8 +114,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>SIH</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">SIH</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -104,19 +124,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="sih">SIH</h1>
-<h2 id="_1">简介</h2>
-<p>SIH Mode 通过在控制器上运行被控对象的数学模型和控制器组成闭环来实现仿真验证。
+                <div><h1 id="sih">SIH<a class="headerlink" href="#sih" title="Permanent link"></a></h1>
+<h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link"></a></h2>
+<p>SIH Mode 通过在控制器上运行被控对象的数学模型和控制器组成闭环来实现仿真验证。<br>
 基于RflyPilot的SIH模式具备一下特点</p>
 <ul>
 <li>受益于CM4的计算性能，所采用的仿真模型可以更加复杂和精细化</li>
 <li>不需要额外的设备即可进行硬件仿真</li>
 </ul>
-<h2 id="_2">如何启用</h2>
-<h2 id="_3">注意事项</h2>
+<h2 id="_2">如何启用<a class="headerlink" href="#_2" title="Permanent link"></a></h2>
+<h2 id="_3">注意事项<a class="headerlink" href="#_3" title="Permanent link"></a></h2>
 <ul>
 <li>模型直接提供的传感器数据为无饱和约束的数据，再进行实验的时候需要注意下传感器饱和的问题</li>
-</ul>
+</ul></div>
               
             </div>
           </div><footer>
@@ -144,14 +164,15 @@
     
   </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme_extra.js" defer></script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

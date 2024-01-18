@@ -8,7 +8,8 @@
     <title>硬件连接 - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -17,12 +18,21 @@
         var mkdocs_page_url = "/Basic/hardware_connection/";
       </script>
     
-    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/django.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-274394082"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-274394082");
+      </script>
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +44,7 @@
           <a href="../.." class="icon icon-home"> RflyPilot Doc
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -45,7 +55,7 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../quick_start/env_install/">快速使用</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">基本使用</span></p>
+              <p class="caption"><span class="caption-text">用户手册</span></p>
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">硬件连接</a>
     <ul class="current">
@@ -63,14 +73,24 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../paramupdate/">在线调参</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../experiment/">实飞实验</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">开发者文档</span></p>
+              <p class="caption"><span class="caption-text">开发手册</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件架构</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件概览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/rflypilot_system/">软件架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/realtime/">系统实时性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/task_period/">任务运行频率</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/msg/">线程间通信</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/net_interface/">网络通信接口</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/compiling_deploy/">编译与部署</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">展望</span></p>
@@ -96,9 +116,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>基本使用 &raquo;</li>
-      <li>硬件连接</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">用户手册</li>
+      <li class="breadcrumb-item active">硬件连接</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -107,12 +127,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>本节将介绍RflyPilot的硬件连接情况，以及在不同仿真验证模式下的最小硬件配置方案。
+                <div><p>本节将介绍RflyPilot的硬件连接情况，以及在不同仿真验证模式下的最小硬件配置方案。<br>
 RflyPilot底板的硬件接口如下图所示</p>
-<p><img alt="RflyPilot Hardware" src="../img/hardware.jpg" /></p>
+<p><img alt="RflyPilot Hardware" src="../img/hardware.jpg"></p>
 <p>IMU传感器板如下图所示，⑩应与司相连</p>
-<p><img alt="imu" src="../img/imu_rbg.jpg" /></p>
-<h1 id="_1">线序介绍</h1>
+<p><img alt="imu" src="../img/imu_rbg.jpg"></p>
+<h1 id="_1">线序介绍<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
 <p><strong>①辅助PWM接口（用于舵机等）</strong></p>
 <table>
 <thead>
@@ -316,7 +336,10 @@ RflyPilot底板的硬件接口如下图所示</p>
 </tbody>
 </table>
 <p><strong>⑨Type-C USB</strong></p>
-<p><font face="黑体" color=red size=3>注：默认该TypeC接口允许作为电源输入接口，但无法对外供电。如需供电需短接电路板上的<code>D1</code>二极管。</font></p>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">默认该TypeC接口允许作为电源输入接口，但无法对外供电。如需供电需短接电路板上的<code>D1</code>二极管。</font></p>
+</div>
 <p><strong>⑩IMU板接口</strong></p>
 <table>
 <thead>
@@ -340,29 +363,38 @@ RflyPilot底板的硬件接口如下图所示</p>
 </tr>
 </tbody>
 </table>
-<h1 id="_2">连接说明</h1>
-<h2 id="mil">MIL仿真</h2>
+<h1 id="_2">连接说明<a class="headerlink" href="#_2" title="Permanent link"></a></h1>
+<h2 id="mil">MIL仿真<a class="headerlink" href="#mil" title="Permanent link"></a></h2>
 <p>由于MIL仿真的控制器与模型均运行于Simulink中，故其并不需要RflyPilot飞控硬件。为了让仿真时飞行器具有更好地操控性，可以将遥控器连接至计算机。这一小结将主要介绍如何连接遥控器用以进行MIL仿真。</p>
-<p><img alt="富斯遥控器" src="../img/rc_fusi.jpg" /></p>
+<p><img alt="富斯遥控器" src="../img/rc_fusi.jpg"></p>
 <p>需要用一根USB线连接到计算机，此时便可以通过遥控器控制Simulink中的仿真模型。这里笔者使用的是富斯的遥控器，该遥控器可以作为计算机的输入设备，同时Simulink中也有相应的组件支持（Pilot Joystick），驱动正确安装完成后，将在设备管理器中出现“人机接口设备/HID-compliant game controller”。</p>
-<p><img alt="遥控器驱动" src="../img/rc_driver.jpg" /></p>
+<p><img alt="遥控器驱动" src="../img/rc_driver.jpg"></p>
 <p>遥控器指令输入对应<code>MIL</code>仿真模型中的<code>Real RC</code>模块。</p>
-<p><font face="黑体" color=red size=3>注：Simulink中的<code>Pilot Joystick</code>模块，除了支持富斯的这款遥控器之外，也支持其他遥控器，笔者在这里没有过多尝试。</font></p>
-<h2 id="sih">SIH仿真</h2>
-<p>在SIH仿真模式下，由于飞控软件和被控对象都运行在RflyPilot中，并不需要连接到飞行器本体上，但是由于仿真过程中，需要输入控制指令，此时，还需要将遥控器的接收机连接到RflyPilot上。
-故在SIH仿真模式下，硬件准备上，只需要RflyPilot与遥控器和接收机，最后通过WIFI连接到计算机，在RflySim3D上进行显示。
-<img alt="imu" src="../img/sih_con.jpg" /></p>
-<h2 id="hil">HIL仿真</h2>
+<div class="admonition tips">
+<p class="admonition-title">Tips</p>
+<p><font face="黑体" color="red" size="3">Simulink中的<code>Pilot Joystick</code>模块，除了支持富斯的这款遥控器之外，也支持其他遥控器，笔者在这里没有过多尝试。</font></p>
+</div>
+<h2 id="sih">SIH仿真<a class="headerlink" href="#sih" title="Permanent link"></a></h2>
+<p>在SIH仿真模式下，由于飞控软件和被控对象都运行在RflyPilot中，并不需要连接到飞行器本体上，但是由于仿真过程中，需要输入控制指令，此时，还需要将遥控器的接收机连接到RflyPilot上。<br>
+故在SIH仿真模式下，硬件准备上，只需要RflyPilot与遥控器和接收机，最后通过WIFI连接到计算机，在RflySim3D上进行显示。<br>
+<img alt="imu" src="../img/sih_con.jpg"></p>
+<h2 id="hil">HIL仿真<a class="headerlink" href="#hil" title="Permanent link"></a></h2>
 <p>HIL仿真相比于实飞实验的区别是RflyPilot飞控直接连接到半物理仿真系统上而不是连接到真实的飞机上。所以进行HIL仿真需要半物理仿真系统，这里笔者采用的是课题组自研的<a href="https://rflybuaa.github.io/RflySimRTDoc/">硬件在环实时仿真平台</a>。利用该平台可以完成被控对象的模拟，同时也利用其强大的FPGA，实现传感器级的精细模拟。</p>
 <p>由于进行HIL仿真并不需要真实的传感器，为了方便进行HIL仿真，笔者直接使用树莓派4B和“Rflysim for Pilot"接口板代替RflyPilot连接到硬件在环仿真平台上。</p>
-<p><img alt="HIL仿真器-飞控平台" src="../img/raspberrypi_hil.jpg" /></p>
+<p><img alt="HIL仿真器-飞控平台" src="../img/raspberrypi_hil.jpg"></p>
 <p>将以上两个组件拼接完成后，得到了可以用于硬件在环仿真的RflyPilot。</p>
-<p><font face="黑体" color=red size=3>注：由于前期硬件电路设计存在一些小问题，串口芯片<code>SC16IS752IPW</code>的中断引脚没有连接到树莓派的<code>BCM24</code>号引脚，故这里增加了红色飞线</font></p>
-<p><img alt="用于HIL仿真的RflyPilot" src="../img/rflypilot_hil.jpg" /></p>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">由于前期硬件电路设计存在一些小问题，串口芯片<code>SC16IS752IPW</code>的中断引脚没有连接到树莓派的<code>BCM24</code>号引脚，故这里增加了红色飞线</font></p>
+</div>
+<p><img alt="用于HIL仿真的RflyPilot" src="../img/rflypilot_hil.jpg"></p>
 <p>参考<a href="https://rflybuaa.github.io/RflySimRTDoc/">硬件在环实时仿真平台</a>中的教程进行硬件连接，便可以得到如下半物理联合仿真平台。</p>
-<p><img alt="用于HIL仿真的RflyPilot" src="../img/rflypilot_fpga.jpg" /></p>
-<p><font face="黑体" color=red size=3>注：由于飞控运行时处理器功率增加，为保障计算性能，建议使用大功率电源连接树莓派。</font></p>
-<h2 id="_3">实飞实验</h2>
+<p><img alt="用于HIL仿真的RflyPilot" src="../img/rflypilot_fpga.jpg"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><font face="黑体" color="red" size="3">由于飞控运行时处理器功率增加，为保障计算性能，建议使用大功率电源连接树莓派。</font></p>
+</div>
+<h2 id="_3">实飞实验<a class="headerlink" href="#_3" title="Permanent link"></a></h2></div>
               
             </div>
           </div><footer>
@@ -398,14 +430,15 @@ RflyPilot底板的硬件接口如下图所示</p>
     
   </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme_extra.js" defer></script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

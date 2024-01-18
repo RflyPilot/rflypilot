@@ -8,7 +8,8 @@
     <title>快速使用 - RflyPilot Doc</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -17,12 +18,21 @@
         var mkdocs_page_url = "/quick_start/env_install/";
       </script>
     
-    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/django.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-274394082"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-274394082");
+      </script>
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -34,7 +44,7 @@
           <a href="../.." class="icon icon-home"> RflyPilot Doc
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -127,7 +137,7 @@
     </ul>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">基本使用</span></p>
+              <p class="caption"><span class="caption-text">用户手册</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/hardware_connection/">硬件连接</a>
                   </li>
@@ -143,14 +153,24 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/paramupdate/">在线调参</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/experiment/">实飞实验</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
                   </li>
               </ul>
-              <p class="caption"><span class="caption-text">开发者文档</span></p>
+              <p class="caption"><span class="caption-text">开发手册</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件架构</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/sys_overview/">软硬件概览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/rflypilot_system/">软件架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/realtime/">系统实时性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/task_period/">任务运行频率</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/msg/">线程间通信</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/net_interface/">网络通信接口</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../development/compiling_deploy/">编译与部署</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">展望</span></p>
@@ -176,9 +196,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Getting Started &raquo;</li>
-      <li>快速使用</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Getting Started</li>
+      <li class="breadcrumb-item active">快速使用</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -187,15 +207,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="quick-start">Quick Start</h1>
+                <div><h1 id="quick-start">Quick Start<a class="headerlink" href="#quick-start" title="Permanent link"></a></h1>
 <p>这部分内容的主要目的是搭建起RflyPilot开发环境</p>
-<h2 id="0">0 硬件与软件准备</h2>
+<h2 id="0">0 硬件与软件准备<a class="headerlink" href="#0" title="Permanent link"></a></h2>
 <ol>
 <li>RflyPilot飞控</li>
 <li>装有WSL与MATLAB2022B的Windows电脑</li>
 </ol>
-<h2 id="1-rflypilot">1 RflyPilot系统配置</h2>
-<h3 id="11">1.1 树莓派固件准备</h3>
+<h2 id="1-rflypilot">1 RflyPilot系统配置<a class="headerlink" href="#1-rflypilot" title="Permanent link"></a></h2>
+<h3 id="11">1.1 树莓派固件准备<a class="headerlink" href="#11" title="Permanent link"></a></h3>
 <p>有以下三种选择:</p>
 <ol>
 <li>
@@ -208,10 +228,10 @@
 <p>也可以使用其他系统如ubuntu, 但是我们没有进行测试. </p>
 </li>
 </ol>
-<h3 id="12">1.2 固件下载</h3>
+<h3 id="12">1.2 固件下载<a class="headerlink" href="#12" title="Permanent link"></a></h3>
 <p>RflyPilot采用的是树莓派CM4核心板，与树莓派4B标准版不同，它不包含SD卡槽，核心板上默认装有EMMC存储芯片，所以需要将树莓派固件下载到EMMC中。在树莓派4B中可以用SD卡读卡器对树莓派固件进行下载，将固件写入到SD卡中，对于树莓派CM4而言，由于存储芯片无法拆卸，需要修改树莓派CM4的启动模式，令其在电脑上识别为U盘设备，即可安装常规方法进行固件下载。</p>
-<h4 id="121">1.2.1 树莓派启动模式</h4>
-<p><img alt="RflyPilot拨码开关" src="../img/switch_key.png" /></p>
+<h4 id="121">1.2.1 树莓派启动模式<a class="headerlink" href="#121" title="Permanent link"></a></h4>
+<p><img alt="RflyPilot拨码开关" src="../img/switch_key.png"></p>
 <table>
 <thead>
 <tr>
@@ -242,19 +262,27 @@
 </tr>
 </tbody>
 </table>
-<p><font face="黑体" color=red size=3>注意：飞控程序开机自启功能目前并未实现</font></p>
-<h4 id="122-rflypilot">1.2.2 RflyPilot固件下载</h4>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">飞控程序开机自启功能目前并未实现</font></p>
+</div>
+<h4 id="122-rflypilot">1.2.2 RflyPilot固件下载<a class="headerlink" href="#122-rflypilot" title="Permanent link"></a></h4>
 <ol>
-<li>首先需要安装驱动程序，<a href="https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe">rpiboot</a>，安装完成后运行<code>rpiboot.exe</code>，然后将将RflyPilot拨码开关的<code>BOOT</code>键拨为<code>ON</code>，即识别为U盘。通过USB线连接到电脑。（注意：此时不能将飞控连接到飞机上，以免出现信号异常现象）稍等一会儿，便会看到如下界面
-<img alt="Rpiboot界面" src="../img/rpiboot.png" />
-最后可以看到新增的两个磁盘
-<img alt="树莓派U盘" src="../img/rpiboot_udisk.png" /></li>
-<li>树莓派被识别成U盘后，其系统烧写步骤与SD卡烧写方案无异，这里不再赘述，这里我们默认使用的是<strong>navio2</strong>的系统镜像，该镜像具有实时补丁，可以一定程度提高系统实时性。</li>
+<li>首先需要安装驱动程序，<a href="https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe">rpiboot</a>，安装完成后运行<code>rpiboot.exe</code>，然后将将RflyPilot拨码开关的<code>BOOT</code>键拨为<code>ON</code>，即识别为U盘。通过USB线连接到电脑。</li>
 </ol>
-<h3 id="13">1.3 系统配置</h3>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">此时不能将飞控连接到飞机上，以免出现信号异常现象</font></p>
+</div>
+<p>稍等一会儿，便会看到如下界面<br>
+<img alt="Rpiboot界面" src="../img/rpiboot.png"><br>
+最后可以看到新增的两个磁盘<br>
+<img alt="树莓派U盘" src="../img/rpiboot_udisk.png"><br>
+2. 树莓派被识别成U盘后，其系统烧写步骤与SD卡烧写方案无异，这里不再赘述，这里我们默认使用的是<strong>navio2</strong>的系统镜像，该镜像具有实时补丁，可以一定程度提高系统实时性。</p>
+<h3 id="13">1.3 系统配置<a class="headerlink" href="#13" title="Permanent link"></a></h3>
 <p>在固件烧写完成后，还不能直接运行RflyPilot软件程序，需要对系统进行一些配置。如WIFI、SSH、引导程序等。这部分修改可以直接在U盘模式下完成。</p>
-<h4 id="131-bootconfigtxt">1.3.1 配置<code>/boot/config.txt</code></h4>
-<pre><code>[all] 
+<h4 id="131-bootconfigtxt">1.3.1 配置<code>/boot/config.txt</code><a class="headerlink" href="#131-bootconfigtxt" title="Permanent link"></a></h4>
+<pre class="highlight"><code>[all] 
 # enable sc16is752 overlay
 dtoverlay=sc16is752-spi1
 # enable I2C-1 and set the frequency to 400KHz
@@ -280,43 +308,54 @@ arm_freq=1800
 arm_freq_min=1500
 start_x=0
 # usb otg host mode
-dtoverlay=dwc2,dr_mode=host
-</code></pre>
-<p>注：这里将usb口设置成了host模式，如需要利用树莓派的USB口给其他设备供电，需要短接飞控板上的D1二极管以保障飞控可以为USB设备供电。</p>
-<h4 id="132-bootcmdlinetxt">1.3.2 配置<code>/boot/cmdline.txt</code></h4>
-<pre><code>dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait isolcpus=2,3
-</code></pre>
-<p>注：</p>
+dtoverlay=dwc2,dr_mode=host</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>这里将usb口设置成了host模式，如需要利用树莓派的USB口给其他设备供电，需要短接飞控板上的D1二极管以保障飞控可以为USB设备供电。</p>
+</div>
+<h4 id="132-bootcmdlinetxt">1.3.2 配置<code>/boot/cmdline.txt</code><a class="headerlink" href="#132-bootcmdlinetxt" title="Permanent link"></a></h4>
+<pre class="highlight"><code>dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait isolcpus=2,3</code></pre>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
 <ul>
 <li>这里<code>isocpus=2,3</code>的意思是隔离CPU2与CPU3，即系统默认不会使用这两个核心，这两个核心将主要被用于运行飞控系统。当前的树莓派CM4，一共4个CPU核心，分别是CPU0\CPU1\CPU2\CPU3。</li>
 <li>如果是Rpi官方系统<code>root=/dev/mmcblk0p2</code>的内容可能每次刷固件都是不一样的，也可能和系统版本有关系，笔者这里没有深入了解。</li>
 </ul>
-<h4 id="133-bootwpa_supplicationconf">1.3.3 配置<code>/boot/wpa_supplication.conf</code></h4>
-<pre><code>country=CN
+</div>
+<h4 id="133-bootwpa_supplicationconf">1.3.3 配置<code>/boot/wpa_supplication.conf</code><a class="headerlink" href="#133-bootwpa_supplicationconf" title="Permanent link"></a></h4>
+<pre class="highlight"><code>country=CN
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 network={
-    ssid=&quot;xxx&quot;
-    psk=&quot;XXXXXXXX&quot;
-}
-</code></pre>
-<p>注：此处为WIFI设置，需要根据实际情况进行配置，RflyPilot将在系统启动时连接该WIFI。</p>
-<h4 id="134-ssh">1.3.4 配置SSH</h4>
+    ssid="xxx"
+    psk="XXXXXXXX"
+}</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>此处为WIFI设置，需要根据实际情况进行配置，RflyPilot将在系统启动时连接该WIFI。</p>
+</div>
+<h4 id="134-ssh">1.3.4 配置SSH<a class="headerlink" href="#134-ssh" title="Permanent link"></a></h4>
 <p>在<code>boot</code>目录下创建一个空文件，文件名取为<code>ssh</code>即可，此时系统将默认在开始时启动SSH服务。</p>
-<p>至此，便完成了RflyPilot飞控操作系统的基本配置，注意，配置完成后，应将<code>BOOT</code>开关拨回<code>OFF</code>，以从内部存储启动系统。</p>
-<h4 id="14">1.4 树莓派操作系统的使用</h4>
-<p>本小节主要介绍树莓派操作系统的基本使用方法与常用指令。
+<p>至此，便完成了RflyPilot飞控操作系统的基本配置。</p>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p>配置完成后，应将<code>BOOT</code>开关拨回<code>OFF</code>，以从内部存储启动系统。</p>
+</div>
+<h4 id="14">1.4 树莓派操作系统的使用<a class="headerlink" href="#14" title="Permanent link"></a></h4>
+<p>本小节主要介绍树莓派操作系统的基本使用方法与常用指令。<br>
 树莓派上电之后等待一会，这个过程中，飞控的黄色指示灯(ACTION)会闪烁，表示系统正在执行某些任务。最终两颗红色LED会常亮，表示系统启动完成。此时通过SSH即可连接到树莓派系统。这里使用<code>WindTerm</code>作为终端软件进行SSH连接（需要树莓派自动连接WIFI）。值得一提的是，由于树莓派系统资源有限，这里直接使用基于命令行的方式进行了交互，以减低系统自身的消耗。</p>
-<p>注意：</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <ul>
 <li>默认用户名：<code>pi</code></li>
 <li>默认密码：<code>raspberry</code></li>
 </ul>
-<p><img alt="使用WindTerm连接树莓派" src="../img/ssh_shell.png" /></p>
+</div>
+<p><img alt="使用WindTerm连接树莓派" src="../img/ssh_shell.png"></p>
 <p>常通过<code>htop</code>指令去查看系统资源使用情况，如下图所示，可以看到CPU3\CPU4并没有被系统所使用，占用率为0</p>
-<p><img alt="htop输出" src="../img/htop.png" /></p>
+<p><img alt="htop输出" src="../img/htop.png"></p>
 <p>常用命令还有：df ifconfig cp rm ls free top netstat vim</p>
-<h2 id="2-windows">2 Windows环境配置</h2>
+<h2 id="2-windows">2 Windows环境配置<a class="headerlink" href="#2-windows" title="Permanent link"></a></h2>
 <p>对于Windows的环境要求如下</p>
 <ol>
 <li>首先确认开启了<strong>适用于Windows的Linux子系统功能</strong></li>
@@ -325,35 +364,35 @@ network={
 <li>安装Virtual Studio 2017用于代码生成</li>
 <li>安装MATLAB 2022b</li>
 </ol>
-<p>注意：这里使用WSL子系统的主要目的是用于<a href="https://baike.baidu.com/item/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/10916911">交叉编译</a>，这里主要考虑到，飞控代码在树莓派机载端直接编译会非常慢，而通过Linux系统计算机编译会快很多。为了提高开发效率，RflyPilot选择使用交叉编译的方式在Linux端直接编译得到可以用在树莓派端执行的可执行文件。</p>
-<h3 id="21-wsl">2.1 WSL环境配置</h3>
-<p>进入WSL后，执行命令</p>
-<pre><code>sudo apt install cmake
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>这里使用WSL子系统的主要目的是用于<a href="https://baike.baidu.com/item/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/10916911">交叉编译</a>，这里主要考虑到，飞控代码在树莓派机载端直接编译会非常慢，而通过Linux系统计算机编译会快很多。为了提高开发效率，RflyPilot选择使用交叉编译的方式在Linux端直接编译得到可以用在树莓派端执行的可执行文件。</p>
+</div>
+<h3 id="21-wsl">2.1 WSL环境配置<a class="headerlink" href="#21-wsl" title="Permanent link"></a></h3>
+<p>进入WSL后，执行命令<br>
+</p><pre class="highlight"><code>sudo apt install cmake
 sudo apt install gcc-arm-linux-gnueabihf
 sudo apt install g++-arm-linux-gnueabihf
-sudo apt install sshpass
-</code></pre>
-<h3 id="22-rflypilot">2.2 RflyPilot源码下载</h3>
+sudo apt install sshpass</code></pre>
+<h3 id="22-rflypilot">2.2 RflyPilot源码下载<a class="headerlink" href="#22-rflypilot" title="Permanent link"></a></h3>
 <p>RflyPilot的源码主要分为两大部分：RflyPilot飞控系统接口（C++代码）与用于飞控设计的模型文件(MATLAB)。</p>
 <p>RflyPilot源码: <a href="https://gitee.com/nash2zhao/RflyPilot.git">https://gitee.com/nash2zhao/RflyPilot.git</a></p>
 <p>RflyPilot MATLAB源码: <a href="https://github.com/umview/raspberry_fc_matlab.git">https://github.com/umview/raspberry_fc_matlab.git</a></p>
 <p>RflyPilot飞控系统接口采用高效的C++代码完成，为RflyPilot提供基本的飞控功能，包括传感器读取任务、执行器输出任务、控制器与状态估计接口、日志系统、传感器校准模块等等。在常规的飞控算法设计过程中，一般不需要修改这部分的代码。</p>
 <p>飞控模型文件主要包含控制器模型、无人机模型、状态估计器模型等。这部分模型可以直接进行数值仿真，用于前期的控制系统验证。设计好的飞控可以进行代码生成，进而嵌入到RflyPilot飞控系统中。这部分内容是开发者需要经常修改调试的内容。值得一提的是，为了更好地处理代码迁移与编译的问题，课题组也针对性地开发了一套工具——RflyPilotTools，用于简化复杂的操作流程。</p>
-<p>使用命令</p>
-<pre><code>git clone https://gitee.com/nash2zhao/RflyPilot.git
-git clone https://github.com/umview/raspberry_fc_matlab.git
-</code></pre>
-<p>由于MATLAB模型中还未包含状态估计模型和无人机模型，还需要执行子模块更新指令，方可完成对模型的完整下载。</p>
-<pre><code>cd raspberry_fc_matlab
+<p>使用命令<br>
+</p><pre class="highlight"><code>git clone https://gitee.com/nash2zhao/RflyPilot.git
+git clone https://github.com/umview/raspberry_fc_matlab.git</code></pre><br>
+由于MATLAB模型中还未包含状态估计模型和无人机模型，还需要执行子模块更新指令，方可完成对模型的完整下载。<br>
+<pre class="highlight"><code>cd raspberry_fc_matlab
 git submodule update --init --recursive
 cd Estimator
 git checkout master
 cd ../Model
 git checkout master
-cd ..
-</code></pre>
-<h3 id="23">2.3 文件组织结构</h3>
-<pre><code>.
+cd ..</code></pre>
+<h3 id="23">2.3 文件组织结构<a class="headerlink" href="#23" title="Permanent link"></a></h3>
+<pre class="highlight"><code>.
 ├── Estimator
 │   ├── AttitudeEstimator.slx（姿态估计仿真模型）
 │   ├── AttitudeEstimatorParameters.m（姿态估计器的参数初始化脚本）
@@ -388,11 +427,10 @@ cd ..
 ├── nmpc_solver_vz_wrapper.cpp（nmpc求解器相关文件）
 ├── resources (Simulink工程缓存文件)
 ├── simulink_codegen（代码生成的目标文件夹）
-└── swfiles（RflyPilot飞控外壳3D打印文件）
-</code></pre>
-<h2 id="3-mil">3 模型的运行(MIL)</h2>
+└── swfiles（RflyPilot飞控外壳3D打印文件）</code></pre>
+<h2 id="3-mil">3 模型的运行(MIL)<a class="headerlink" href="#3-mil" title="Permanent link"></a></h2>
 <p>本小节将介绍如何运行数值仿真，即模型在环仿真。</p>
-<h3 id="31">3.1 仿真参数初始化</h3>
+<h3 id="31">3.1 仿真参数初始化<a class="headerlink" href="#31" title="Permanent link"></a></h3>
 <p>首先在MATLAB中打开工程文件<code>Raspberry_fc_matlab.prj</code>，然后分别运行如下脚本</p>
 <ul>
 <li>MIL/ControlInit_vz.m</li>
@@ -400,50 +438,62 @@ cd ..
 <li>Estimator/PositionEstimatorParameters.m</li>
 <li>Model/ModelParam_H2504S.m</li>
 </ul>
-<p>注意：为避免后续仿真过程中文件路径发生错误等问题<strong>强烈</strong>建议在后续进行仿真的过程中，工作目录依然保持在工程根目录下，即Raspberry_fc_matlab目录下。</p>
-<h3 id="32">3.2 综合仿真</h3>
-<p>打开MIL/MIL_HIL.slx模型
-<img alt="MIL_HIL综合仿真模型" src="../img/MIL_HIL.png" /></p>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">为避免后续仿真过程中文件路径发生错误等问题<strong>强烈</strong>建议在后续进行仿真的过程中，工作目录依然保持在工程根目录下，即Raspberry_fc_matlab目录下。</font></p>
+</div>
+<h3 id="32">3.2 综合仿真<a class="headerlink" href="#32" title="Permanent link"></a></h3>
+<p>打开MIL/MIL_HIL.slx模型<br>
+<img alt="MIL_HIL综合仿真模型" src="../img/MIL_HIL.png"></p>
 <p>这是综合仿真模型，它整合了遥控器输入接口，控制器，无人机模型，状态估计器以及3D显示输出模块，是一个较为全面的仿真模型。这里的控制器与无人机模型部分均使用了Simulink的ModelReferance功能(类似与函数调用)，通过规范化模型输入输出接口，调用相应的子模型，如，控制器模型调用了<code>MPCControllerCodeGen.slx</code>，而无人机模型则调用了<code>H250Model.slx</code>，状态估计系统则在内部分别调用了<code>AttitudeEstimator</code>与<code>PostionEstimator</code>。如下图所示。</p>
-<p><img alt="参考模型" src="../img/modelref.png" /></p>
+<p><img alt="参考模型" src="../img/modelref.png"></p>
 <p>在部署完<a href="../../mpc/mpc_example/">NMPC求解器</a>后，可以直接运行综合仿真模型，并打开<code>RflySim3D</code>，进行位姿显示。默认模型采用Dashboard进行指令输入，如下图所示（在Viewer中）。</p>
-<p><img alt="默认控制台" src="../img/dashboard.png" />
-<img alt="Rflysim3D视角" src="../img/quadcopter_rflysim3d.png" /></p>
-<p>注意：需要保证NMPC求解器源码文件夹<code>acado_MPC</code>在工程根目录下，同时确保其已经加载到工程索引路径中。</p>
-<h2 id="4">4 代码生成</h2>
+<p><img alt="默认控制台" src="../img/dashboard.png"><br>
+<img alt="Rflysim3D视角" src="../img/quadcopter_rflysim3d.png"></p>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">需要保证NMPC求解器源码文件夹<code>acado_MPC</code>在工程根目录下，同时确保其已经加载到工程索引路径中。</font></p>
+</div>
+<h2 id="4">4 代码生成<a class="headerlink" href="#4" title="Permanent link"></a></h2>
 <p>在进行数值仿真之后，我们已经对系统的性能有了一个基本的判断。可以进行下一步的验证工作，包括HIL(半物理仿真)、SIH(硬件仿真)、EXP(实飞实验)。然而这些验证模式都需要将仿真程序转化为可以进行实际部署的形式，所以将这些模型进行代码生成则是一条必经之路。</p>
-<h3 id="41">4.1 控制器代码生成</h3>
+<h3 id="41">4.1 控制器代码生成<a class="headerlink" href="#41" title="Permanent link"></a></h3>
 <p>打开<code>MIL/usrController.slx</code>模型，可以看到（下图）其中左侧为模型输入接口，其均为结构体类型，其中包含多种数据，模型右侧为PWM信号输出接口与调试数据输出接口。其中右侧对话框中的外部数据用于加载接口定义文件<code>Interface.sldd</code>。这个文件定义的接口与RflyPilot飞控中的C++代码接口一致，是沟通代码生成与RflyPilot基础系统的桥梁。同时这个模型是将原有<code>MPCControllerCodeGen_Vz.slx</code>进行了封装，这样的处理方法有利于代码生成后接口的兼容，也有助于进行控制模型的快速切换与部署。</p>
-<p><img alt="usrController模型信息" src="../img/usrController.png" /></p>
+<p><img alt="usrController模型信息" src="../img/usrController.png"></p>
 <p>在上述设置完成之后，即可对该控制器模型进行代码生成。进入APP下的Embedded Code工具箱，选择进行<strong>编译</strong>。</p>
-<p>注意：代码生成过程中可能会遇到错误，可以尝试将acado_MPC文件夹下的文件进行重新加载，或尝试清除<code>cache</code>和<code>simulink_codegen</code>文件夹下的内容后重新生成。
-最终可以得到如下界面。</p>
-<p><img alt="控制器代码生成结果" src="../img/codegen_result.png" /></p>
-<h3 id="42">4.2 状态估计代码生成</h3>
-<p>状态估计部分的代码生成分为姿态估计器代码生成与位置估计代码生成。首先介绍姿态估计代码生成，打开<code>Estimator/AttitudeEstimator.slx</code>模型，如下图所示。其代码生成步骤与控制器代码生成步骤类似，这里不再赘述。
-<img alt="姿态估计模型" src="../img/attest_codegen.png" />
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>代码生成过程中可能会遇到错误，可以尝试将acado_MPC文件夹下的文件进行重新加载，或尝试清除<code>cache</code>和<code>simulink_codegen</code>文件夹下的内容后重新生成。</p>
+</div>
+<p>最终可以得到如下界面。</p>
+<p><img alt="控制器代码生成结果" src="../img/codegen_result.png"></p>
+<h3 id="42">4.2 状态估计代码生成<a class="headerlink" href="#42" title="Permanent link"></a></h3>
+<p>状态估计部分的代码生成分为姿态估计器代码生成与位置估计代码生成。首先介绍姿态估计代码生成，打开<code>Estimator/AttitudeEstimator.slx</code>模型，如下图所示。其代码生成步骤与控制器代码生成步骤类似，这里不再赘述。<br>
+<img alt="姿态估计模型" src="../img/attest_codegen.png"><br>
 除了姿态信息，位置信息也不可或缺。位置估计器的模型为<code>Estimator/PositionEstimator.slx</code>，位置估计模型的代码生成步骤与姿态估计模型类似，这里同样不再赘述。</p>
-<h3 id="43">4.3 无人机模型代码生成</h3>
-<p>至此，控制器、状态估计器的模型均已被生成为代码的形式，无人机的仿真模型同样可以进行代码生成，这里主要用作SIH仿真中的被控对象，即只需要一共飞控硬件尽可以进行飞行仿真，这种仿真模式主要用于验证控制器在实际飞控平台中的运行是否正常。
+<h3 id="43">4.3 无人机模型代码生成<a class="headerlink" href="#43" title="Permanent link"></a></h3>
+<p>至此，控制器、状态估计器的模型均已被生成为代码的形式，无人机的仿真模型同样可以进行代码生成，这里主要用作SIH仿真中的被控对象，即只需要一共飞控硬件尽可以进行飞行仿真，这种仿真模式主要用于验证控制器在实际飞控平台中的运行是否正常。<br>
 打开模型<code>SIH_Model.slx</code>，这里同样使用了参考模型的模型搭建方式，使用的模型是<code>Model/H250Model2.slx</code>（与数值仿真模型<code>Model/H250Model.slx</code>的区别详见<code>Model/README.md</code>），使用的接口文件同样是<code>Interface.sldd</code>，其代码生成方式也不再赘述了。</p>
-<p><img alt="sih_codegen_err" src="../img/err_sih_codegen.png" /></p>
-<p>注意：在生成过程中可能遇到如下报错，直接点击“修复”即可。</p>
-<h2 id="5-rflypilot">5 代码的部署编译与RflyPilot</h2>
-<h3 id="51">5.1 代码部署</h3>
+<p><img alt="sih_codegen_err" src="../img/err_sih_codegen.png"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>在生成过程中可能遇到如下报错，直接点击“修复”即可。</p>
+</div>
+<h2 id="5-rflypilot">5 代码的部署编译与RflyPilot<a class="headerlink" href="#5-rflypilot" title="Permanent link"></a></h2>
+<h3 id="51">5.1 代码部署<a class="headerlink" href="#51" title="Permanent link"></a></h3>
 <p>将四大功能模块进行代码生成后，可以得到如下结果，在<code>simulink_codegen</code>文件夹下。可以看到生成的代码已被打包为zip文件。</p>
-<p><img alt="代码生成的结果" src="../img/simulink_codegen.png" /></p>
+<p><img alt="代码生成的结果" src="../img/simulink_codegen.png"></p>
 <p>如何将其生成的代码部署到实际飞控中呢？此时就需要通过RflyPilotTools进行衔接。</p>
-<p><img alt="RflyPilotTools" src="../img/rflypilottools.png" /></p>
+<p><img alt="RflyPilotTools" src="../img/rflypilottools.png"></p>
 <p>RflyPilotTools是一款基于MATLAB的工具箱，它的安装包位于<code>MATLABApp/RflyPilotToolBox.mlappinstall</code>，在工程根目录下，双击即可安装，最终会显示在MATLAB工具箱界面中。</p>
-<p><img alt="MATLABAPP" src="../img/rflypilottool_app.png" /></p>
+<p><img alt="MATLABAPP" src="../img/rflypilottool_app.png"></p>
 <p>首次使用RflyPilotTool需要对其进行配置，主要配置选项为<code>RflyPilot Path</code>，即RflyPilot源码的路径，至于<code>CodeGen Path</code>与<code>Unzip Path</code>则分别为代码生成源码的路径和生成压缩包的路径，这里保持默认即可。配置完成后，点击“Save Setting”，即可保持配置到工程根目录下的<code>rflypilottoolbox.mat</code>中。</p>
-<p><img alt="rflypilottool路径配置" src="../img/rflypilottools_1.png" /></p>
+<p><img alt="rflypilottool路径配置" src="../img/rflypilottools_1.png"></p>
 <p>配置完成后，依次点击“Update Estimator” “Update SIH Model” “Update Controller"即可做到“一键部署”，即将代码复制到相应的源码文件夹中。与之对应的文件夹分别为<code>estimator_codegen</code>,<code>sih_codegen</code>,<code>controller_codegen</code>。在更新完成后，读者可以在自行去相应的文件夹查看相应的源码。</p>
-<h3 id="52-rflypilot">5.2 RflyPilot编译</h3>
-<p>RflyPilot的交叉编译是在WSL系统中进行的。但得益于RflyPilotTool，这个步骤被进一步简化。
-首先在RflyPilot源码文件夹中创建<code>build</code>文件夹，用于存储编译后的文件。然后在RflyPilotTool中，点击“Build”，即可进行交叉编译。编译过程中的输出可以在MATLAB命令行中查看。
+<h3 id="52-rflypilot">5.2 RflyPilot编译<a class="headerlink" href="#52-rflypilot" title="Permanent link"></a></h3>
+<p>RflyPilot的交叉编译是在WSL系统中进行的。但得益于RflyPilotTool，这个步骤被进一步简化。<br>
+首先在RflyPilot源码文件夹中创建<code>build</code>文件夹，用于存储编译后的文件。然后在RflyPilotTool中，点击“Build”，即可进行交叉编译。编译过程中的输出可以在MATLAB命令行中查看。<br>
 输出结果为</p>
-<pre><code>-- Configuring done
+<p></p><pre class="highlight"><code>-- Configuring done
 -- Generating done
 -- Build files have been written to: /mnt/d/nash.zhao/RflyPilot_DEMO/RflyPilot/build
 [ 14%] Built target confc
@@ -487,31 +537,34 @@ Scanning dependencies of target rflypilot
 [ 82%] Building C object CMakeFiles/rflypilot.dir/src/3rdparty/sbus/src/decoder/packet_decoder.c.o
 [ 83%] Building CXX object CMakeFiles/rflypilot.dir/src/3rdparty/sbus/src/driver/SBUS.cpp.o
 [ 83%] Linking CXX executable rflypilot
-[100%] Built target rflypilot
-</code></pre>
-<p>其背后在WSL中执行的命令为</p>
-<pre><code>cd build
-cmake .. &amp;&amp; make -j128
-</code></pre>
-<h3 id="53">5.3 飞控程序部署</h3>
+[100%] Built target rflypilot</code></pre><br>
+其背后在WSL中执行的命令为<br>
+<pre class="highlight"><code>cd build
+cmake .. &amp;&amp; make -j128</code></pre>
+<h3 id="53">5.3 飞控程序部署<a class="headerlink" href="#53" title="Permanent link"></a></h3>
 <p>交叉编译完成后，将在<code>build</code>目录下生成可执行文件<code>rflypilot</code>，该可执行文件只能运行于树莓派系统中。故需要上传到树莓派中才可以运行。于此同时，除了<code>rflypilot</code>文件以外，还有一些配置文件需要被同时上传到树莓派中</p>
 <ul>
 <li><code>config/parameter.txt</code>——用于存储自定义的飞控参数</li>
 <li><code>config/rflypilot.txt</code>——RflyPilot配置文件</li>
 </ul>
 <p>点击“Upload”后，即可在RflyPilot飞控中看到更新后的文件。</p>
-<p><font face="黑体" color=red size=3>注：第一次下载需要提前用WSL ubuntu 18.04登录树莓派的SSH, 并建立文件夹RflyPilot_Project\RflyPilot</font></p>
-<pre><code>dpi@navio:~ $ cd RflyPilot_Project/RflyPilot/
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">第一次下载需要提前用WSL ubuntu 18.04登录树莓派的SSH, 并建立文件夹RflyPilot_Project\RflyPilot</font></p>
+</div>
+<p></p><pre class="highlight"><code>pi@navio:~ $ cd RflyPilot_Project/RflyPilot/
 pi@navio:~/RflyPilot_Project/RflyPilot $ ls
 parameter.txt  rflypilot  rflypilot.txt
-pi@navio:~/RflyPilot_Project/RflyPilot $ 
-</code></pre>
-<p>至此，便完成了飞控程序的部署。</p>
-<h2 id="6-sih">6 飞控的运行（SIH）</h2>
-<p>为了方便演示，这里以SIH仿真为例，进行飞控的运行验证。
+pi@navio:~/RflyPilot_Project/RflyPilot $ </code></pre><br>
+至此，便完成了飞控程序的部署。
+<h2 id="6-sih">6 飞控的运行（SIH）<a class="headerlink" href="#6-sih" title="Permanent link"></a></h2>
+<p>为了方便演示，这里以SIH仿真为例，进行飞控的运行验证。<br>
 首先修改配置文件，将运行模式修改为SIH模式，即，<code>valid_mode = 1</code>。然后将<code>scope_ip</code>与<code>station_ip</code>修改为电脑IP。</p>
-<p><font face="黑体" color=red size=3>注：要注意在<code>=</code>两端存在两个空格，需要在配置文件中保留此空格！</font></p>
-<pre><code>########################### SYSTEM PARAMETER ###################
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">要注意在<code>=</code>两端存在两个空格，需要在配置文件中保留此空格！</font></p>
+</div>
+<p></p><pre class="highlight"><code>########################### SYSTEM PARAMETER ###################
 #validation mode SIH:1 HIL:2 EXP:3 OFFBOARD:4
 valid_mode = 1
 #SIH mode use real state
@@ -536,29 +589,34 @@ sys_scope_en = 1
 est_scope_en = 0
 ctrl_scope_en = 1
 # string
-scope_ip = &quot;192.168.199.233&quot; # 152
-station_ip = &quot;192.168.199.233&quot;
-log_dir = &quot;.&quot;
-########################## USER DEFINED PARAMETER #########################
-</code></pre>
-<p>然后通过命令<code>./rflypilot</code>即可运行飞控于SIH模式。
-系统启动时，界面如下</p>
-<p><img alt="sih_boot" src="../img/sih_boot.png" /></p>
-<p><font face="黑体" color=red size=3>注：此时应仔细观察调试输出信息，查看是否存在异常现象。</font></p>
-<p>系统正常启动后，界面如下
-<img alt="console" src="../img/console.png" /></p>
+scope_ip = "192.168.199.233" # 152
+station_ip = "192.168.199.233"
+log_dir = "."
+########################## USER DEFINED PARAMETER #########################</code></pre><br>
+然后通过命令<code>./rflypilot</code>即可运行飞控于SIH模式。<br>
+系统启动时，界面如下
+<p><img alt="sih_boot" src="../img/sih_boot.png"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>此时应仔细观察调试输出信息，查看是否存在异常现象。</p>
+</div>
+<p>系统正常启动后，界面如下<br>
+<img alt="console" src="../img/console.png"></p>
 <p>此时按<code>Ctrl+C</code>键即可中止程序的运行。</p>
-<h2 id="7-sih">7 SIH仿真</h2>
+<h2 id="7-sih">7 SIH仿真<a class="headerlink" href="#7-sih" title="Permanent link"></a></h2>
 <p>基于以上内容，读者已经完成了从环境安装到模型仿真（MIL），再到代码生成、运行飞控的全流程。笔者以SIH为例，介绍仿真的基本流程和操作。</p>
-<h3 id="71">7.1 前期准备</h3>
+<h3 id="71">7.1 前期准备<a class="headerlink" href="#71" title="Permanent link"></a></h3>
 <p>在SIH仿真模式下，由于飞控软件和被控对象都运行在RflyPilot中，并不需要连接到飞行器本体上，但是由于仿真过程中，需要输入控制指令，此时，还需要将遥控器的接收机连接到RflyPilot上。 故在SIH仿真模式下，硬件准备上，只需要RflyPilot与遥控器和接收机，最后通过WIFI连接到计算机，在RflySim3D上进行显示。</p>
-<p><img alt="" src="../../Basic/img/sih_con.jpg" /></p>
+<p><img alt="" src="../../Basic/img/sih_con.jpg"></p>
 <p>Scope示波器：打开MATLAB工程文件中的<code>debug_tools/udp_recv3_ke.slx</code>，该模型利用Simulink的UDP工具箱，实现了简易的飞控数据曲线实时展示功能，RflyPilot的一些关键数据，如位置、速度、姿态等信息，均会在飞控运行时实时显示。双击打开①后，配置②<code>Remote IP address</code>，该IP应设置为RflyPilot的IP。点击“确定”即可完成设置，随后点击“运行”。</p>
-<p><img alt="" src="../img/scope.jpg" /></p>
+<p><img alt="" src="../img/scope.jpg"></p>
 <p>RflySim3D: RflySim3D是一款基于UE引擎开发的飞行器视景显示平台，它是<a href="https://rfly.buaa.edu.cn/">可靠飞行控制组</a>开发的RflySim平台的一部分。使用者可以通过UDP发送特定协议的数据包，进而实现控制视景中无人机的位置、姿态、旋翼转速等，是无人机控制器开发的利器。更多的介绍请参考<a href="http://doc.rflysim.com/">RflySim官方网站</a>。Rflysim3D在RflyPilot中主要作为视景显示软件，位姿数据从RflyPilot中发送，通过UDP协议，由RflySim3D软件进行接收和显示。</p>
 <p>RflySim3D软件的相关使用介绍可以参考<a href="https://doc.rflysim.com/">Rflysim</a>。</p>
-<p><font face="黑体" color=red size=3>注：在进行SIH仿真时，运行RflySim3D和在线示波器的计算机和RflyPilot应处于同一局域网下</font></p>
-<h3 id="72">7.2 开始仿真</h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>在进行SIH仿真时，运行RflySim3D和在线示波器的计算机和RflyPilot应处于同一局域网下</p>
+</div>
+<h3 id="72">7.2 开始仿真<a class="headerlink" href="#72" title="Permanent link"></a></h3>
 <p>通过命令<code>./rflypilot</code>运行飞控即可，注意此时应该设置好飞控的仿真模式和IP地址。打开遥控器。此时在示波器中可以观察到当前飞行器的状态数据。</p>
 <table>
 <thead>
@@ -601,10 +659,16 @@ log_dir = &quot;.&quot;
 </tr>
 </tbody>
 </table>
-<p><font face="黑体" color=red size=3>注：MODE功能未明确在仿真模型中定义，该通道约定俗成为模式切换通道。ARM通道的设计与仿真模型无关，该通道的功能在底层飞控系统中固定为解锁通道。</font></p>
-<p><img alt="" src="../img/sih.PNG" /></p>
-<p><font face="黑体" color=red size=3>仿真技巧：仿真时应先解锁，再缓慢推油门，直至飞行器起飞</font></p>
-<h2 id="_1">参考资料</h2>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">MODE功能未明确在仿真模型中定义，该通道约定俗成为模式切换通道。ARM通道的设计与仿真模型无关，该通道的功能在底层飞控系统中固定为解锁通道。</font></p>
+</div>
+<p><img alt="" src="../img/sih.PNG"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><font face="黑体" color="red" size="3">仿真技巧：仿真时应先解锁，再缓慢推油门，直至飞行器起飞</font></p>
+</div>
+<h2 id="_1">参考资料<a class="headerlink" href="#_1" title="Permanent link"></a></h2>
 <p><a href="https://www.raspberrypi.com/documentation/computers/config_txt.html#overclocking-options">config.txt树莓派官方说明</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/76437760">树莓派超频</a></p>
 <p><a href="https://blog.csdn.net/cyuyan112233/article/details/44577033">树莓派配置文档config.txt说明</a></p>
@@ -623,7 +687,7 @@ log_dir = &quot;.&quot;
 - Such as `nmpc_solver_vz_wrapper.cpp`, the file generated by s-function builder not included in code gen folder need to be copied into RflyPilot project.
 
 ### 编译构建
-- 将配置文件复制到与可执行文件相同的目录下 -->
+- 将配置文件复制到与可执行文件相同的目录下 --></div>
               
             </div>
           </div><footer>
@@ -656,14 +720,15 @@ log_dir = &quot;.&quot;
     
   </span>
 </div>
-    <script>var base_url = '../..';</script>
-    <script src="../../js/theme_extra.js" defer></script>
-    <script src="../../js/theme.js" defer></script>
-      <script src="../../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

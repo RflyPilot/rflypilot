@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rflypilot.github.io/development/realtime/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>系统实时性 - RflyPilot Doc</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u7cfb\u7edf\u5b9e\u65f6\u6027";
+        var mkdocs_page_input_path = "development\\realtime.md";
+        var mkdocs_page_url = "/development/realtime/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/django.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-274394082"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-274394082");
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RflyPilot Doc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quick_start/env_install/">快速使用</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">用户手册</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/hardware_connection/">硬件连接</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/scope/">在线示波器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/console/">远程控制台</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/logger/">日志系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/calibration/">传感器校准</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/paramupdate/">在线调参</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">开发手册</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../sys_overview/">软硬件概览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rflypilot_system/">软件架构</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">系统实时性</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../task_period/">任务运行频率</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../msg/">线程间通信</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../net_interface/">网络通信接口</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../compiling_deploy/">编译与部署</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">展望</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Future/future/">下一代RflyPilot</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Help</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/help/">Contribute</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RflyPilot Doc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">开发手册</li>
+      <li class="breadcrumb-item active">系统实时性</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="_1">飞控系统的实时性<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
+<p>飞控系统的实时性指的是控制器运行频率高低与运行周期稳定性，飞行控制器的实时性是飞行控制的重要保障条件之一。对于传统的基于MCU的飞控方案，由于飞控中运行了嵌入式实时操作系统，飞控程序的实时性可以得到保障。而对于A系列处理器，保障其中飞控程序的实时性要比M系列处理器更加困难。虽然其计算能力有了极大的提高，控制算法可以以较高的频率运行，但是在飞控算法运行周期的稳定性方面，依然存在较大的挑战。</p>
+<h1 id="_2">实时补丁<a class="headerlink" href="#_2" title="Permanent link"></a></h1>
+<p>RflyPilot飞控系统使用的操作系统是<code>Navio2</code>，该系统支持<code>PREEMPT</code>补丁，有利于改善飞控系统的实时性。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><a href="https://docs.emlid.com/navio2/configuring-raspberry-pi/">Navio2的下载地址</a></p>
+</div>
+<h1 id="_3">多线程并行<a class="headerlink" href="#_3" title="Permanent link"></a></h1>
+<p>RflyPilot采用了多线程并行的方案，即将飞控任务划分为多个子任务，即线程。得益于树莓派的4核CPU，RflyPilot可以做到多线程并行运行，有效提高了核心任务的运行频率。</p>
+<p><img alt="" src="../img/htop_running.jpg"></p>
+<h1 id="_4">核心屏蔽与绑定<a class="headerlink" href="#_4" title="Permanent link"></a></h1>
+<h2 id="_5">基本原理<a class="headerlink" href="#_5" title="Permanent link"></a></h2>
+<p><strong>为了最大限度保障核心任务的运行不被打断，RflyPilot对于关键任务采用了核心绑定的操作，并在系统层面屏蔽了该CPU核心的使用，即系统默认不会使用该核心，在启动<code>rflypilot</code>后，某些关键任务将会被安排在该核心中运行。</strong></p>
+<p>下图中<code>Thread 1</code>与<code>Thread 2</code>分别运行于<code>CORE0</code>,<code>CORE1</code>。<code>Thread 3</code>与<code>Thread 4</code>运行于<code>CORE2</code>,<code>Thread 5</code>运行于<code>CORE3</code>。其中<code>Linux OS</code>运行于<code>CORE0</code>与<code>CORE1</code>中，它会打断<code>Thread 1</code>与<code>Thread 2</code>的运行。而<code>CORE2</code>与<code>CORE3</code>不运行Linux系统，其任务不易被打断，但是<code>Thread 3</code>与<code>Thread 4</code>容易相互打断。<code>Thread 5</code>独享<code>CORE3</code>，将具有较高的实时性。</p>
+<p><img alt="" src="../img/corebind_graph.jpg"></p>
+<h2 id="_6">运行结果<a class="headerlink" href="#_6" title="Permanent link"></a></h2>
+<p>当飞控程序未运行时，CPU占用情况为</p>
+<p><img alt="" src="../img/corebind_idle.png"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>RflyPilot默认设置<code>CORE2</code>与<code>CORE3</code>为被隔离的CPU核心，相关的配置文件为<code>/boot/cmdline.txt</code>，<code>isolcpus=2,3</code>。<br>
+</p><pre class="highlight"><code>dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait isolcpus=2,3</code></pre>
+</div>
+<p>飞控实际运行后结果如下</p>
+<p><img alt="" src="../img/corebind_runing.png"></p>
+<p>实际绑定情况如下</p>
+<p><img alt="" src="../img/corebind.jpg"></p>
+<h2 id="_7">核心绑定设置<a class="headerlink" href="#_7" title="Permanent link"></a></h2>
+<p>关于飞控的核心绑定设置，读者可以参考RflyPilot飞控代码下的<code>config/configure.h</code>文件。<br>
+</p><pre class="highlight"><code class="language-C">/* Estimator Thread Core */
+#define ATT_EST_CORE 2
+#define POS_EST_CORE 2
+
+/* Sensor Thread Core */
+#define IMU_CORE 2
+#define MAG_CORE 2
+#define BARO_CORE 2
+#define GPS_CORE 2
+
+/* Control Thread Core */
+#define SUBS_CORE 2
+#define BASIC_CTRL_CORE 2
+#define CTRL_CORE 3
+
+/* SIH Thread Core */
+#define SIH_CORE 2
+
+/* Serve Thread Core */
+#define SCREEN_CORE 1
+#define CONSOLE_CORE 1
+#define LOG_CORE 1
+#define ULOG_CORE 1</code></pre>
+<div class="admonition 提示">
+<p class="admonition-title">提示</p>
+<p>如果开发者需要为自己的线程绑定核心可以在线程函数中运行一次<code>core_bind(x);</code>，<code>x</code>为核心标号（0-3）。</p>
+</div>
+<h1 id="_8">线程同步机制<a class="headerlink" href="#_8" title="Permanent link"></a></h1>
+<h2 id="_9">优点<a class="headerlink" href="#_9" title="Permanent link"></a></h2>
+<p>线程同步机制的核心目的是让核心线程（如，IMU线程、姿态估计线程、控制器线程）之间的线程间通信延迟最小。以提高系统环路中延迟时间的稳定性，改善系统性能。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>实验表明，线程同步机制可以极大改善飞行器在高动态下的闭环稳定性。</p>
+</div>
+<h2 id="_10">基本原理<a class="headerlink" href="#_10" title="Permanent link"></a></h2>
+<p>RflyPilot中线程同步采用了触发的方式，首先IMU线程以固定频率运行（通过延时函数<code>delay_us_combined()</code>），当计数器<code>count_for_lpe == IMU_LPE</code>条件成立时，触发<code>pthread_cond_signal(&amp;cond_imu2lpe)</code>。而LPE线程运行时会等待<code>pthread_cond_wait(&amp;cond_imu2lpe, &amp;mutex_imu2lpe)</code>，直到收到有IMU线程传来的消息才开始执行循环。之后由LPE线程会触发姿态估计线程，最后是控制器线程。</p>
+<p><img alt="" src="../img/thread_sync.jpg"></p>
+<h2 id="_11">基本设置<a class="headerlink" href="#_11" title="Permanent link"></a></h2>
+<p>其配置文件在RflyPilot飞控代码下的<code>config/configure.h</code>中。目前RflyPilot只对核心线程启用了该功能。</p>
+<pre class="highlight"><code class="language-C">/* Rate Div */
+#define USING_THREAD_SYNC 0
+#define IMU_LPE 1
+#define LPE_ATT 1
+#define ATT_CTRL 2</code></pre>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="red" size="3">默认该功能未启用，为启用线程同步机制，需要将<code>USING_THREAD_SYNC</code>设为<code>1</code>。<code>IMU_LPE</code>/<code>LPE_ATT</code>/<code>ATT_CTRL</code>为相应的分频系数。</font></p>
+</div>
+<p>IMU线程的运行频率可以在<code>rflypilot.txt</code>文件中进行设置，默认<code>imu_rate = 800</code>，即800Hz。</p>
+<table>
+<thead>
+<tr>
+<th>线程</th>
+<th>运行频率(Hz)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IMU</td>
+<td>800</td>
+</tr>
+<tr>
+<td>LPE</td>
+<td>800/IMU_LPE = 800</td>
+</tr>
+<tr>
+<td>ATT</td>
+<td>800/IMU_LPE/LPE_ATT = 800</td>
+</tr>
+<tr>
+<td>CTRL</td>
+<td>800/IMU_LPE/LPE_ATT/ATT_CTRL = 400</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">运行结果<a class="headerlink" href="#_12" title="Permanent link"></a></h2>
+<p><img alt="" src="../img/thread_sync_result.jpg"></p>
+<p><img alt="" src="../img/thread_rate.jpg"></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>当启用<code>USING_THREAD_SYNC</code>后，<code>rflypilot.txt</code>中的<code>controller_rate</code>,<code>attitude_est_rate</code>,<code>lpe_rate</code>将不再生效。</p>
+</div>
+<h1 id="_13">代码优化<a class="headerlink" href="#_13" title="Permanent link"></a></h1>
+<p>在代码中，RflyPilot尽量减少了频繁的IO操作，以保障较小的任务耗时。</p></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../rflypilot_system/" class="btn btn-neutral float-left" title="软件架构"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../task_period/" class="btn btn-neutral float-right" title="任务运行频率">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../rflypilot_system/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../task_period/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
