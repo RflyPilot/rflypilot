@@ -14,8 +14,11 @@ void * thread_ulog(void * dir)
 ```
 配置完成后，运行``./rflypilot``，即可在当前目录下创建一个以``log``开头并包含时间的文件夹，用于存储log。
 
-<font face="黑体" color=red size=3>注：RflyPilot默认只会在EXP和HIL模式下启用ulog记录线程。日志记录频率不可过高，否则会导致系统资源紧张。</font>
+![](img/log_rec.jpg)
+
+!!! Warning
+    <font face="黑体" color=red size=3>注：RflyPilot默认只会在EXP和HIL模式下启用ulog记录线程。日志记录频率不可过高，否则会导致系统资源紧张。</font>
 
 # 日志的解析
 
-记录得到的ulog日志文件可以通过SSH拷贝到计算机中用``ulog2csv``函数进行解析，也可以直接使用日志查看工具[FlightPlot](https://github.com/DrTon/FlightPlot)。
+记录得到的ulog日志文件可以通过SSH拷贝到计算机中用``ulog2csv``函数进行解析，也可以直接使用日志查看工具[FlightPlot](https://github.com/DrTon/FlightPlot)，这里不再赘述。

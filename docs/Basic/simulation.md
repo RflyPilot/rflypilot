@@ -53,6 +53,20 @@ HIL，即半物理仿真，一般作为实飞实验的最后一步，在这个�
 
 #define TASK_SCHEDULE_DEBUG 0
 ```
+
 最后重新编译上传即可。
 
-<font face="黑体" color=red size=3>由于半物理仿真平台的PWM信号支持标注400HzPWM和Oneshot125，使用者可以根据需要修改该文件进行适配。默认配置为Oneshot125，如需修改为400Hz的PWM，可以设置``USE_ONESHOT_125 0``。</font>
+!!! 注意
+    <font face="黑体" color=red size=3>由于半物理仿真平台的PWM信号支持标注400HzPWM和Oneshot125，使用者可以根据需要修改该文件进行适配。默认配置为Oneshot125，如需修改为400Hz的PWM，可以设置``USE_ONESHOT_125 0``。</font>
+
+
+# EXP
+EXP，即实飞实验模式，在该模式下，RflyPilot将利用真实的传感器数据计算控制输出，并直接输出PWM控制指令。为启用该模式，读者需要修改``valid_mode = 3``，同时修改宏定义文件``config/configure.h``中的``USE_RFLYPILOT``为``1``。在该模式下，需要开发者自行连接飞控到飞行器上，包括电源模块、GPS、接收机、电调等。
+
+如下图所示，这是一架搭载RflyPilot的四旋翼无人机
+
+![](img/quadcopter_with_rflypilot.jpg)
+
+实飞效果如下
+
+![](img/realflight.gif)

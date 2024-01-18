@@ -3,6 +3,9 @@
 ## 0 硬件与软件准备
 1. RflyPilot飞控
 2. 装有WSL与MATLAB2022B的Windows电脑
+
+
+
 ## 1 RflyPilot系统配置
 ### 1.1 树莓派固件准备
 
@@ -26,11 +29,15 @@ RflyPilot采用的是树莓派CM4核心板，与树莓派4B标准版不同，它
 |3|SW|SBUS协议|IBUS协议|
 
 
-<font face="黑体" color=red size=3>注意：飞控程序开机自启功能目前并未实现</font>
-
+!!! 注意
+	<font face="黑体" color=red size=3>飞控程序开机自启功能目前并未实现</font>
 
 #### 1.2.2 RflyPilot固件下载
-1. 首先需要安装驱动程序，[rpiboot](https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe)，安装完成后运行``rpiboot.exe``，然后将将RflyPilot拨码开关的``BOOT``键拨为``ON``，即识别为U盘。通过USB线连接到电脑。（注意：此时不能将飞控连接到飞机上，以免出现信号异常现象）稍等一会儿，便会看到如下界面
+1. 首先需要安装驱动程序，[rpiboot](https://github.com/raspberrypi/usbboot/raw/master/win32/rpiboot_setup.exe)，安装完成后运行``rpiboot.exe``，然后将将RflyPilot拨码开关的``BOOT``键拨为``ON``，即识别为U盘。通过USB线连接到电脑。
+!!! 注意
+	<font face="黑体" color=red size=3>此时不能将飞控连接到飞机上，以免出现信号异常现象</font>
+
+稍等一会儿，便会看到如下界面
 ![Rpiboot界面](img/rpiboot.png)
 最后可以看到新增的两个磁盘
 ![树莓派U盘](img/rpiboot_udisk.png)
@@ -67,15 +74,15 @@ start_x=0
 # usb otg host mode
 dtoverlay=dwc2,dr_mode=host
 ```
-注：这里将usb口设置成了host模式，如需要利用树莓派的USB口给其他设备供电，需要短接飞控板上的D1二极管以保障飞控可以为USB设备供电。
+!!! TIP
+	这里将usb口设置成了host模式，如需要利用树莓派的USB口给其他设备供电，需要短接飞控板上的D1二极管以保障飞控可以为USB设备供电。
 #### 1.3.2 配置``/boot/cmdline.txt``
 ```
 dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait isolcpus=2,3
 ```
-注：
-
-- 这里``isocpus=2,3``的意思是隔离CPU2与CPU3，即系统默认不会使用这两个核心，这两个核心将主要被用于运行飞控系统。当前的树莓派CM4，一共4个CPU核心，分别是CPU0\CPU1\CPU2\CPU3。
-- 如果是Rpi官方系统``root=/dev/mmcblk0p2``的内容可能每次刷固件都是不一样的，也可能和系统版本有关系，笔者这里没有深入了解。
+!!! 注意
+	- 这里``isocpus=2,3``的意思是隔离CPU2与CPU3，即系统默认不会使用这两个核心，这两个核心将主要被用于运行飞控系统。当前的树莓派CM4，一共4个CPU核心，分别是CPU0\CPU1\CPU2\CPU3。
+	- 如果是Rpi官方系统``root=/dev/mmcblk0p2``的内容可能每次刷固件都是不一样的，也可能和系统版本有关系，笔者这里没有深入了解。
 #### 1.3.3 配置``/boot/wpa_supplication.conf``
 ```
 country=CN
@@ -86,20 +93,23 @@ network={
 	psk="XXXXXXXX"
 }
 ```
-注：此处为WIFI设置，需要根据实际情况进行配置，RflyPilot将在系统启动时连接该WIFI。
+!!! TIP
+	此处为WIFI设置，需要根据实际情况进行配置，RflyPilot将在系统启动时连接该WIFI。
+
 #### 1.3.4 配置SSH
 在``boot``目录下创建一个空文件，文件名取为``ssh``即可，此时系统将默认在开始时启动SSH服务。
 
-至此，便完成了RflyPilot飞控操作系统的基本配置，注意，配置完成后，应将``BOOT``开关拨回``OFF``，以从内部存储启动系统。
+至此，便完成了RflyPilot飞控操作系统的基本配置。
+!!! 注意
+	配置完成后，应将``BOOT``开关拨回``OFF``，以从内部存储启动系统。
 
 #### 1.4 树莓派操作系统的使用
 本小节主要介绍树莓派操作系统的基本使用方法与常用指令。
 树莓派上电之后等待一会，这个过程中，飞控的黄色指示灯(ACTION)会闪烁，表示系统正在执行某些任务。最终两颗红色LED会常亮，表示系统启动完成。此时通过SSH即可连接到树莓派系统。这里使用``WindTerm``作为终端软件进行SSH连接（需要树莓派自动连接WIFI）。值得一提的是，由于树莓派系统资源有限，这里直接使用基于命令行的方式进行了交互，以减低系统自身的消耗。
 
-注意：
-
-- 默认用户名：``pi``
-- 默认密码：``raspberry``
+!!! TIP
+	- 默认用户名：``pi``
+	- 默认密码：``raspberry``
 
 ![使用WindTerm连接树莓派](img/ssh_shell.png)
 
@@ -119,7 +129,8 @@ network={
 4. 安装Virtual Studio 2017用于代码生成
 5. 安装MATLAB 2022b
 
-注意：这里使用WSL子系统的主要目的是用于[交叉编译](https://baike.baidu.com/item/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/10916911)，这里主要考虑到，飞控代码在树莓派机载端直接编译会非常慢，而通过Linux系统计算机编译会快很多。为了提高开发效率，RflyPilot选择使用交叉编译的方式在Linux端直接编译得到可以用在树莓派端执行的可执行文件。
+!!! TIP
+	这里使用WSL子系统的主要目的是用于[交叉编译](https://baike.baidu.com/item/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/10916911)，这里主要考虑到，飞控代码在树莓派机载端直接编译会非常慢，而通过Linux系统计算机编译会快很多。为了提高开发效率，RflyPilot选择使用交叉编译的方式在Linux端直接编译得到可以用在树莓派端执行的可执行文件。
 ### 2.1 WSL环境配置
 进入WSL后，执行命令
 ```
@@ -206,7 +217,11 @@ cd ..
 - Estimator/PositionEstimatorParameters.m
 - Model/ModelParam_H2504S.m
 
-注意：为避免后续仿真过程中文件路径发生错误等问题**强烈**建议在后续进行仿真的过程中，工作目录依然保持在工程根目录下，即Raspberry_fc_matlab目录下。
+!!! 注意
+	<font face="黑体" color=red size=3>为避免后续仿真过程中文件路径发生错误等问题**强烈**建议在后续进行仿真的过程中，工作目录依然保持在工程根目录下，即Raspberry_fc_matlab目录下。</font>
+
+
+
 ### 3.2 综合仿真
 
 打开MIL/MIL_HIL.slx模型
@@ -221,7 +236,8 @@ cd ..
 ![默认控制台](img/dashboard.png)
 ![Rflysim3D视角](img/quadcopter_rflysim3d.png)
 
-注意：需要保证NMPC求解器源码文件夹``acado_MPC``在工程根目录下，同时确保其已经加载到工程索引路径中。
+!!! 注意
+	<font face="黑体" color=red size=3>需要保证NMPC求解器源码文件夹``acado_MPC``在工程根目录下，同时确保其已经加载到工程索引路径中。</font>
 
 ## 4 代码生成
 在进行数值仿真之后，我们已经对系统的性能有了一个基本的判断。可以进行下一步的验证工作，包括HIL(半物理仿真)、SIH(硬件仿真)、EXP(实飞实验)。然而这些验证模式都需要将仿真程序转化为可以进行实际部署的形式，所以将这些模型进行代码生成则是一条必经之路。
@@ -232,7 +248,11 @@ cd ..
 
 在上述设置完成之后，即可对该控制器模型进行代码生成。进入APP下的Embedded Code工具箱，选择进行**编译**。
 
-注意：代码生成过程中可能会遇到错误，可以尝试将acado_MPC文件夹下的文件进行重新加载，或尝试清除``cache``和``simulink_codegen``文件夹下的内容后重新生成。
+!!! TIP
+	代码生成过程中可能会遇到错误，可以尝试将acado_MPC文件夹下的文件进行重新加载，或尝试清除``cache``和``simulink_codegen``文件夹下的内容后重新生成。
+
+
+
 最终可以得到如下界面。
 
 ![控制器代码生成结果](img/codegen_result.png)
@@ -248,7 +268,8 @@ cd ..
 
 ![sih_codegen_err](img/err_sih_codegen.png)
 
-注意：在生成过程中可能遇到如下报错，直接点击“修复”即可。
+!!! TIP
+	在生成过程中可能遇到如下报错，直接点击“修复”即可。
 
 ## 5 代码的部署编译与RflyPilot
 ### 5.1 代码部署
@@ -334,11 +355,11 @@ cmake .. && make -j128
 
 点击“Upload”后，即可在RflyPilot飞控中看到更新后的文件。
 
-
-<font face="黑体" color=red size=3>注：第一次下载需要提前用WSL ubuntu 18.04登录树莓派的SSH, 并建立文件夹RflyPilot_Project\RflyPilot</font>
+!!! 注意
+	<font face="黑体" color=red size=3>第一次下载需要提前用WSL ubuntu 18.04登录树莓派的SSH, 并建立文件夹RflyPilot_Project\RflyPilot</font>
 
 ```
-dpi@navio:~ $ cd RflyPilot_Project/RflyPilot/
+pi@navio:~ $ cd RflyPilot_Project/RflyPilot/
 pi@navio:~/RflyPilot_Project/RflyPilot $ ls
 parameter.txt  rflypilot  rflypilot.txt
 pi@navio:~/RflyPilot_Project/RflyPilot $ 
@@ -347,8 +368,8 @@ pi@navio:~/RflyPilot_Project/RflyPilot $
 ## 6 飞控的运行（SIH）
 为了方便演示，这里以SIH仿真为例，进行飞控的运行验证。
 首先修改配置文件，将运行模式修改为SIH模式，即，``valid_mode = 1``。然后将``scope_ip``与``station_ip``修改为电脑IP。
-
-<font face="黑体" color=red size=3>注：要注意在``=``两端存在两个空格，需要在配置文件中保留此空格！</font>
+!!! 注意
+	<font face="黑体" color=red size=3>要注意在``=``两端存在两个空格，需要在配置文件中保留此空格！</font>
 
 ```
 ########################### SYSTEM PARAMETER ###################
@@ -386,7 +407,8 @@ log_dir = "."
 
 ![sih_boot](img/sih_boot.png)
 
-<font face="黑体" color=red size=3>注：此时应仔细观察调试输出信息，查看是否存在异常现象。</font>
+!!! TIP
+	此时应仔细观察调试输出信息，查看是否存在异常现象。
 
 系统正常启动后，界面如下
 ![console](img/console.png)
@@ -408,7 +430,8 @@ RflySim3D: RflySim3D是一款基于UE引擎开发的飞行器视景显示平台�
 
 RflySim3D软件的相关使用介绍可以参考[Rflysim](https://doc.rflysim.com/)。
 
-<font face="黑体" color=red size=3>注：在进行SIH仿真时，运行RflySim3D和在线示波器的计算机和RflyPilot应处于同一局域网下</font>
+!!! TIP
+	在进行SIH仿真时，运行RflySim3D和在线示波器的计算机和RflyPilot应处于同一局域网下
 
 ### 7.2 开始仿真
 通过命令``./rflypilot``运行飞控即可，注意此时应该设置好飞控的仿真模式和IP地址。打开遥控器。此时在示波器中可以观察到当前飞行器的状态数据。
@@ -422,11 +445,12 @@ RflySim3D软件的相关使用介绍可以参考[Rflysim](https://doc.rflysim.co
 |CH5|MODE*|用于设置飞行模式|
 |CH6|ARM|用于解锁(ARM>1250)|
 
-<font face="黑体" color=red size=3>注：MODE功能未明确在仿真模型中定义，该通道约定俗成为模式切换通道。ARM通道的设计与仿真模型无关，该通道的功能在底层飞控系统中固定为解锁通道。</font>
+!!! 注意
+	<font face="黑体" color=red size=3>MODE功能未明确在仿真模型中定义，该通道约定俗成为模式切换通道。ARM通道的设计与仿真模型无关，该通道的功能在底层飞控系统中固定为解锁通道。</font>
 
 ![](img/sih.PNG)
-
-<font face="黑体" color=red size=3>仿真技巧：仿真时应先解锁，再缓慢推油门，直至飞行器起飞</font>
+!!! TIP
+	<font face="黑体" color=red size=3>仿真技巧：仿真时应先解锁，再缓慢推油门，直至飞行器起飞</font>
 ## 参考资料
 
 [config.txt树莓派官方说明](https://www.raspberrypi.com/documentation/computers/config_txt.html#overclocking-options)

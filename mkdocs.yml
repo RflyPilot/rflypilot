@@ -6,7 +6,7 @@ nav:
     #     - 软硬件架构:  introduction/sys_overview.md
     - Getting Started:
         - 快速使用: quick_start/env_install.md
-    - 基本使用:
+    - 用户手册:
         - 硬件连接: Basic/hardware_connection.md
         - MIL\SIH\HIL仿真: Basic/simulation.md
         - 在线示波器: Basic/scope.md
@@ -14,32 +14,72 @@ nav:
         - 日志系统: Basic/logger.md
         - 传感器校准: Basic/calibration.md
         - 在线调参: Basic/paramupdate.md
-        - 实飞实验: Basic/experiment.md
+        #- 实飞实验: Basic/experiment.md
         # - Quick Start: Basic/index.md
         # - Configuration: Basic/config.md
         - 模型预测控制应用案例: mpc/mpc_example.md
-    - 开发者文档: 
+    - 开发手册: 
         # - SIH: Sim/SIH.md
         # - HIL: Sim/HIL.md
         # - OFFBOARD: Sim/OFFBOARD.md
-        - 软硬件架构: development/sys_overview.md
+        - 软硬件概览: development/sys_overview.md
+        - 软件架构: development/rflypilot_system.md
+        - 系统实时性: development/realtime.md
+        - 任务运行频率: development/task_period.md
+        - 线程间通信: development/msg.md
     - 展望:
         - 下一代RflyPilot: Future/future.md
     - Help:
         - Contribute: others/help.md
 
+
 theme: 
     name: readthedocs
     # name: mkdocs
+    # name: gitbook
     highlightjs: true
+    analytics: {gtag: 'G-274394082'}
+    highlightjs: true
+    hljs_languages:
+      - yaml
+      - django
 
+extra_css:
+  - css/extra.css
 
-# markdown_extensions:
-#   - nl2br
-#   - admonition
-#   - pymdownx.details
-#   - pymdownx.superfences
+markdown_extensions:
+  - toc:
+      permalink: 
+  - attr_list
+  - md_in_html
+  - def_list
+  - tables
+  - pymdownx.highlight:
+      use_pygments: false
+  - nl2br
+  - admonition
+  - pymdownx.details
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - callouts
+  - mdx_gh_links:
+      user: mkdocs
+      repo: mkdocs
+  - mkdocs-click
+  - markdown_checklist.extension
+  # - markdown_captions
 
-# plugins:
-#   - search
-#   - callouts
+plugins:
+  - search
+  - autorefs
+  # - git-latest-changes #展示最近一次更新的变化
+  # - git-latest-release
+  - mkdocs-video:
+      is_video: true
+      video_autoplay: false
+  - resize-images:
+      source-dir: img-large
+      target-dir: img
+      enable_cache: True
+      size: [400, 400]
+      extensions: ['.jpg', '.jpeg', '.png', '.svg']

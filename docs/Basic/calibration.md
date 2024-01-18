@@ -23,7 +23,8 @@ mag_offset_0 = 0.000000
 mag_offset_1 = 0.000000
 mag_offset_2 = 0.000000
 ```
-<font face="黑体" color=red size=3>注意文件内容的格式，要保留空格。主要陀螺仪的尺度系数``gyro_scale_{0,1,2}``应设置为``1``。</font>
+!!! TIP
+    注意文件内容的格式，要保留空格。主要陀螺仪的尺度系数``gyro_scale_{0,1,2}``应设置为``1``。
 # 陀螺仪校准
 在控制台中输入``calib gyro``，等待一段时间，即可完成校准。
 ```
@@ -40,7 +41,8 @@ Please do not move the aircraft
  gyro_z_offset =        -0.002992
 calibration finished !
 ```
-<font face="黑体" color=red size=3>注：在校准的过程中一定要保持RflyPilot处于静止状态；这里只校准了陀螺仪的零偏，没有校准陀螺仪的尺度系数。建议在上电之后IMU器件温度稳定后再进行校准。</font>
+!!! TIP
+    在校准的过程中一定要保持RflyPilot处于静止状态；这里只校准了陀螺仪的零偏，没有校准陀螺仪的尺度系数。建议在上电之后IMU器件温度稳定后再进行校准。
 
 在输入``calib save``即可保存校准数据。
 ```
@@ -85,7 +87,9 @@ mag_offset_1 is 0.000000
 mag_offset_2 is 0.000000
 calibration finished !
 ```
-<font face="黑体" color=red size=3>注：校准结果将被存储在与``rflypilot``可执行文件同级的``calibration.txt``中。</font>
+
+!!! TIP
+校准结果将被存储在与``rflypilot``可执行文件同级的``calibration.txt``中。
 
 # 加速度计校准
 RflyPilot的坐标系定义如下
@@ -202,9 +206,12 @@ A = 4175.0000
 0.092122 0.183707 0.208248
 calibration finished !
 ```
+
 磁力计计校准完成后，利用``calib save``保存即可，数据将写入到``calibration.txt``中。
 
-<font face="黑体" color=red size=3>注：磁力计的校准需要在磁场干扰较少的区域，要尽量避免周围有金属物质。</font>
+
+!!! TIP
+    磁力计的校准需要在磁场干扰较少的区域，要尽量避免周围有金属物质。
 
 # 其他
 1. 如要查看当前传感器校准参数，可以输入命令``calib load``，即可列出当前校准参数。

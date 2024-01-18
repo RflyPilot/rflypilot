@@ -59,8 +59,8 @@ IMU传感器板如下图所示，⑩应与司相连
 |5V|5V|BAT_V|BAT_I|GND|GND|
 
 **⑨Type-C USB**
-
-<font face="黑体" color=red size=3>注：默认该TypeC接口允许作为电源输入接口，但无法对外供电。如需供电需短接电路板上的``D1``二极管。</font>
+!!! 注意
+    <font face="黑体" color=red size=3>默认该TypeC接口允许作为电源输入接口，但无法对外供电。如需供电需短接电路板上的``D1``二极管。</font>
 
 **⑩IMU板接口**
 
@@ -81,8 +81,8 @@ IMU传感器板如下图所示，⑩应与司相连
 ![遥控器驱动](img/rc_driver.jpg)
 
 遥控器指令输入对应``MIL``仿真模型中的``Real RC``模块。
-
-<font face="黑体" color=red size=3>注：Simulink中的``Pilot Joystick``模块，除了支持富斯的这款遥控器之外，也支持其他遥控器，笔者在这里没有过多尝试。</font>
+!!! Tips
+    <font face="黑体" color=red size=3>Simulink中的``Pilot Joystick``模块，除了支持富斯的这款遥控器之外，也支持其他遥控器，笔者在这里没有过多尝试。</font>
 ## SIH仿真
 在SIH仿真模式下，由于飞控软件和被控对象都运行在RflyPilot中，并不需要连接到飞行器本体上，但是由于仿真过程中，需要输入控制指令，此时，还需要将遥控器的接收机连接到RflyPilot上。
 故在SIH仿真模式下，硬件准备上，只需要RflyPilot与遥控器和接收机，最后通过WIFI连接到计算机，在RflySim3D上进行显示。
@@ -97,15 +97,15 @@ HIL仿真相比于实飞实验的区别是RflyPilot飞控直接连接到半物�
 ![HIL仿真器-飞控平台](img/raspberrypi_hil.jpg)
 
 将以上两个组件拼接完成后，得到了可以用于硬件在环仿真的RflyPilot。
-
-<font face="黑体" color=red size=3>注：由于前期硬件电路设计存在一些小问题，串口芯片``SC16IS752IPW``的中断引脚没有连接到树莓派的``BCM24``号引脚，故这里增加了红色飞线</font>
+!!! 注意
+    <font face="黑体" color=red size=3>由于前期硬件电路设计存在一些小问题，串口芯片``SC16IS752IPW``的中断引脚没有连接到树莓派的``BCM24``号引脚，故这里增加了红色飞线</font>
 
 ![用于HIL仿真的RflyPilot](img/rflypilot_hil.jpg)
 
 参考[硬件在环实时仿真平台](https://rflybuaa.github.io/RflySimRTDoc/)中的教程进行硬件连接，便可以得到如下半物理联合仿真平台。
 
 ![用于HIL仿真的RflyPilot](img/rflypilot_fpga.jpg)
-
-<font face="黑体" color=red size=3>注：由于飞控运行时处理器功率增加，为保障计算性能，建议使用大功率电源连接树莓派。</font>
+!!! TIP
+    <font face="黑体" color=red size=3>由于飞控运行时处理器功率增加，为保障计算性能，建议使用大功率电源连接树莓派。</font>
 
 ## 实飞实验
