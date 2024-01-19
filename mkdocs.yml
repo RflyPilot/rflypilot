@@ -8,7 +8,7 @@ nav:
         - 快速使用: quick_start/env_install.md
     - 用户手册:
         - 硬件连接: Basic/hardware_connection.md
-        - MIL\SIH\HIL仿真: Basic/simulation.md
+        - MIL\SIH\HIL仿真与实验: Basic/simulation.md
         - 在线示波器: Basic/scope.md
         - 远程控制台: Basic/console.md
         - 日志系统: Basic/logger.md
@@ -29,6 +29,8 @@ nav:
         - 线程间通信: development/msg.md
         - 网络通信接口: development/net_interface.md
         - 编译与部署: development/compiling_deploy.md
+        - 其他设置: development/other.md
+        - 开发示例: development/rflypilot_dev_example.md
     - 展望:
         - 下一代RflyPilot: Future/future.md
     - Help:

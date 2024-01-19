@@ -59,11 +59,11 @@ void main(void)
     for(;;)
     {
         task();//耗时约400us
-        adp_delay.delay_us(500);//单位us
+        adp_delay.delay_us(1000000/800);//单位us
     }
 }
 ```
-## 运行结果
+## IMU线程运行结果
 可以观察到IMU频率逐渐稳定在800Hz的拨动曲线。
 
 ![](img/adp_delay.jpg)
