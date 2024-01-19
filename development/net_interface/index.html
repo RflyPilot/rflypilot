@@ -59,7 +59,7 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/hardware_connection/">硬件连接</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真与实验</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/scope/">在线示波器</a>
                   </li>
@@ -91,6 +91,10 @@
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../compiling_deploy/">编译与部署</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../other/">其他设置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rflypilot_dev_example/">开发示例</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">展望</span></p>
@@ -127,7 +131,81 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="_1">网络通信接口<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
+                <div><h1 id="_1">网络通信接口<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
+<p>本小节将介绍RflyPilot的网络通信接口，包括RflySim3D接口、示波器接口等。</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>接口</th>
+<th>接/发</th>
+<th>说明</th>
+<th>源文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>远程控制台SSH</td>
+<td>TCP:22</td>
+<td>接发</td>
+<td>任何模式</td>
+<td></td>
+</tr>
+<tr>
+<td>RflySim3D视景显示</td>
+<td>UDP:20010</td>
+<td>发送</td>
+<td>在SIH模式下启用</td>
+<td><code>src/application/scope_thread.cpp</code></td>
+</tr>
+<tr>
+<td>系统示波器</td>
+<td>UDP:3333</td>
+<td>发送</td>
+<td>任何模式</td>
+<td><code>src/application/scope_thread.cpp</code></td>
+</tr>
+<tr>
+<td>控制器示波器（自定义）</td>
+<td>UDP:3334</td>
+<td>发送</td>
+<td>任何模式</td>
+<td><code>src/application/scope_thread.cpp</code></td>
+</tr>
+<tr>
+<td>姿态估计示波器（自定义）</td>
+<td>UDP:3335</td>
+<td>发送</td>
+<td>任何模式</td>
+<td><code>src/application/scope_thread.cpp</code></td>
+</tr>
+<tr>
+<td>位置估计示波器（自定义）</td>
+<td>UDP:3336</td>
+<td>发送</td>
+<td>任何模式</td>
+<td><code>src/application/scope_thread.cpp</code></td>
+</tr>
+<tr>
+<td>执行器远程调试接口</td>
+<td>UDP:2222</td>
+<td>接收</td>
+<td>在OFFBOARD模式启用</td>
+<td><code>src/application/offboard_thread.cpp</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>执行器远程调试接口的功能是提供Simulink接口，使开发者可以利用Simulink调节执行器输出的PWM。相应的Simulink文件在<code>debug_tools/udp_send.slx</code>文件中。</p>
+</div>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p>使用RflyPilot的网络相关功能时，需要将RflyPilot连接到局域网，同时设置好<code>rflypilot.txt</code>中的<code>scope_ip</code>（在线示波器计算机的IP）和<code>station_ip</code>(RflySim3D和执行器远程调试接口计算机的IP)。<br>
+</p><pre class="highlight"><code class="language-C"># string
+scope_ip = "192.168.199.233" # 152
+station_ip = "192.168.199.233"</code></pre>
+</div></div>
               
             </div>
           </div><footer>

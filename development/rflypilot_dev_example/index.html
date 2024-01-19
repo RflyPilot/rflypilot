@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://rflypilot.github.io/development/rflypilot_dev_example/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>开发示例 - RflyPilot Doc</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u5f00\u53d1\u793a\u4f8b";
+        var mkdocs_page_input_path = "development\\rflypilot_dev_example.md";
+        var mkdocs_page_url = "/development/rflypilot_dev_example/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/django.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-274394082"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-274394082");
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> RflyPilot Doc
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../quick_start/env_install/">快速使用</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">用户手册</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/hardware_connection/">硬件连接</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真与实验</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/scope/">在线示波器</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/console/">远程控制台</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/logger/">日志系统</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/calibration/">传感器校准</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/paramupdate/">在线调参</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../mpc/mpc_example/">模型预测控制应用案例</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">开发手册</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../sys_overview/">软硬件概览</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rflypilot_system/">软件架构</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../realtime/">系统实时性</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../task_period/">任务运行频率</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../msg/">线程间通信</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../net_interface/">网络通信接口</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../compiling_deploy/">编译与部署</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../other/">其他设置</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">开发示例</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1">1 目录结构</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-io">2 增加IO驱动</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">展望</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Future/future/">下一代RflyPilot</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Help</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../others/help/">Contribute</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">RflyPilot Doc</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">开发手册</li>
+      <li class="breadcrumb-item active">开发示例</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="_1">开发示例<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
+<p>本小节将给出RflyPilot开发示例。首先介绍RflyPilot飞控目录结构，然后介绍如何为RflyPilot增加驱动和独立的线程，最终给出运行结果。</p>
+<h2 id="1">1 目录结构<a class="headerlink" href="#1" title="Permanent link"></a></h2>
+<pre class="highlight"><code>.
+├── CMakeLists.txt
+├── README.md
+├── basic_controller_codegen
+│   ├── CMakeLists.txt
+├── build
+├── config
+│   ├── calibration.txt
+│   ├── configure.h
+│   ├── parameter.txt
+│   └── rflypilot.txt
+├── controller_codegen
+│   ├── CMakeLists.txt
+├── estimator_codegen
+│   ├── CMakeLists.txt
+├── sih_codegen
+│   ├── CMakeLists.txt
+├── src
+│   ├── 3rdparty
+│   │   ├── conf-c
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── LICENSE
+│   │   │   ├── README.md
+│   │   │   ├── example
+│   │   │   │   ├── Makefile
+│   │   │   │   ├── configrc
+│   │   │   │   ├── create
+│   │   │   │   ├── create.c
+│   │   │   │   ├── read
+│   │   │   │   └── read.c
+│   │   │   ├── include
+│   │   │   │   └── conf-c
+│   │   │   │       └── conf.h
+│   │   │   └── src
+│   │   │       ├── conf.c
+│   │   │       ├── conf.h
+│   │   │       ├── hash
+│   │   │       │   ├── hash.c
+│   │   │       │   └── hash.h
+│   │   │       └── stack
+│   │   │           ├── stack.c
+│   │   │           └── stack.h
+│   │   └── sbus
+│   │       ├── CMakeLists.txt
+│   │       ├── LICENSE
+│   │       ├── README.md
+│   │       ├── examples
+│   │       │   ├── CMakeLists.txt
+│   │       │   ├── blocking_receiver.cpp
+│   │       │   ├── passthrough.cpp
+│   │       │   └── send_to_self.cpp
+│   │       ├── src
+│   │       │   ├── CMakeLists.txt
+│   │       │   ├── common
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   └── include
+│   │       │   │       └── sbus
+│   │       │   │           ├── sbus_error.h
+│   │       │   │           ├── sbus_packet.h
+│   │       │   │           └── sbus_spec.h
+│   │       │   ├── decoder
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── DecoderFSM.cpp
+│   │       │   │   ├── include
+│   │       │   │   │   └── sbus
+│   │       │   │   │       ├── DecoderFSM.h
+│   │       │   │   │       └── packet_decoder.h
+│   │       │   │   └── packet_decoder.c
+│   │       │   ├── driver
+│   │       │   │   ├── CMakeLists.txt
+│   │       │   │   ├── SBUS.cpp
+│   │       │   │   └── include
+│   │       │   │       └── SBUS.h
+│   │       │   └── tty
+│   │       │       ├── CMakeLists.txt
+│   │       │       ├── include
+│   │       │       │   └── sbus
+│   │       │       │       ├── sbus_low_latency.h
+│   │       │       │       ├── sbus_low_latency_impl.h
+│   │       │       │       ├── sbus_tty.h
+│   │       │       │       └── sbus_tty_impl.h
+│   │       │       ├── sbus_low_latency_linux.c
+│   │       │       ├── sbus_low_latency_none.c
+│   │       │       └── sbus_tty_linux.c
+│   │       └── test
+│   │           ├── CMakeLists.txt
+│   │           └── encode_decode.cpp
+│   ├── application
+│   │   ├── attitudeEstimator_thread.cpp
+│   │   ├── attitudeEstimator_thread.h
+│   │   ├── basicController_thread.cpp
+│   │   ├── basicController_thread.h
+│   │   ├── log_thread.cpp
+│   │   ├── log_thread.h
+│   │   ├── offboard_thread.cpp
+│   │   ├── offboard_thread.h
+│   │   ├── positionEstimator_thread.cpp
+│   │   ├── positionEstimator_thread.h
+│   │   ├── scope_thread.cpp
+│   │   ├── scope_thread.h
+│   │   ├── sih_thread.cpp
+│   │   ├── sih_thread.h
+│   │   ├── system_app.cpp
+│   │   ├── system_app.h
+│   │   ├── ulog_thread.cpp
+│   │   ├── ulog_thread.h
+│   │   ├── usrController_thread.cpp
+│   │   └── usrController_thread.h
+│   ├── calibration
+│   │   ├── accel_calib.cpp
+│   │   ├── ellipsoid_method.cpp
+│   │   ├── ellipsoid_method.h
+│   │   ├── ellipsoid_method_types.h
+│   │   ├── gyro_calib.cpp
+│   │   ├── mag_calib.cpp
+│   │   ├── sensor_calibration.cpp
+│   │   └── sensor_calibration.h
+│   ├── console
+│   │   ├── console.cpp
+│   │   ├── console.h
+│   │   ├── screen.cpp
+│   │   └── screen.h
+│   ├── drivers
+│   │   ├── actuator
+│   │   │   ├── fpga
+│   │   │   │   ├── actuator_fpga.cpp
+│   │   │   │   └── actuator_fpga.h
+│   │   │   └── pca9685
+│   │   │       ├── pca9685.cpp
+│   │   │       └── pca9685.h
+│   │   ├── barometer
+│   │   │   └── ms5611
+│   │   │       ├── ms5611.cpp
+│   │   │       ├── ms5611.h
+│   │   │       └── ms5611_main.cpp
+│   │   ├── gps
+│   │   │   ├── gps_api.cpp
+│   │   │   ├── gps_api.h
+│   │   │   └── ubx.h
+│   │   ├── imu
+│   │   │   ├── accelerometer
+│   │   │   │   ├── PX4Accelerometer.cpp
+│   │   │   │   └── PX4Accelerometer.h
+│   │   │   ├── gyroscope
+│   │   │   │   ├── PX4Gyroscope.cpp
+│   │   │   │   └── PX4Gyroscope.h
+│   │   │   ├── icm20689
+│   │   │   │   ├── icm20689.cpp
+│   │   │   │   └── icm20689.h
+│   │   │   ├── icm20689new
+│   │   │   │   ├── ICM20689.cpp
+│   │   │   │   ├── ICM20689.h
+│   │   │   │   └── InvenSense_ICM20689_registers.h
+│   │   │   └── icm42688p
+│   │   │       ├── ICM42688P.cpp
+│   │   │       ├── ICM42688P.h
+│   │   │       ├── InvenSense_ICM42688P_registers.h
+│   │   │       ├── atomic.h
+│   │   │       ├── icm42688p_main.cpp
+│   │   │       ├── sensor_accel_fifo.h
+│   │   │       └── sensor_gyro_fifo.h
+│   │   ├── magnetometer
+│   │   │   ├── ist8310
+│   │   │   │   ├── iSentek_IST8310_registers.h
+│   │   │   │   ├── ist8310.cpp
+│   │   │   │   ├── ist8310.h
+│   │   │   │   └── ist8310_main.cpp
+│   │   │   └── qmc5883l
+│   │   │       ├── QMC5883L.cpp
+│   │   │       ├── QMC5883L.h
+│   │   │       ├── QMC5883l_main.cpp
+│   │   │       └── QST_QMC5883L_registers.h
+│   │   ├── posix
+│   │   │   ├── i2c.cpp
+│   │   │   ├── i2c.h
+│   │   │   ├── spi.cpp
+│   │   │   └── spi.h
+│   │   ├── px4lib
+│   │   │   ├── limit.h
+│   │   │   ├── test_time.cpp
+│   │   │   └── test_time.h
+│   │   └── rc
+│   │       └── sbus
+│   │           ├── sbus_api.cpp
+│   │           └── sbus_api.h
+│   ├── include.h
+│   ├── lib
+│   │   ├── math_function.cpp
+│   │   ├── math_function.h
+│   │   └── ringbuffer.h
+│   ├── log
+│   │   ├── binlog.cpp
+│   │   └── binlog.h
+│   ├── main.cpp
+│   ├── msg
+│   │   ├── msg_def.cpp
+│   │   └── msg_def.h
+│   ├── parameter
+│   │   ├── parameter_read.cpp
+│   │   └── parameter_read.h
+│   ├── scope
+│   │   ├── scope.cpp
+│   │   └── scope.h
+│   ├── simulink_utility
+│   └── system_utility
+├── tools
+│   ├── compile.sh
+│   └── upload.sh</code></pre>
+<h2 id="2-io">2 增加IO驱动<a class="headerlink" href="#2-io" title="Permanent link"></a></h2>
+<h2 id="3">3<a class="headerlink" href="#3" title="Permanent link"></a></h2></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../other/" class="btn btn-neutral float-left" title="其他设置"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../Future/future/" class="btn btn-neutral float-right" title="下一代RflyPilot">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../other/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../Future/future/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

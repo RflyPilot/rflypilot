@@ -59,7 +59,7 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/hardware_connection/">硬件连接</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真与实验</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/scope/">在线示波器</a>
                   </li>
@@ -91,6 +91,10 @@
                   <li class="toctree-l1"><a class="reference internal" href="../net_interface/">网络通信接口</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../compiling_deploy/">编译与部署</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../other/">其他设置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rflypilot_dev_example/">开发示例</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">展望</span></p>
@@ -146,7 +150,97 @@ ringbuffer_typedef&lt;my_data_typedef&gt; my_data_msg(N_MY_DATA, "my_data", N);<
 <p>这个消息定义中，利用模板<code>ringbuffer_typdef</code>，定义了<code>my_data_msg</code>消息。其中<code>N_MY_DATA</code>为环形存储器存储深度，即存储最新的<code>N_MY_DATA</code>个消息。<code>my_data</code>为消息名，N表示每<code>publish</code>N次后，写入一次日志消息，N即分频系数。当N=0时表示不记录日志消息。</p>
 <p>在<code>msg_def.h</code>中，增加一行</p>
 <pre class="highlight"><code class="language-C">extern ringbuffer_typedef&lt;my_data_typedef&gt; my_data_msg;</code></pre>
-<h1 id="_3">消息的发布与读取<a class="headerlink" href="#_3" title="Permanent link"></a></h1></div>
+<h1 id="_3">消息的发布与读取<a class="headerlink" href="#_3" title="Permanent link"></a></h1>
+<h2 id="_4">程序示例<a class="headerlink" href="#_4" title="Permanent link"></a></h2>
+<pre class="highlight"><code class="language-C">class adaptive_delay_typedef adp_delay(0.5,15,0);
+
+
+void * thread_send(void * ptr)
+{
+  my_data_typedef send_my_data;
+  uint32_t cnt = 0;
+  for(;;)
+  {
+    send_my_data.data[0] = 1;
+    send_my_data.data[1] = get_time_now()/1e6;
+    my_data_msg.publish(&amp;send_my_data);//发布消息
+    if(cnt++ == 300)
+    {
+      printf("send: %f , %f\n",send_my_data.data[0], send_my_data.data[1]);
+      cnt = 0;
+    }
+    adp_delay.delay_us(1000);//使用自适应延时函数
+  }
+}
+
+void * thread_recv(void * ptr)
+{
+  my_data_typedef recv_my_data;
+
+  for(;;)
+  {
+    my_data_msg.read(&amp;recv_my_data);//读取消息
+    printf("recv: %f , %f\n",recv_my_data.data[0], recv_my_data.data[1]);
+    printf("send rate : %f \n", my_data_msg.publish_rate_hz);
+    usleep(100000);
+  }
+}
+
+int main(int argc, const char *argv[])
+{
+    bool ret = create_thread("thread_send", thread_send, NULL);
+    ret = create_thread("thread_recv", thread_recv, NULL);
+    while(1)
+    {
+        sleep(1);
+    }
+
+  return 0;
+
+}</code></pre>
+<h2 id="_5">运行结果<a class="headerlink" href="#_5" title="Permanent link"></a></h2>
+<pre class="highlight"><code>recv: 1.000000 , 0.000012
+send rate : 1000000.000000 
+thread_recv starting
+recv: 1.000000 , 0.100024
+send rate : 956.022888 
+recv: 1.000000 , 0.199830
+send rate : 967.118042 
+recv: 1.000000 , 0.299697
+send rate : 975.609741 
+send: 1.000000 , 0.311999
+recv: 1.000000 , 0.399873
+send rate : 981.354309 
+recv: 1.000000 , 0.500497
+send rate : 986.193237 
+recv: 1.000000 , 0.599694
+send rate : 990.098999 
+send: 1.000000 , 0.617905
+recv: 1.000000 , 0.700633
+send rate : 992.063477 
+recv: 1.000000 , 0.800291
+send rate : 995.024902 
+recv: 1.000000 , 0.900782
+send rate : 996.015991 
+send: 1.000000 , 0.920866
+recv: 1.000000 , 1.000038
+send rate : 997.009033 
+recv: 1.000000 , 1.100356
+send rate : 997.009033 
+recv: 1.000000 , 1.200573
+send rate : 998.004028 
+send: 1.000000 , 1.222612
+recv: 1.000000 , 1.300498
+send rate : 1001.000977 
+recv: 1.000000 , 1.400427
+send rate : 1001.000977 
+recv: 1.000000 , 1.501440
+send rate : 1001.000977 
+send: 1.000000 , 1.524425</code></pre>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p>程序中使用了<a href="../task_period/">自适应延时函数</a><code>adp_delay.delay_us()</code>以确保线程运行频率为设定值<code>1000Hz</code>，可以在运行结果中观察到运行频率稳定到<code>1000Hz</code>的过程。</p>
+</div></div>
               
             </div>
           </div><footer>

@@ -59,7 +59,7 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/hardware_connection/">硬件连接</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Basic/simulation/">MIL\SIH\HIL仿真与实验</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Basic/scope/">在线示波器</a>
                   </li>
@@ -91,6 +91,10 @@
                   <li class="toctree-l1"><a class="reference internal" href="../net_interface/">网络通信接口</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../compiling_deploy/">编译与部署</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../other/">其他设置</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../rflypilot_dev_example/">开发示例</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">展望</span></p>
@@ -196,15 +200,15 @@ void main(void)
     for(;;)
     {
         task();//耗时约400us
-        adp_delay.delay_us(500);//单位us
+        adp_delay.delay_us(1000000/800);//单位us
     }
 }</code></pre>
-<h2 id="_5">运行结果<a class="headerlink" href="#_5" title="Permanent link"></a></h2>
+<h2 id="imu">IMU线程运行结果<a class="headerlink" href="#imu" title="Permanent link"></a></h2>
 <p>可以观察到IMU频率逐渐稳定在800Hz的拨动曲线。</p>
 <p><img alt="" src="../img/adp_delay.jpg"></p>
 <h1 id="linux">Linux系统级延时函数<a class="headerlink" href="#linux" title="Permanent link"></a></h1>
 <p>Linux系统级延时函数为系统库中的延时函数，包括<code>usleep</code>，<code>nanosleep</code>等，其使用方法这里不再赘述。</p>
-<h1 id="_6">延时函数的切换<a class="headerlink" href="#_6" title="Permanent link"></a></h1>
+<h1 id="_5">延时函数的切换<a class="headerlink" href="#_5" title="Permanent link"></a></h1>
 <p>RflyPilot支持对部分线程中延时方法进行切换，设置<code>rflypilot.txt</code>中的<code>scheduler_mode</code>即可。默认设置为<code>2</code>，即自适应延时方案。当开发这想切换到基于线程同步的延时方案是，需要设置<code>scheduler_mode = 2</code>并启用<code>USING_THREAD_SYNC 1</code>。<br>
 </p><pre class="highlight"><code>#system sample rate
 imu_rate = 800 
