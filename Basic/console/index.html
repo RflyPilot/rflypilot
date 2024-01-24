@@ -132,7 +132,7 @@
             <div class="section" itemprop="articleBody">
               
                 <div><p>控制台功能是RflyPilot飞控的一个非常实用的功能，它起到了远程调试的功能，它可以作为简易的飞控地面站功能。它支持多种调试指令，也可也由开发者自行增加指令。于此同时，控制台还支持实时显示当前状态信息，包括姿态、GPS信号质量、运行频率等等。在室外进行实飞实验时，利用手机SSH连接到RflyPilot控制台，即可简单便捷地获取飞控状态信息，查看异常信息。</p>
-<p><img alt="" src="../img/console.gif"></p>
+<p><img alt="" src="../img/console_demo.gif"></p>
 <h1 id="_1">状态信息<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
 <p>如上图所示，RflyPilot飞控的状态信息会实时更新。</p>
 <table>
@@ -150,9 +150,39 @@
 <td>微秒</td>
 </tr>
 <tr>
+<td>lpe p{x,y,z}</td>
+<td>LPE估计位置</td>
+<td>m</td>
+</tr>
+<tr>
+<td>lpe v{x,y,z}</td>
+<td>LPE估计速度</td>
+<td>m/s</td>
+</tr>
+<tr>
 <td>roll/pitch/yaw</td>
 <td>姿态角</td>
 <td>deg</td>
+</tr>
+<tr>
+<td>baroInnov</td>
+<td>气压计新息</td>
+<td>m</td>
+</tr>
+<tr>
+<td>baroAltRef</td>
+<td>气压计参考高度</td>
+<td>m</td>
+</tr>
+<tr>
+<td>gpsInnovZ</td>
+<td>GPS垂向新息</td>
+<td>m</td>
+</tr>
+<tr>
+<td>gpsAltRef</td>
+<td>GPS高度参考</td>
+<td>m</td>
 </tr>
 <tr>
 <td>gyro_{x,y,z}</td>
@@ -200,17 +230,17 @@
 <td></td>
 </tr>
 <tr>
-<td>imuHz</td>
+<td>imuRate</td>
 <td>IMU采样率</td>
 <td>Hz</td>
 </tr>
 <tr>
-<td>ctrlHz</td>
+<td>ctrlRate</td>
 <td>控制器运行频率</td>
 <td>Hz</td>
 </tr>
 <tr>
-<td>GPSHz</td>
+<td>gpsRate</td>
 <td>GPS数据更新频率</td>
 <td>Hz</td>
 </tr>
