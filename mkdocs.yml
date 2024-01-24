@@ -87,3 +87,5 @@ plugins:
       enable_cache: True
       size: [400, 400]
       extensions: ['.jpg', '.jpeg', '.png', '.svg']
+#   - with-pdf:
+#         verbose: true

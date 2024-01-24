@@ -9,13 +9,10 @@
 ## 1 RflyPilot系统配置
 ### 1.1 树莓派固件准备
 
-有以下三种选择:
+RflyPilot使用的操作系统是navio2。
 
-1. 树莓派官方提供的固件(64位或32位), [Download](https://www.raspberrypi.com/software/). 官方系统需要使用官方工具[Raspberry Pi Imager](https://downloads.raspberrypi.org/imager/imager_latest.exe)安装
+[navio2](https://navio2.hipi.io/)提供的固件(含实时补丁32位),[Download](https://docs.emlid.com/navio2/configuring-raspberry-pi), 可以使用工具[Etcher](https://etcher.io/)安装.
 
-2. [navio2](https://navio2.hipi.io/)提供的固件(含实时补丁32位),[Download](https://docs.emlid.com/navio2/configuring-raspberry-pi), 可以使用工具[Etcher](https://etcher.io/)安装.
-
-3. 也可以使用其他系统如ubuntu, 但是我们没有进行测试. 
 ### 1.2 固件下载
 RflyPilot采用的是树莓派CM4核心板，与树莓派4B标准版不同，它不包含SD卡槽，核心板上默认装有EMMC存储芯片，所以需要将树莓派固件下载到EMMC中。在树莓派4B中可以用SD卡读卡器对树莓派固件进行下载，将固件写入到SD卡中，对于树莓派CM4而言，由于存储芯片无法拆卸，需要修改树莓派CM4的启动模式，令其在电脑上识别为U盘设备，即可安装常规方法进行固件下载。
 #### 1.2.1 树莓派启动模式
@@ -143,22 +140,23 @@ sudo apt install sshpass
 ### 2.2 RflyPilot源码下载
 RflyPilot的源码主要分为两大部分：RflyPilot飞控系统接口（C++代码）与用于飞控设计的模型文件(MATLAB)。
 
-RflyPilot源码: [https://gitee.com/nash2zhao/RflyPilot.git](https://gitee.com/nash2zhao/RflyPilot.git)
+RflyPilot源码: [https://gitee.com/RflyBUAA/RflyPilot.git](https://gitee.com/RflyBUAA/RflyPilot.git)
 
-RflyPilot MATLAB源码: [https://github.com/umview/raspberry_fc_matlab.git](https://github.com/umview/raspberry_fc_matlab.git)
+RflyPilot MATLAB源码: [https://gitee.com/RflyBUAA/RflyPilot_Model.git](https://gitee.com/RflyBUAA/RflyPilot_Model.git)
+
+使用命令
+```
+git clone https://gitee.com/RflyBUAA/RflyPilot.git
+git clone https://gitee.com/RflyBUAA/RflyPilot_Model.git
+```
 
 RflyPilot飞控系统接口采用高效的C++代码完成，为RflyPilot提供基本的飞控功能，包括传感器读取任务、执行器输出任务、控制器与状态估计接口、日志系统、传感器校准模块等等。在常规的飞控算法设计过程中，一般不需要修改这部分的代码。
 
 飞控模型文件主要包含控制器模型、无人机模型、状态估计器模型等。这部分模型可以直接进行数值仿真，用于前期的控制系统验证。设计好的飞控可以进行代码生成，进而嵌入到RflyPilot飞控系统中。这部分内容是开发者需要经常修改调试的内容。值得一提的是，为了更好地处理代码迁移与编译的问题，课题组也针对性地开发了一套工具——RflyPilotTools，用于简化复杂的操作流程。
 
-使用命令
-```
-git clone https://gitee.com/nash2zhao/RflyPilot.git
-git clone https://github.com/umview/raspberry_fc_matlab.git
-```
 由于MATLAB模型中还未包含状态估计模型和无人机模型，还需要执行子模块更新指令，方可完成对模型的完整下载。
 ```
-cd raspberry_fc_matlab
+cd RflyPilot_Model
 git submodule update --init --recursive
 cd Estimator
 git checkout master
@@ -193,7 +191,7 @@ cd ..
 ├── Model
 │   ├── H250Model.slx（四旋翼模型文件）
 │   ├── ModelParam_H2504S.m（四旋翼模型参数初始化文件）
-├── Raspberry_fc_matlab.prj（工程文件）
+├── RflyPilot_Model.prj（工程文件）
 ├── cache
 ├── debug_tools（用于存放RflyPilot的在线示波器）
 ├── i2c2pwm
@@ -210,7 +208,7 @@ cd ..
 ## 3 模型的运行(MIL)
 本小节将介绍如何运行数值仿真，即模型在环仿真。
 ### 3.1 仿真参数初始化
-首先在MATLAB中打开工程文件``Raspberry_fc_matlab.prj``，然后分别运行如下脚本
+首先在MATLAB中打开工程文件``RflyPilot_Model.prj``，然后分别运行如下脚本
 
 - MIL/ControlInit_vz.m
 - Estimator/AttitudeEstimatorParameters.m
@@ -218,7 +216,7 @@ cd ..
 - Model/ModelParam_H2504S.m
 
 !!! 注意
-	<font face="黑体" color=red size=3>为避免后续仿真过程中文件路径发生错误等问题**强烈**建议在后续进行仿真的过程中，工作目录依然保持在工程根目录下，即Raspberry_fc_matlab目录下。</font>
+	<font face="黑体" color=red size=3>为避免后续仿真过程中文件路径发生错误等问题**强烈**建议在后续进行仿真的过程中，工作目录依然保持在工程根目录下，即``RflyPilot_Model``目录下。</font>
 
 
 
@@ -231,7 +229,7 @@ cd ..
 
 ![参考模型](img/modelref.png)
 
-在部署完[NMPC求解器](../mpc/mpc_example.md)后，可以直接运行综合仿真模型，并打开``RflySim3D``，进行位姿显示。默认模型采用Dashboard进行指令输入，如下图所示（在Viewer中）。
+在部署完[NMPC求解器](../mpc/mpc_example.md)后，可以在工程根目录下生成``nmpc_solver_vz.mexw64``。可以直接运行综合仿真模型，并打开``RflySim3D``，进行位姿显示。默认模型采用Dashboard进行指令输入，如下图所示（在Viewer中）。
 
 ![默认控制台](img/dashboard.png)
 ![Rflysim3D视角](img/quadcopter_rflysim3d.png)
@@ -262,6 +260,10 @@ cd ..
 状态估计部分的代码生成分为姿态估计器代码生成与位置估计代码生成。首先介绍姿态估计代码生成，打开``Estimator/AttitudeEstimator.slx``模型，如下图所示。其代码生成步骤与控制器代码生成步骤类似，这里不再赘述。
 ![姿态估计模型](img/attest_codegen.png)
 除了姿态信息，位置信息也不可或缺。位置估计器的模型为``Estimator/PositionEstimator.slx``，位置估计模型的代码生成步骤与姿态估计模型类似，这里同样不再赘述。
+
+!!! TIP
+	关于状态估计系统的相关介绍，感兴趣的读者可以参考PX4的Q_estimator和LPE。
+
 ### 4.3 无人机模型代码生成
 至此，控制器、状态估计器的模型均已被生成为代码的形式，无人机的仿真模型同样可以进行代码生成，这里主要用作SIH仿真中的被控对象，即只需要一共飞控硬件尽可以进行飞行仿真，这种仿真模式主要用于验证控制器在实际飞控平台中的运行是否正常。
 打开模型``SIH_Model.slx``，这里同样使用了参考模型的模型搭建方式，使用的模型是``Model/H250Model2.slx``（与数值仿真模型``Model/H250Model.slx``的区别详见``Model/README.md``），使用的接口文件同样是``Interface.sldd``，其代码生成方式也不再赘述了。
@@ -448,7 +450,8 @@ RflySim3D软件的相关使用介绍可以参考[Rflysim](https://doc.rflysim.co
 !!! 注意
 	<font face="黑体" color=red size=3>MODE功能未明确在仿真模型中定义，该通道约定俗成为模式切换通道。ARM通道的设计与仿真模型无关，该通道的功能在底层飞控系统中固定为解锁通道。</font>
 
-![](img/sih.PNG)
+![](img/mil_demo.gif)
+
 !!! TIP
 	<font face="黑体" color=red size=3>仿真技巧：仿真时应先解锁，再缓慢推油门，直至飞行器起飞</font>
 ## 参考资料

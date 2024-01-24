@@ -109,3 +109,10 @@ HIL仿真相比于实飞实验的区别是RflyPilot飞控直接连接到半物�
     <font face="黑体" color=red size=3>由于飞控运行时处理器功率增加，为保障计算性能，建议使用大功率电源连接树莓派。</font>
 
 ## 实飞实验
+
+实飞实验的硬件连接可以参考如下图。
+
+![](../introduction/img/rflypilot_connection.jpg)
+
+!!! TIP
+    RflyPilot在工作时对电源功率有一定的要求，这里推荐读者使用[PM06](https://item.taobao.com/item.htm?abbucket=6&id=672144201759&ns=1&spm=a21n57.1.0.0.aa48523cB5cd8x&skuId=4837788524900)电源模块。

@@ -436,6 +436,8 @@ real_t ubValues[ 20 ]; // 控制量约束上届 NU * N， 求解器输入
 
 ![acado_solver_simlink](img/acado_simulink.jpg)
 
+编译完成后，将在工程根目录生成``nmpc_solver_vz.mexw64``文件。
+
 ## 3.6 MATLAB脚本调用ACADO求解器
 具体实现可以参考如下脚本（该脚本实现了一次在预测时域内的预测）
 !!! 注意

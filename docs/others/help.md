@@ -1,21 +1,34 @@
-# 如何贡献代码
+# 如何贡献文档
 
-本文文档使用MkDocs开发，配置简单。建议在WSL下进行开发。
+相关内容请参考[https://rflybuaa.github.io/RflySimRTDoc/help/readme/](https://rflybuaa.github.io/RflySimRTDoc/help/readme/)
 
-1. 安装文档环境可以参考[mkdocs.org](https://www.mkdocs.org)
+# 如何生成PDF
 
-2. 修改文档内容
+相关内容请参考[https://pypi.org/project/mkdocs-with-pdf/](https://pypi.org/project/mkdocs-with-pdf/)。
+!!! TIP
+    使用``mkdocs-with-pdf``插件需要提前安装weasyprint。在安装weasyprint之前，需要先安装[GTK3.x](https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases)。在安装GTK3.x时，推荐使用默认的安装选项，安装完成后重启（使环境变量生效）。
+    安装weasyprint: ``python -m pip install weasyprint``
 
-    2.1 运行`git clone https://github.com/RflyPilot/rflypilot.github.com.git`
+启用pdf生成，修改``mkdocs.yml``。
+```
+plugins:
+  - search
+  - autorefs
+  # - git-latest-changes #展示最近一次更新的变化
+  # - git-latest-release
+  - mkdocs-video:
+      is_video: true
+      video_autoplay: false
+  - resize-images:
+      source-dir: img-large
+      target-dir: img
+      enable_cache: True
+      size: [400, 400]
+      extensions: ['.jpg', '.jpeg', '.png', '.svg']
+  - with-pdf:
+        verbose: true
+```
+然后执行命令``mkdocs build``，随后将在``site/pdf``文件夹中生成PDF文件。
 
-    2.2 运行`git checkout master` (注意：默认分支是gh-pages, 所以需要手动切换)
-    
-    2.3 运行`mkdocs serve`可以本地预览效果
-
-3. 运行`mkdocs build`，之后会在根目录下生成/更新`site`文件夹下的内容
-
-4. 运行`mkdocs gh-deploy`以提交site下的更改
-
-5. 如果`mkdocs gh-deploy`本身没能自动将更改push到远端仓库，那么手动`git push origin gh-pages` 
-
-6. 提交master分支的更改
+!!! TIP
+    建议在生成pdf后，取消改插件设置。

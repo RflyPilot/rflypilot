@@ -1,6 +1,6 @@
 RflyPilot支持在线调参功能，允许在飞控运行时进行参数修改与更新。
 # MIL
-解压工程文件中``slib/rflypilotblock.zip``，并添加到工程路径中，运行脚本``slblocks.m``，此时RflyPilot模块便被加载到Simulink中，此时打开``MIL_HIL.slx``模型文件，即可在“库浏览器”中看到相应的模块。
+解压工程文件中``slib/rflypilotblock.zip``，并添加到工程路径中，运行脚本``slblocks.m``，此时RflyPilot模块便被加载到Simulink中，此时打开``MIL_HIL.slx``模型文件，即可在“库浏览器”中看到相应的模块。相应的调用示例，读者可以参考``RflyPilot_Model/debug_tools/ParamUpdate.slx``文件，读者可以将改模块复制到MIL仿真模型中。
 该参数模块在模型首次运行时将运行一次，读取相应字符串定义的参数，而后在``param_read_flag``的上升沿时将再次触发，继续读取参数，以实现参数更新的目的。
 ![](img/rflypilotblock.jpg)
 
