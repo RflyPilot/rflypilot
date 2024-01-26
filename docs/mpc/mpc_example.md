@@ -30,7 +30,7 @@
 # 2 动力学方程的获取
 利用MATLAB的符号工具箱，可以进行飞行器动力学方程的推导。
 利用如下脚本
-在RflyPilot的MATLAB工程下``Raspberry_fc_matlab``
+在RflyPilot的MATLAB工程下``RflyPilot_Model``
 运行如下脚本即可得到四旋翼飞行器的动力学方程。
 ```
 syms u1 u2 u3 u4 real; % 定义控制输入
@@ -167,7 +167,7 @@ make clean all
 ## 3.3 生成求解器
 根据已有的动力学方程表达式，可以将其用ACADO语法进行描述，下面提供一个四旋翼NMPC控制器的脚本示例。
 
-***文件位置：``raspberry_fc_matlab/MIL/quad_make_solver_vz.m``***
+***文件位置：``RflyPilot_Model/MIL/quad_make_solver_vz.m``***
 ```
 clc;
 clear all;
