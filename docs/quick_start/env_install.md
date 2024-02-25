@@ -73,6 +73,13 @@ dtoverlay=dwc2,dr_mode=host
 ```
 !!! TIP
 	这里将usb口设置成了host模式，如需要利用树莓派的USB口给其他设备供电，需要短接飞控板上的D1二极管以保障飞控可以为USB设备供电。
+
+!!! TIP
+	测试核心频率
+	
+	```
+	vcgencmd measure_clock arm
+	```
 #### 1.3.2 配置``/boot/cmdline.txt``
 ```
 dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait isolcpus=2,3
