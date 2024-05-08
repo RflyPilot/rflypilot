@@ -80,6 +80,10 @@ dtoverlay=dwc2,dr_mode=host
 	```
 	vcgencmd measure_clock arm
 	```
+
+!!! TIP
+	如要使用外置wifi天线，在``config.txt``中增加``dtparam=ant2``
+
 #### 1.3.2 配置``/boot/cmdline.txt``
 ```
 dwc_otg.lpm_enable=0 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait isolcpus=2,3
