@@ -615,6 +615,11 @@ log_dir = "."
 <h3 id="71">7.1 前期准备<a class="headerlink" href="#71" title="Permanent link"></a></h3>
 <p>在SIH仿真模式下，由于飞控软件和被控对象都运行在RflyPilot中，并不需要连接到飞行器本体上，但是由于仿真过程中，需要输入控制指令，此时，还需要将遥控器的接收机连接到RflyPilot上。 故在SIH仿真模式下，硬件准备上，只需要RflyPilot与遥控器和接收机，最后通过WIFI连接到计算机，在RflySim3D上进行显示。</p>
 <p><img alt="" src="../../Basic/img/sih_con.jpg"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>如需使用Futaba遥控器，需要修改RflyPilot的SBUS驱动代码，在<code>src/3rdparty/sbus/src/common/include/sbus/sbus_spec.h</code>中，设置<code>RC_SBUS_FUTABA_SUPPORT</code>为<code>1</code>。并将RflyPilot的SBUS接口连接到SBUS接收机的<code>sbus1.0</code>接口，注意默认接口为<code>sbus2.0</code>。<br>
+<img alt="" src="../img/futaba_sbus.png"></p>
+</div>
 <p>Scope示波器：打开MATLAB工程文件中的<code>debug_tools/udp_recv3_ke.slx</code>，该模型利用Simulink的UDP工具箱，实现了简易的飞控数据曲线实时展示功能，RflyPilot的一些关键数据，如位置、速度、姿态等信息，均会在飞控运行时实时显示。双击打开①后，配置②<code>Remote IP address</code>，该IP应设置为RflyPilot的IP。点击“确定”即可完成设置，随后点击“运行”。</p>
 <p><img alt="" src="../img/scope.jpg"></p>
 <p>RflySim3D: RflySim3D是一款基于UE引擎开发的飞行器视景显示平台，它是<a href="https://rfly.buaa.edu.cn/">可靠飞行控制组</a>开发的RflySim平台的一部分。使用者可以通过UDP发送特定协议的数据包，进而实现控制视景中无人机的位置、姿态、旋翼转速等，是无人机控制器开发的利器。更多的介绍请参考<a href="http://doc.rflysim.com/">RflySim官方网站</a>。Rflysim3D在RflyPilot中主要作为视景显示软件，位姿数据从RflyPilot中发送，通过UDP协议，由RflySim3D软件进行接收和显示。</p>
