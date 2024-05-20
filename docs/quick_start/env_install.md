@@ -435,6 +435,11 @@ log_dir = "."
 
 ![](../Basic/img/sih_con.jpg)
 
+!!! TIP
+	如需使用Futaba遥控器，需要修改RflyPilot的SBUS驱动代码，在``src/3rdparty/sbus/src/common/include/sbus/sbus_spec.h``中，设置``RC_SBUS_FUTABA_SUPPORT``为``1``。并将RflyPilot的SBUS接口连接到SBUS接收机的``sbus1.0``接口，注意默认接口为``sbus2.0``。
+	![](img/futaba_sbus.png)
+
+
 Scope示波器：打开MATLAB工程文件中的``debug_tools/udp_recv3_ke.slx``，该模型利用Simulink的UDP工具箱，实现了简易的飞控数据曲线实时展示功能，RflyPilot的一些关键数据，如位置、速度、姿态等信息，均会在飞控运行时实时显示。双击打开①后，配置②``Remote IP address``，该IP应设置为RflyPilot的IP。点击“确定”即可完成设置，随后点击“运行”。
 
 ![](img/scope.jpg)
