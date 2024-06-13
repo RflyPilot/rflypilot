@@ -73,3 +73,14 @@
       float _delay_element_2;	// buffered sample -2
     };
     ```
+
+## 3 如何支持64位系统
+安装编译工具``sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu``，修改``CMakeLists.txt``中的``CMAKE_CXX_COMPILER``和``CMAKE_C_COMPILER``配置选项为
+```
+set(CMAKE_CXX_COMPILER "/usr/bin/aarch64-linux-gnu-g++")
+set(CMAKE_C_COMPILER "/usr/bin/aarch64-linux-gnu-gcc")
+```
+
+## 4 高性能IMU（ICM45686）的支持
+
+ICM45686是一款高性能IMU，具有低噪声和高量程的特性，现已支持RflyPilot，驱动文件位于``src/drivers/imu/icm45686``，启动函数为``start_icm45686()``。

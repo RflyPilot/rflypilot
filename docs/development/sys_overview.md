@@ -61,6 +61,7 @@ RflyPilot的部分底层驱动参考了PX4相关的驱动代码。总体上，Rf
 |----|----|----|
 |IMU|ICM42688p|``src/drivers/imu/icm42688p``|
 |IMU|ICM20689|``src/drivers/imu/icm20689``|
+|IMU|ICM45686|``src/drivers/imu/icm45686``|
 |气压计|MS5611|``src/drivers/barometer/ms5611``|
 |磁力计|IST8310|``src/drviers/magnetometer/ist8310``|
 |磁力计|QMC5883L|``src/drviers/magnetometer/qmc5883l``|
