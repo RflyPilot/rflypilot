@@ -102,6 +102,10 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#2-rflypilottxtaccel_cutoff_hzgyro_cutoff_hz">2 rflypilot.txt:accel_cutoff_hz,gyro_cutoff_hz</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-64">3 如何支持64位系统</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-imuicm45686">4 高性能IMU（ICM45686）的支持</a>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../rflypilot_dev_example/">开发示例</a>
@@ -208,7 +212,13 @@ protected:
   float _delay_element_1;   // buffered sample -1
   float _delay_element_2;   // buffered sample -2
 };</code></pre>
-</div></div>
+</div>
+<h2 id="3-64">3 如何支持64位系统<a class="headerlink" href="#3-64" title="Permanent link"></a></h2>
+<p>安装编译工具<code>sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu</code>，修改<code>CMakeLists.txt</code>中的<code>CMAKE_CXX_COMPILER</code>和<code>CMAKE_C_COMPILER</code>配置选项为<br>
+</p><pre class="highlight"><code>set(CMAKE_CXX_COMPILER "/usr/bin/aarch64-linux-gnu-g++")
+set(CMAKE_C_COMPILER "/usr/bin/aarch64-linux-gnu-gcc")</code></pre>
+<h2 id="4-imuicm45686">4 高性能IMU（ICM45686）的支持<a class="headerlink" href="#4-imuicm45686" title="Permanent link"></a></h2>
+<p>ICM45686是一款高性能IMU，具有低噪声和高量程的特性，现已支持RflyPilot，驱动文件位于<code>src/drivers/imu/icm45686</code>，启动函数为<code>start_icm45686()</code>。</p></div>
               
             </div>
           </div><footer>
