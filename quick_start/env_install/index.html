@@ -669,13 +669,15 @@ log_dir = "."
 <tr>
 <td>CH6</td>
 <td>ARM</td>
-<td>用于解锁(ARM&gt;1250)</td>
+<td>用于解锁(ARM&gt;1200)</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition 注意">
 <p class="admonition-title">注意</p>
-<p><font face="黑体" color="red" size="3">MODE功能未明确在仿真模型中定义，该通道约定俗成为模式切换通道。ARM通道的设计与仿真模型无关，该通道的功能在底层飞控系统中固定为解锁通道。</font></p>
+<p><font face="黑体" color="red" size="3">MODE功能未明确在仿真模型中定义，该通道约定俗成为模式切换通道。ARM通道的设计与仿真模型无关，该通道的功能在底层飞控系统中固定为解锁通道。</font><br>
+关于ARM通道的详细情况，请参考代码<code>src/application/usrController_thread.cpp</code>约130行。<br>
+</p><pre class="highlight"><code>if(((get_time_now() - _rc_input_msg.timestamp) &gt; 8e5) || (_rc_input_msg.failsafe) || (_rc_input_msg.frameLost) || _rc_input_msg.channels[5] &lt; 1200) </code></pre>
 </div>
 <p><img alt="" src="../img/mil_demo.gif"></p>
 <div class="admonition tip">
