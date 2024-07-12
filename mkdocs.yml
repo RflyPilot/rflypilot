@@ -33,6 +33,7 @@ nav:
         - 开发示例: development/rflypilot_dev_example.md
     - 展望:
         - 下一代RflyPilot: Future/future.md
+        - RflyPilot v1.1: Future/rflypilotv1_1.md
     - Help:
         - Contribute: others/help.md
 

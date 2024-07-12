@@ -461,11 +461,14 @@ RflySim3D软件的相关使用介绍可以参考[Rflysim](https://doc.rflysim.co
 |CH3|z|垂向通道|
 |CH4|yaw|航向控制|
 |CH5|MODE*|用于设置飞行模式|
-|CH6|ARM|用于解锁(ARM>1250)|
+|CH6|ARM|用于解锁(ARM>1200)|
 
 !!! 注意
 	<font face="黑体" color=red size=3>MODE功能未明确在仿真模型中定义，该通道约定俗成为模式切换通道。ARM通道的设计与仿真模型无关，该通道的功能在底层飞控系统中固定为解锁通道。</font>
-
+	关于ARM通道的详细情况，请参考代码``src/application/usrController_thread.cpp``约130行。
+	```
+	if(((get_time_now() - _rc_input_msg.timestamp) > 8e5) || (_rc_input_msg.failsafe) || (_rc_input_msg.frameLost) || _rc_input_msg.channels[5] < 1200) 
+	```
 ![](img/mil_demo.gif)
 
 !!! TIP
