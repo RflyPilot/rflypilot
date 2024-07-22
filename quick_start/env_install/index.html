@@ -612,6 +612,14 @@ log_dir = "."
 <p>系统正常启动后，界面如下<br>
 <img alt="console" src="../img/console.png"></p>
 <p>此时按<code>Ctrl+C</code>键即可中止程序的运行。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>在日常使用中，经常会出现运行<code>./rflypilot</code>后，不小心关闭了当前终端的情况，此时飞控程序便会因为ssh连接的断开而终止，在实际飞行过程中这样的现象会造成极大的安全隐患。为了避免该问题，可以使用如下方式：<br>
+1. 启动飞控程序时采用<code>nohup ./rflypilot &amp;</code>指令，程序的调试输出会被动态保存到<code>nohup.out</code>文件中。<br>
+2. 通过<code>tail -f nohup.out</code>查看飞控的调试输出，按<code>Ctrl + C</code>退出查看。<br>
+3. 结束程序采用<code>pkill rflypilot</code>。<br>
+通过此方法，飞控程序便不会被轻易结束掉。</p>
+</div>
 <h2 id="7-sih">7 SIH仿真<a class="headerlink" href="#7-sih" title="Permanent link"></a></h2>
 <p>基于以上内容，读者已经完成了从环境安装到模型仿真（MIL），再到代码生成、运行飞控的全流程。笔者以SIH为例，介绍仿真的基本流程和操作。</p>
 <h3 id="71">7.1 前期准备<a class="headerlink" href="#71" title="Permanent link"></a></h3>
