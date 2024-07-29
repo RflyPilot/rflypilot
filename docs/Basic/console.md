@@ -1,6 +1,6 @@
 控制台功能是RflyPilot飞控的一个非常实用的功能，它起到了远程调试的功能，它可以作为简易的飞控地面站功能。它支持多种调试指令，也可也由开发者自行增加指令。于此同时，控制台还支持实时显示当前状态信息，包括姿态、GPS信号质量、运行频率等等。在室外进行实飞实验时，利用手机SSH连接到RflyPilot控制台，即可简单便捷地获取飞控状态信息，查看异常信息。
 
-![](img/console_demo.gif)
+![](img/shell.jpg)
 
 # 状态信息
 如上图所示，RflyPilot飞控的状态信息会实时更新。
@@ -27,5 +27,10 @@
 |imuRate|IMU采样率|Hz|
 |ctrlRate|控制器运行频率|Hz|
 |gpsRate|GPS数据更新频率|Hz|
+|ARM|遥控器解锁通道CH6||
+|MODE|遥控器模式通道CH5||
+|BatValt|电池电压|V|
+!!! TIP
+    为获得精确的电池电压数据，需要对电池参数进行校准，相关代码在``src/drivers/adc/ads1115/ADS1115.cpp``，约321行。校准参数位于``configure.h``文件中，``BATTERY_VALTAGE_K``和``BATTERY_VALTAGE_B``。
 
 
