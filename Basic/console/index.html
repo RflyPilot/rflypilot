@@ -134,7 +134,7 @@
             <div class="section" itemprop="articleBody">
               
                 <div><p>控制台功能是RflyPilot飞控的一个非常实用的功能，它起到了远程调试的功能，它可以作为简易的飞控地面站功能。它支持多种调试指令，也可也由开发者自行增加指令。于此同时，控制台还支持实时显示当前状态信息，包括姿态、GPS信号质量、运行频率等等。在室外进行实飞实验时，利用手机SSH连接到RflyPilot控制台，即可简单便捷地获取飞控状态信息，查看异常信息。</p>
-<p><img alt="" src="../img/console_demo.gif"></p>
+<p><img alt="" src="../img/shell.jpg"></p>
 <h1 id="_1">状态信息<a class="headerlink" href="#_1" title="Permanent link"></a></h1>
 <p>如上图所示，RflyPilot飞控的状态信息会实时更新。</p>
 <table>
@@ -246,8 +246,27 @@
 <td>GPS数据更新频率</td>
 <td>Hz</td>
 </tr>
+<tr>
+<td>ARM</td>
+<td>遥控器解锁通道CH6</td>
+<td></td>
+</tr>
+<tr>
+<td>MODE</td>
+<td>遥控器模式通道CH5</td>
+<td></td>
+</tr>
+<tr>
+<td>BatValt</td>
+<td>电池电压</td>
+<td>V</td>
+</tr>
 </tbody>
-</table></div>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>为获得精确的电池电压数据，需要对电池参数进行校准，相关代码在<code>src/drivers/adc/ads1115/ADS1115.cpp</code>，约321行。校准参数位于<code>configure.h</code>文件中，<code>BATTERY_VALTAGE_K</code>和<code>BATTERY_VALTAGE_B</code>。</p>
+</div></div>
               
             </div>
           </div><footer>
