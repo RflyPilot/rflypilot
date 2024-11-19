@@ -34,6 +34,7 @@ nav:
     - 展望:
         - 下一代RflyPilot: Future/future.md
         - RflyPilot v1.1: Future/rflypilotv1_1.md
+        - RflyPilot v1.2: Future/rflypilotv1_2.md
     - Help:
         - Contribute: others/help.md
 

@@ -213,7 +213,11 @@ calibration finished !
 !!! TIP
     磁力计的校准需要在磁场干扰较少的区域，要尽量避免周围有金属物质。
 
+
+# IMU与磁力计安装角校准
+由于飞行器结构的限制，当用户需要对飞控进行倾斜安装时，需要对飞控进行设置，相应设置方法请查看[传感器安装角设置](../development/other.md)。
 # 其他
 1. 如要查看当前传感器校准参数，可以输入命令``calib load``，即可列出当前校准参数。
 2. RflyPilot默认保存了校准时读取的传感器数据，这些数据在校准完成之后将存储在当前目录，分别名为``accel_data.txt``, ``gyro_data.txt``, ``mag_data.txt``，这些数据可用于在MATLAB中进行处理。
 3. 首次使用RflyPilot时，``calibration.txt``文件并不存在，需要使用者自行创建。
+

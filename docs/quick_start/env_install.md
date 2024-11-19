@@ -146,6 +146,7 @@ sudo apt install cmake
 sudo apt install gcc-arm-linux-gnueabihf
 sudo apt install g++-arm-linux-gnueabihf
 sudo apt install sshpass
+sudo apt install libeigen3-dev
 ```
 
 ### 2.2 RflyPilot源码下载

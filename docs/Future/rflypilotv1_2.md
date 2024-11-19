@@ -15,7 +15,7 @@ RflyPilot v1.2 在上一版RflyPilot v1.1的基础之上进行使用上的细节
 
 在RflyPilot v1.1版硬件基础之上，进一步压缩飞控外壳高度，从而减低飞控安装尺寸要求。
 
-![rflypilot_hil](img/rflypilot_board_v1.2.jpg)
+![rflypilot_hil](img/rflypilot_v1.2.png)
 
 稳定版本的Rflypilot底板正式推出，改正了上一版本中PMW接口的问题。
 

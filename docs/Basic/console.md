@@ -30,7 +30,8 @@
 |ARM|遥控器解锁通道CH6||
 |MODE|遥控器模式通道CH5||
 |BatValt|电池电压|V|
+|Temp|CPU工作温度|degC|
 !!! TIP
-    为获得精确的电池电压数据，需要对电池参数进行校准，相关代码在``src/drivers/adc/ads1115/ADS1115.cpp``，约321行。校准参数位于``configure.h``文件中，``BATTERY_VALTAGE_K``和``BATTERY_VALTAGE_B``。
+    为获得精确的电池电压数据，需要对电池参数进行校准，相关代码在``src/drivers/adc/ads1115/ADS1115.cpp``，约321行。校准参数位于``configure.h``文件中，``BATTERY_VALTAGE_K``和``BATTERY_VALTAGE_B``，校准参考公式为``y=BATTERY_VALTAGE_K*x + BATTERY_VALTAGE_B``。
 
 
