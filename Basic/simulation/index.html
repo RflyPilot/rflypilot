@@ -103,6 +103,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../Future/rflypilotv1_1/">RflyPilot v1.1</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../Future/rflypilotv1_2/">RflyPilot v1.2</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Help</span></p>
               <ul>
@@ -191,6 +193,10 @@
 </div>
 <h1 id="exp">EXP<a class="headerlink" href="#exp" title="Permanent link"></a></h1>
 <p>EXP，即实飞实验模式，在该模式下，RflyPilot将利用真实的传感器数据计算控制输出，并直接输出PWM控制指令。为启用该模式，读者需要修改<code>valid_mode = 3</code>，同时修改宏定义文件<code>config/configure.h</code>中的<code>USE_RFLYPILOT</code>为<code>1</code>。在该模式下，需要开发者自行连接飞控到飞行器上，包括电源模块、GPS、接收机、电调等。</p>
+<div class="admonition 注意">
+<p class="admonition-title">注意</p>
+<p><font face="黑体" color="black" size="3">由于实飞实验使用了真实的GPS，需要等待状态估计系统收敛后才可以起飞，尤其是当飞控需要用到估计的位置、速度数据的情况。当控制台出现“[lpe] GPS Init status xxx, GPS Alt Origin is xxx”后，说明位置速度数据可用。</font></p>
+</div>
 <p>如下图所示，这是一架搭载RflyPilot的四旋翼无人机</p>
 <p><img alt="" src="../img/quadcopter_with_rflypilot.jpg"></p>
 <p>实飞效果如下</p>
